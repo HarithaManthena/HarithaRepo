@@ -1,0 +1,3 @@
+"Date","Time","Test Case ID","Description","Result"
+"13.04.2020","11.38.35","TC_002_Create_Event","Create Event","FAIL"
+"13.04.2020","11.38.35","TC_001_Create_Event","Create Event","FAIL"

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="39524" started-at="2020-04-13T11:43:32 IST" finished-at="2020-04-13T11:44:12 IST">
+    <groups>
+      <group name="regression">
+        <method signature="TC_001_CreateEvent.TC_001_Create_Event()[pri:0, instance:WebTestCases.TC_001_CreateEvent@33c7e1bb]" name="TC_001_Create_Event" class="WebTestCases.TC_001_CreateEvent"/>
+        <method signature="TC_002_CreateEvent.TC_002_Create_Event()[pri:0, instance:WebTestCases.TC_002_CreateEvent@34c4973]" name="TC_002_Create_Event" class="WebTestCases.TC_002_CreateEvent"/>
+      </group> <!-- regression -->
+      <group name="Web Application">
+        <method signature="TC_001_CreateEvent.TC_001_Create_Event()[pri:0, instance:WebTestCases.TC_001_CreateEvent@33c7e1bb]" name="TC_001_Create_Event" class="WebTestCases.TC_001_CreateEvent"/>
+        <method signature="TC_002_CreateEvent.TC_002_Create_Event()[pri:0, instance:WebTestCases.TC_002_CreateEvent@34c4973]" name="TC_002_Create_Event" class="WebTestCases.TC_002_CreateEvent"/>
+      </group> <!-- Web Application -->
+      <group name="smoke">
+        <method signature="TC_001_CreateEvent.TC_001_Create_Event()[pri:0, instance:WebTestCases.TC_001_CreateEvent@33c7e1bb]" name="TC_001_Create_Event" class="WebTestCases.TC_001_CreateEvent"/>
+        <method signature="TC_002_CreateEvent.TC_002_Create_Event()[pri:0, instance:WebTestCases.TC_002_CreateEvent@34c4973]" name="TC_002_Create_Event" class="WebTestCases.TC_002_CreateEvent"/>
+      </group> <!-- smoke -->
+    </groups>
+    <test name="Web" duration-ms="39524" started-at="2020-04-13T11:43:32 IST" finished-at="2020-04-13T11:44:12 IST">
+      <class name="WebTestCases.TC_001_CreateEvent">
+        <test-method status="PASS" signature="TC_001_Create_Event()[pri:0, instance:WebTestCases.TC_001_CreateEvent@33c7e1bb]" name="TC_001_Create_Event" duration-ms="21874" started-at="2020-04-13T11:43:32 IST" description="Create Event" finished-at="2020-04-13T11:43:54 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_001_Create_Event -->
+      </class> <!-- WebTestCases.TC_001_CreateEvent -->
+      <class name="WebTestCases.TC_002_CreateEvent">
+        <test-method status="PASS" signature="TC_002_Create_Event()[pri:0, instance:WebTestCases.TC_002_CreateEvent@34c4973]" name="TC_002_Create_Event" duration-ms="15478" started-at="2020-04-13T11:43:55 IST" description="Create Event" finished-at="2020-04-13T11:44:11 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_002_Create_Event -->
+      </class> <!-- WebTestCases.TC_002_CreateEvent -->
+    </test> <!-- Web -->
+  </suite> <!-- Suite -->
+</testng-results>

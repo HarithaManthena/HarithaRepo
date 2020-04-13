@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<test name="Web">
+	<groups>
+			<run>
+				<include name="regression" />
+			</run>
+		</groups>
+		<classes>
+			<class name="WebTestCases.TC_001_CreateEvent"></class>
+			<class name="WebTestCases.TC_002_CreateEvent"></class>
+		</classes>
+	</test>
+</suite> <!-- Suite -->
