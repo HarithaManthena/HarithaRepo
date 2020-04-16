@@ -10,17 +10,16 @@ import WebPages.ExamActivityModule;
 import WebPages.LoginPage;
 
 @Listeners({ SuiteEvent.class, WebEvent.class })
-public class TC_002_CreateEvent {
+public class TC_004_DeleteEvent {
 
-	@Test(description = "Create Event", groups = { "smoke", "regression", "Web Application" })
-	public void TC_002_Create_Event() throws InterruptedException {
+	@Test(description = "Delete Event", groups = { "smoke", "regression", "Web Application" })
+	public void TC_002_Delete_Event() throws InterruptedException {
 
 		LoginPage homePage = new LoginPage();
 		
-		//*********************To Create any event**************
-		
+		//*********************To Delete any event**************
 		homePage.Login(ConfigReader.getValue("examDeanUserName"), ConfigReader.getValue("examDeanPassword"));
-		ExamActivityModule.CreateEvent();
+		ExamActivityModule.DeleteEvent();
 		Thread.sleep(10000);
 		homePage.Logout();
 
