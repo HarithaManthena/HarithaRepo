@@ -8,8 +8,10 @@
 			</run>
 		</groups>
 		<classes>
-			<class name="WebTestCases.TC_001_CreateEvent"></class>
+			<class name="WebTestCases.TC_001_VerifyLogin"></class>
 			<class name="WebTestCases.TC_002_CreateEvent"></class>
+			<class name="WebTestCases.TC_003_UpdateEvent"></class>
+			<class name="WebTestCases.TC_004_DeleteEvent"></class>
 		</classes>
 	</test>
 </suite> <!-- Suite -->

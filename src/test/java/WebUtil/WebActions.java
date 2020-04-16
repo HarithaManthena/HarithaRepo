@@ -4,17 +4,21 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import static org.testng.Assert.assertEquals;
 
 import Utilities.DriverFactory;
 import Utilities.ReportManager;
 
 public class WebActions {
 
+	JavascriptExecutor scrollBarPresent = (JavascriptExecutor) DriverFactory.getInstance().getWebDriver();
 	/*
 	 * @SuppressWarnings("deprecation") public WebElement waitForVisible(By locator)
 	 * { WebDriverWait wait = new
@@ -62,7 +66,7 @@ public class WebActions {
 	public void Click(By locator, String info) {
 		WebElement elm = waitForVisible(locator);
 		elm.click();
-		ReportManager.logInfo("Successfully clicked on - " + info);
+		ReportManager.logInfo("Clicked on -: " + info);
 		//LogClass.loginfo("Successfully clicked on -"+ info);
 	}
 	
@@ -77,7 +81,7 @@ public class WebActions {
 		WebElement elm = waitForVisible(locator);
 		elm.click();
 		elm.sendKeys(text);
-		ReportManager.logInfo("Successfully Entered text - "+" <b style=\"color:green;\"> : "+text+"</b>");
+		ReportManager.logInfo("Entered text -: "+" <b style=\"color:green;\"> "+text+"</b>");
 		//LogClass.loginfo(info+" :"+text);
 	}
 
@@ -144,6 +148,7 @@ public class WebActions {
 	}
 
 	
+	
 	/**
 	 * =============================================================================
 	 * Method: getElementSizeUsingFindElements | Author: Rajesh Buddha | Date:16 Jan
@@ -163,7 +168,75 @@ public class WebActions {
 	 */
 	public List<WebElement> getElementSizeUsingFindElements(By locator) throws InterruptedException {
 		List<WebElement> lst_Elm = DriverFactory.getInstance().getWebDriver().findElements(locator);
-		ReportManager.logInfo("Successfully captured elemnt size is - " + lst_Elm.size());
+		ReportManager.logInfo("Captured element size is - " + lst_Elm.size());
 		return lst_Elm;
 	}
+	
+	
+	
+
+	public boolean isDisplayed(By locator, String info) {
+		WebElement elm = waitForVisible(locator);
+		boolean isPresent = elm.isDisplayed();
+		if (isPresent) {
+			ReportManager.logInfo("Successfully element displyed: " + info);
+		} else {
+			ReportManager.logInfo("element not displyed: " + info);
+		}
+		return isPresent;
+	}
+
+	
+
+	public void verifyText(String actualText, String expectedText) {
+		ReportManager.logInfo("Actual Text - " + actualText);
+		ReportManager.logInfo("Expected Text - " + expectedText);
+		assertEquals(actualText, expectedText);
+	}
+
+	public String getAttributeValue(By locator, String name) {
+		WebElement elm = waitForVisible(locator);
+		String attributeText = elm.getAttribute(name);
+		ReportManager.logInfo("Successfully get attribute text - " + attributeText);
+		return attributeText;
+	}
+
+	public boolean isScrollPresent() throws Exception {
+		String execScript = "return document.documentElement.scrollHeight>document.documentElement.clientHeight;";
+		Boolean isScroll_Present = (Boolean) (scrollBarPresent.executeScript(execScript));
+		return isScroll_Present;
+
+	}
+	
+	public boolean selectByVisibleText(By locator, String value) {
+		Select sel = new Select(DriverFactory.getInstance().getWebDriver().findElement(locator));
+		sel.selectByVisibleText(value);
+		sel = new Select(DriverFactory.getInstance().getWebDriver().findElement(locator));
+		
+		if (sel.getFirstSelectedOption().getText().equalsIgnoreCase(value)) {
+			
+			ReportManager.logInfo("Selected from drop down - <b style=\"color:green;\">"+value+"</b>");
+			return true;
+		} 
+		else {
+			return false;
+		}
+	}
+	
+	public static boolean clickJSElm(WebElement elm, String text) {
+		Object obj = ((JavascriptExecutor) DriverFactory.getInstance().getWebDriver()).executeScript("arguments[0].click();", elm);
+		ReportManager.logInfo("Clicked on: " + text);
+		return obj == null;
+	}
+	
+	/**
+	 * @param locator
+	 * @return
+	 */
+	public List<WebElement> getListOfWebElements(By locator) {
+		
+		List<WebElement> list_Elm = DriverFactory.getInstance().getWebDriver().findElements(locator);
+		return list_Elm;
+	}
+
 }
