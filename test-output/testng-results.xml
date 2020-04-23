@@ -1,35 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="39524" started-at="2020-04-13T11:43:32 IST" finished-at="2020-04-13T11:44:12 IST">
+  <suite started-at="2020-04-23T16:05:00 IST" name="Default suite" finished-at="2020-04-23T16:06:23 IST" duration-ms="82738">
     <groups>
       <group name="regression">
-        <method signature="TC_001_CreateEvent.TC_001_Create_Event()[pri:0, instance:WebTestCases.TC_001_CreateEvent@33c7e1bb]" name="TC_001_Create_Event" class="WebTestCases.TC_001_CreateEvent"/>
-        <method signature="TC_002_CreateEvent.TC_002_Create_Event()[pri:0, instance:WebTestCases.TC_002_CreateEvent@34c4973]" name="TC_002_Create_Event" class="WebTestCases.TC_002_CreateEvent"/>
+        <method signature="TC_003_FB_DeleteFacultyEvent.DeleteSubject()[pri:0, instance:WebTestCases.TC_003_FB_DeleteFacultyEvent@1a04f701]" name="DeleteSubject" class="WebTestCases.TC_003_FB_DeleteFacultyEvent"/>
       </group> <!-- regression -->
       <group name="Web Application">
-        <method signature="TC_001_CreateEvent.TC_001_Create_Event()[pri:0, instance:WebTestCases.TC_001_CreateEvent@33c7e1bb]" name="TC_001_Create_Event" class="WebTestCases.TC_001_CreateEvent"/>
-        <method signature="TC_002_CreateEvent.TC_002_Create_Event()[pri:0, instance:WebTestCases.TC_002_CreateEvent@34c4973]" name="TC_002_Create_Event" class="WebTestCases.TC_002_CreateEvent"/>
+        <method signature="TC_003_FB_DeleteFacultyEvent.DeleteSubject()[pri:0, instance:WebTestCases.TC_003_FB_DeleteFacultyEvent@1a04f701]" name="DeleteSubject" class="WebTestCases.TC_003_FB_DeleteFacultyEvent"/>
       </group> <!-- Web Application -->
       <group name="smoke">
-        <method signature="TC_001_CreateEvent.TC_001_Create_Event()[pri:0, instance:WebTestCases.TC_001_CreateEvent@33c7e1bb]" name="TC_001_Create_Event" class="WebTestCases.TC_001_CreateEvent"/>
-        <method signature="TC_002_CreateEvent.TC_002_Create_Event()[pri:0, instance:WebTestCases.TC_002_CreateEvent@34c4973]" name="TC_002_Create_Event" class="WebTestCases.TC_002_CreateEvent"/>
+        <method signature="TC_003_FB_DeleteFacultyEvent.DeleteSubject()[pri:0, instance:WebTestCases.TC_003_FB_DeleteFacultyEvent@1a04f701]" name="DeleteSubject" class="WebTestCases.TC_003_FB_DeleteFacultyEvent"/>
       </group> <!-- smoke -->
     </groups>
-    <test name="Web" duration-ms="39524" started-at="2020-04-13T11:43:32 IST" finished-at="2020-04-13T11:44:12 IST">
-      <class name="WebTestCases.TC_001_CreateEvent">
-        <test-method status="PASS" signature="TC_001_Create_Event()[pri:0, instance:WebTestCases.TC_001_CreateEvent@33c7e1bb]" name="TC_001_Create_Event" duration-ms="21874" started-at="2020-04-13T11:43:32 IST" description="Create Event" finished-at="2020-04-13T11:43:54 IST">
+    <test started-at="2020-04-23T16:05:00 IST" name="Default test" finished-at="2020-04-23T16:06:23 IST" duration-ms="82738">
+      <class name="WebTestCases.TC_003_FB_DeleteFacultyEvent">
+        <test-method signature="DeleteSubject()[pri:0, instance:WebTestCases.TC_003_FB_DeleteFacultyEvent@1a04f701]" started-at="2020-04-23T16:05:00 IST" name="DeleteSubject" description="Delete Subject under Facutly/course table for created Event" finished-at="2020-04-23T16:06:21 IST" duration-ms="81004" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC_001_Create_Event -->
-      </class> <!-- WebTestCases.TC_001_CreateEvent -->
-      <class name="WebTestCases.TC_002_CreateEvent">
-        <test-method status="PASS" signature="TC_002_Create_Event()[pri:0, instance:WebTestCases.TC_002_CreateEvent@34c4973]" name="TC_002_Create_Event" duration-ms="15478" started-at="2020-04-13T11:43:55 IST" description="Create Event" finished-at="2020-04-13T11:44:11 IST">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC_002_Create_Event -->
-      </class> <!-- WebTestCases.TC_002_CreateEvent -->
-    </test> <!-- Web -->
-  </suite> <!-- Suite -->
+        </test-method> <!-- DeleteSubject -->
+      </class> <!-- WebTestCases.TC_003_FB_DeleteFacultyEvent -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

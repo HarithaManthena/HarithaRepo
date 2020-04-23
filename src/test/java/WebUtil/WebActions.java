@@ -1,5 +1,7 @@
 package WebUtil;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -11,7 +13,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import static org.testng.Assert.assertEquals;
 
 import Utilities.DriverFactory;
 import Utilities.ReportManager;
@@ -69,6 +70,8 @@ public class WebActions {
 		ReportManager.logInfo("Clicked on -: " + info);
 		//LogClass.loginfo("Successfully clicked on -"+ info);
 	}
+	
+	
 	
 	/**
 	 * =============================================================================
@@ -238,5 +241,22 @@ public class WebActions {
 		List<WebElement> list_Elm = DriverFactory.getInstance().getWebDriver().findElements(locator);
 		return list_Elm;
 	}
+	
+	
+	/**
+	 * =============================================================================
+	 * Method: ScrollDown | Author: Haritha | Date:21 April2020 |
+	 * Description: Method used to horizontally scroll down 
+	 * Return: none
+	 * =============================================================================
+	 * 
+	 */
+	
+	 public void scrollDown()
 
+	  {
+		 scrollBarPresent.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+	  }
+
+	 
 }

@@ -38,7 +38,9 @@ public class ExamActivityModule {
 	public static By deleteButton = By.xpath("//table[@id= 'DataTables_Table_0']//tr//td/button[@title= 'delete']");
 	public static By yesButton = By.xpath("//div[@class= 'swal2-container swal2-center swal2-fade swal2-shown']//div[@class = 'swal2-actions']/button[1]");		
 	public static By emptyResult =By.xpath("//table[@id= 'DataTables_Table_0']//td");
-			
+	
+	
+	
 	static WebActions webActions = new WebActions();
 	static JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getInstance().getWebDriver();
 	
@@ -107,6 +109,8 @@ public class ExamActivityModule {
 		Thread.sleep(3000);
 		webActions.Click(searchButton, "Search Button");
 		webActions.sendKeys(searchButton, "Test Event");
+		
+		
 		List<WebElement> listOfSearchOutput = webActions.getListOfWebElements(searchOutputOfExamEventCode);
 		List<WebElement> listOfUpdateButton = webActions.getListOfWebElements(updateButton);
 		
