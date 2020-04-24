@@ -13,7 +13,7 @@ import WebPages.LoginPage;
 
 public class TC_002_FB_BroadCastStudentForm {
 	
-	@Test(description = "Verifying Student Form by selection EventBroadcast option in Feedback Event Creation of Feedback Module", groups = { "smoke", "regression", "Web Application" })
+	@Test(description = "Verifying Student Form by selection EventBroadcast option in Feedback Event Creation and verify it's availablity for student", groups = { "smoke", "regression", "Web Application" })
 	public void StudentFromBroadcast() throws InterruptedException {
 		LoginPage homePage = new LoginPage();
 

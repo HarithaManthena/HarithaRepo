@@ -13,7 +13,7 @@ import WebPages.LoginPage;
 
 public class TC_001_FB_EventCreation {
 
-	@Test(description = "FeedBack Event Code creation", groups = { "smoke", "regression", "Web Application" })
+	@Test(description = "FeedBack Event Code creation and verification", groups = { "smoke", "regression", "Web Application" })
 	public void EventCodeCreation() throws Exception {
 
 		LoginPage homePage = new LoginPage();

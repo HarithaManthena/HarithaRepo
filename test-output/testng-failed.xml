@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="WebTestCases.TC_004_FB_TopicCreationAndVerification">
+      <class name="WebTestCases.TC_005_FB_TemplateCreationAndVerification">
         <methods>
-          <include name="TopicCreationAndVerification"/>
+          <include name="TemplateCreationAndVerification"/>
         </methods>
-      </class> <!-- WebTestCases.TC_004_FB_TopicCreationAndVerification -->
+      </class> <!-- WebTestCases.TC_005_FB_TemplateCreationAndVerification -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

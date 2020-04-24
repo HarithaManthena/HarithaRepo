@@ -243,20 +243,5 @@ public class WebActions {
 	}
 	
 	
-	/**
-	 * =============================================================================
-	 * Method: ScrollDown | Author: Haritha | Date:21 April2020 |
-	 * Description: Method used to horizontally scroll down 
-	 * Return: none
-	 * =============================================================================
-	 * 
-	 */
-	
-	 public void scrollDown()
-
-	  {
-		 scrollBarPresent.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-	  }
-
 	 
 }

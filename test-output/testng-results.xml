@@ -2,25 +2,25 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-04-23T16:05:00 IST" name="Default suite" finished-at="2020-04-23T16:06:23 IST" duration-ms="82738">
+  <suite started-at="2020-04-24T14:56:28 IST" name="Default suite" finished-at="2020-04-24T14:58:20 IST" duration-ms="111766">
     <groups>
       <group name="regression">
-        <method signature="TC_003_FB_DeleteFacultyEvent.DeleteSubject()[pri:0, instance:WebTestCases.TC_003_FB_DeleteFacultyEvent@1a04f701]" name="DeleteSubject" class="WebTestCases.TC_003_FB_DeleteFacultyEvent"/>
+        <method signature="TC_005_FB_TemplateCreationAndVerification.TemplateCreationAndVerification()[pri:0, instance:WebTestCases.TC_005_FB_TemplateCreationAndVerification@1a04f701]" name="TemplateCreationAndVerification" class="WebTestCases.TC_005_FB_TemplateCreationAndVerification"/>
       </group> <!-- regression -->
       <group name="Web Application">
-        <method signature="TC_003_FB_DeleteFacultyEvent.DeleteSubject()[pri:0, instance:WebTestCases.TC_003_FB_DeleteFacultyEvent@1a04f701]" name="DeleteSubject" class="WebTestCases.TC_003_FB_DeleteFacultyEvent"/>
+        <method signature="TC_005_FB_TemplateCreationAndVerification.TemplateCreationAndVerification()[pri:0, instance:WebTestCases.TC_005_FB_TemplateCreationAndVerification@1a04f701]" name="TemplateCreationAndVerification" class="WebTestCases.TC_005_FB_TemplateCreationAndVerification"/>
       </group> <!-- Web Application -->
       <group name="smoke">
-        <method signature="TC_003_FB_DeleteFacultyEvent.DeleteSubject()[pri:0, instance:WebTestCases.TC_003_FB_DeleteFacultyEvent@1a04f701]" name="DeleteSubject" class="WebTestCases.TC_003_FB_DeleteFacultyEvent"/>
+        <method signature="TC_005_FB_TemplateCreationAndVerification.TemplateCreationAndVerification()[pri:0, instance:WebTestCases.TC_005_FB_TemplateCreationAndVerification@1a04f701]" name="TemplateCreationAndVerification" class="WebTestCases.TC_005_FB_TemplateCreationAndVerification"/>
       </group> <!-- smoke -->
     </groups>
-    <test started-at="2020-04-23T16:05:00 IST" name="Default test" finished-at="2020-04-23T16:06:23 IST" duration-ms="82738">
-      <class name="WebTestCases.TC_003_FB_DeleteFacultyEvent">
-        <test-method signature="DeleteSubject()[pri:0, instance:WebTestCases.TC_003_FB_DeleteFacultyEvent@1a04f701]" started-at="2020-04-23T16:05:00 IST" name="DeleteSubject" description="Delete Subject under Facutly/course table for created Event" finished-at="2020-04-23T16:06:21 IST" duration-ms="81004" status="PASS">
+    <test started-at="2020-04-24T14:56:28 IST" name="Default test" finished-at="2020-04-24T14:58:20 IST" duration-ms="111766">
+      <class name="WebTestCases.TC_005_FB_TemplateCreationAndVerification">
+        <test-method signature="TemplateCreationAndVerification()[pri:0, instance:WebTestCases.TC_005_FB_TemplateCreationAndVerification@1a04f701]" started-at="2020-04-24T14:56:28 IST" name="TemplateCreationAndVerification" description="Creation of new Template in Feeback Template Master and Verify is it displayed in FeedBack Event Manager Question Template Drop down " finished-at="2020-04-24T14:58:18 IST" duration-ms="109793" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- DeleteSubject -->
-      </class> <!-- WebTestCases.TC_003_FB_DeleteFacultyEvent -->
+        </test-method> <!-- TemplateCreationAndVerification -->
+      </class> <!-- WebTestCases.TC_005_FB_TemplateCreationAndVerification -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

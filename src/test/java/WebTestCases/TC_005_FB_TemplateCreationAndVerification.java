@@ -10,19 +10,18 @@ import WebPages.FeedbackActivityModule;
 import WebPages.LoginPage;
 
 @Listeners({ SuiteEvent.class, WebEvent.class })
-public class TC_003_FB_DeleteFacultyEvent {
 
-	@Test(description = "Delete Subject under Facutly/course table for created Event", groups = { "smoke", "regression",
+public class TC_005_FB_TemplateCreationAndVerification {
+
+	@Test(description = "Creation of new Template in Feeback Template Master and Verify is it displayed in FeedBack Event Manager Question Template Drop down ", groups = { "smoke", "regression",
 			"Web Application" })
-	public static void DeleteSubject() throws InterruptedException {
-
-		LoginPage homePage = new LoginPage();
+	
+	public static void TemplateCreationAndVerification() throws InterruptedException {
 		
+		LoginPage homePage = new LoginPage();
 		homePage.Login(ConfigReader.getValue("feedBackUserName"), ConfigReader.getValue("feedBackPassword"));
-		FeedbackActivityModule.DeleteCourseOfEvent();
+		FeedbackActivityModule.TemplateCreationVerification();
 		Thread.sleep(2000);
 		homePage.Logout();
-
 	}
-
 }

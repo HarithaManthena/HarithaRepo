@@ -29,6 +29,8 @@ public class TC_004_FB_TopicCreationAndVerification {
 		Thread.sleep(2000);
 		FeedbackActivityModule.verifyCreatedTopic();
 		Thread.sleep(2000);
+		homePage.Logout();
+
 
 
 		
