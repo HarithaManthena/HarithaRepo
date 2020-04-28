@@ -15,7 +15,7 @@ public class FeedbackActivityModule {
 	public static By feedbackactivity = By.xpath("//span[contains(text(),'Feedback Activity')]");
 	public static By feedbackeventmanager = By.xpath("//span[contains(text(),'Feedback Event Manager')]");
 
-	// ==============================EventCodeCreation and VerifyCreatedEVentCode
+	// ==============================EventCodeCreation And VerifyCreatedEVentCode
 	public static By institutecode = By.xpath("//select[@id='instituteid']");
 	public static By eventregistrationcode = By.xpath("//select[@id='regcode']");
 	public static By facultyradiobutn = By.xpath("//input[@id='faculty']");
