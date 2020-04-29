@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="WebTestCases.TC_005_FB_TemplateCreationAndVerification">
+      <class name="WebTestCases.ExamEventMasterTestCases">
         <methods>
-          <include name="TemplateCreationAndVerification"/>
+          <include name="EEMTestCaseExecution"/>
         </methods>
-      </class> <!-- WebTestCases.TC_005_FB_TemplateCreationAndVerification -->
+      </class> <!-- WebTestCases.ExamEventMasterTestCases -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

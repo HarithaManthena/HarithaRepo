@@ -2,7 +2,7 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-04-28T18:37:43 IST" name="Default suite" finished-at="2020-04-28T18:38:39 IST" duration-ms="55910">
+  <suite started-at="2020-04-29T16:09:27 IST" name="Default suite" finished-at="2020-04-29T16:10:08 IST" duration-ms="41102">
     <groups>
       <group name="regression">
         <method signature="ExamEventMasterTestCases.EEMTestCaseExecution()[pri:0, instance:WebTestCases.ExamEventMasterTestCases@1a04f701]" name="EEMTestCaseExecution" class="WebTestCases.ExamEventMasterTestCases"/>
@@ -14,9 +14,9 @@
         <method signature="ExamEventMasterTestCases.EEMTestCaseExecution()[pri:0, instance:WebTestCases.ExamEventMasterTestCases@1a04f701]" name="EEMTestCaseExecution" class="WebTestCases.ExamEventMasterTestCases"/>
       </group> <!-- smoke -->
     </groups>
-    <test started-at="2020-04-28T18:37:43 IST" name="Default test" finished-at="2020-04-28T18:38:39 IST" duration-ms="55910">
+    <test started-at="2020-04-29T16:09:27 IST" name="Default test" finished-at="2020-04-29T16:10:08 IST" duration-ms="41102">
       <class name="WebTestCases.ExamEventMasterTestCases">
-        <test-method signature="EEMTestCaseExecution()[pri:0, instance:WebTestCases.ExamEventMasterTestCases@1a04f701]" started-at="2020-04-28T18:37:43 IST" name="EEMTestCaseExecution" description="Exam Event Master TestCases" finished-at="2020-04-28T18:38:36 IST" duration-ms="53008" status="PASS">
+        <test-method signature="EEMTestCaseExecution()[pri:0, instance:WebTestCases.ExamEventMasterTestCases@1a04f701]" started-at="2020-04-29T16:09:27 IST" name="EEMTestCaseExecution" description="Exam Event Master TestCases" finished-at="2020-04-29T16:10:07 IST" duration-ms="39617" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- EEMTestCaseExecution -->

@@ -242,6 +242,30 @@ public class WebActions {
 		return list_Elm;
 	}
 	
+	//Haritha
 	
-	 
+	public boolean isEnabled(By locator, String info) {
+		WebElement elm = waitForVisible(locator);
+		boolean Enabled = elm.isEnabled();
+		if (Enabled) {
+			ReportManager.logInfo("Element is Enabled: " + info);
+		} else {
+			ReportManager.logInfo("Element is not Enabled: " + info);
+		}
+		return Enabled;
+	}
+	
+	
+	
+	public boolean isSelected(By locator, String info) {
+		WebElement elm = waitForVisible(locator);
+		boolean Selected = elm.isEnabled();
+		if (Selected) {
+			ReportManager.logInfo("Element is Selected: " + info);
+		} else {
+			ReportManager.logInfo("Element is not Selected: " + info);
+		}
+		return Selected;
+	}
+	
 }
