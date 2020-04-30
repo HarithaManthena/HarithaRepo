@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="WebTestCases.ExamEventMasterTestCases">
+      <class name="WebTestCases.EESubjectTaggingTestCases">
         <methods>
-          <include name="EEMTestCaseExecution"/>
+          <include name="EESubjectTagging"/>
         </methods>
-      </class> <!-- WebTestCases.ExamEventMasterTestCases -->
+      </class> <!-- WebTestCases.EESubjectTaggingTestCases -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

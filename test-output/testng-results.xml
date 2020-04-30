@@ -2,25 +2,25 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-04-29T16:09:27 IST" name="Default suite" finished-at="2020-04-29T16:10:08 IST" duration-ms="41102">
+  <suite started-at="2020-04-30T16:56:07 IST" name="Default suite" finished-at="2020-04-30T16:57:00 IST" duration-ms="52926">
     <groups>
       <group name="regression">
-        <method signature="ExamEventMasterTestCases.EEMTestCaseExecution()[pri:0, instance:WebTestCases.ExamEventMasterTestCases@1a04f701]" name="EEMTestCaseExecution" class="WebTestCases.ExamEventMasterTestCases"/>
+        <method signature="EESubjectTaggingTestCases.EESubjectTagging()[pri:0, instance:WebTestCases.EESubjectTaggingTestCases@1a04f701]" name="EESubjectTagging" class="WebTestCases.EESubjectTaggingTestCases"/>
       </group> <!-- regression -->
       <group name="Web Application">
-        <method signature="ExamEventMasterTestCases.EEMTestCaseExecution()[pri:0, instance:WebTestCases.ExamEventMasterTestCases@1a04f701]" name="EEMTestCaseExecution" class="WebTestCases.ExamEventMasterTestCases"/>
+        <method signature="EESubjectTaggingTestCases.EESubjectTagging()[pri:0, instance:WebTestCases.EESubjectTaggingTestCases@1a04f701]" name="EESubjectTagging" class="WebTestCases.EESubjectTaggingTestCases"/>
       </group> <!-- Web Application -->
       <group name="smoke">
-        <method signature="ExamEventMasterTestCases.EEMTestCaseExecution()[pri:0, instance:WebTestCases.ExamEventMasterTestCases@1a04f701]" name="EEMTestCaseExecution" class="WebTestCases.ExamEventMasterTestCases"/>
+        <method signature="EESubjectTaggingTestCases.EESubjectTagging()[pri:0, instance:WebTestCases.EESubjectTaggingTestCases@1a04f701]" name="EESubjectTagging" class="WebTestCases.EESubjectTaggingTestCases"/>
       </group> <!-- smoke -->
     </groups>
-    <test started-at="2020-04-29T16:09:27 IST" name="Default test" finished-at="2020-04-29T16:10:08 IST" duration-ms="41102">
-      <class name="WebTestCases.ExamEventMasterTestCases">
-        <test-method signature="EEMTestCaseExecution()[pri:0, instance:WebTestCases.ExamEventMasterTestCases@1a04f701]" started-at="2020-04-29T16:09:27 IST" name="EEMTestCaseExecution" description="Exam Event Master TestCases" finished-at="2020-04-29T16:10:07 IST" duration-ms="39617" status="PASS">
+    <test started-at="2020-04-30T16:56:07 IST" name="Default test" finished-at="2020-04-30T16:57:00 IST" duration-ms="52926">
+      <class name="WebTestCases.EESubjectTaggingTestCases">
+        <test-method signature="EESubjectTagging()[pri:0, instance:WebTestCases.EESubjectTaggingTestCases@1a04f701]" started-at="2020-04-30T16:56:07 IST" name="EESubjectTagging" description="Exam Event Subject Tagging Functional TestCases" finished-at="2020-04-30T16:56:59 IST" duration-ms="51350" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- EEMTestCaseExecution -->
-      </class> <!-- WebTestCases.ExamEventMasterTestCases -->
+        </test-method> <!-- EESubjectTagging -->
+      </class> <!-- WebTestCases.EESubjectTaggingTestCases -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
