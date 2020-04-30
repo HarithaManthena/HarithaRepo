@@ -43,8 +43,6 @@ public class ExamEventSubjectTagging {
 	public static By selectFacultyDropdown = By
 			.xpath("(//form[@class = 'ng-untouched ng-pristine ng-invalid'])[1]//select[contains(@id,'exfaculty')]");
 	public static By batchDropdown = By.xpath("(//select[contains(@id,'exbranch')])[1]");
-	public static By marksEntryCheckBox = By.xpath("//input[contains(@id, 'exmarks')]");
-	public static By addButton = By.xpath("//input[contains(@id, 'exsetfacbtnid')]");
 	public static By confirmationBox = By
 			.xpath("//div[@class= 'swal2-container swal2-center swal2-fade swal2-shown']//div[@id = 'swal2-content']");
 	public static By okButton = By.xpath(
@@ -56,6 +54,8 @@ public class ExamEventSubjectTagging {
 	public static By saveButtonForSubjectTagging = By.xpath("//button[@title= 'save']");
 	public static By saveProblemAlert = By
 			.xpath("//div[contains(text(),'Please check atleast one event should be selected !!')]");
+	public static By marksEntryCheckBox = By.xpath("//input[contains(@id, 'exmarks')]");
+
 	public static By saveProblemAlertOK = By.xpath("//button[contains(text(),'OK')]");
 
 	public static By tagTable = By.xpath("//*[@id=\"examdetail0\"]/td");
@@ -64,6 +64,14 @@ public class ExamEventSubjectTagging {
 	public static By tagBatchText = By
 			.xpath("//label[contains(text(),'Batch')]//following-sibling::select[@id='exbranch0']");
 	public static By tagTableHeaders = By.xpath("//*[@id=\"examdetail0\"]/td/table[2]/thead/tr/th");
+
+	public static By tagMarksEntryText = By.xpath("//div[contains(text(),' Marks Entry ')]");
+	public static By tagGradeEntrydd = By
+			.xpath("//option[contains(text(),'--Grade Entry Faculty--')]//parent::select[@id='exgrade3']");
+
+	public static By addButton = By.xpath("//input[contains(@id, 'exsetfacbtnid')]");
+	public static By tagAddproblemAlert = By.xpath("//div[contains(text(),'Please select any entry !!')]");
+	public static By tagAddProblemAlertOKbutn = By.xpath("//button[contains(text(),'OK')]");
 
 	static WebActions webActions = new WebActions();
 	static JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getInstance().getWebDriver();
@@ -380,7 +388,6 @@ public class ExamEventSubjectTagging {
 //TC_11 - same as 7 and 8 scroll issue
 
 //TC_12
-
 	public static void STVerifyTagCoordinatorDetails() throws InterruptedException {
 
 		webActions.Click(examActivity, "Exam Activity");
@@ -434,22 +441,383 @@ public class ExamEventSubjectTagging {
 				Thread.sleep(2000);
 				ReportManager.logInfo("Clicked on - <b style=\"color:green;\">Tag Coordinator</b>");
 
-				webActions.Click(tagTable, "Tag Detial Table");
-				if (webActions.isDisplayed(tagFacutlyText, "Faculty Present")
-						|| webActions.isDisplayed(tagBatchText, "Batch Displayed")) {
+				webActions.isDisplayed(tagTable, "Event Table is displayed");
 
+				if (webActions.isDisplayed(tagFacutlyText, "Faculty")
+						&& webActions.isDisplayed(tagBatchText, "Batch Text")) {
+
+					webActions.getElementSizeUsingFindElements(tagTableHeaders);
 					ReportManager.logInfo(
-							"<b style=\"color:green;\">********Tag coodinator details are present*********</b>");
+							"<b style=\"color:green;\">********Tag coordinator Table details are displayed******</b>");
+
+				} else {
+					ReportManager.logInfo(
+							"<b style=\"color:red;\">********Tag coordinator table details are not displayed******</b>");
 
 				}
 
-			} else {
+			}
+		}
+	}
+
+//TC_13
+	public static void STFacultyAndBatchDD() throws InterruptedException {
+		webActions.Click(examActivity, "Exam Activity");
+		webActions.Click(examEventSubjectTagging, "Exam Event Subject Tagging");
+		Thread.sleep(4000);
+		webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
+		webActions.selectByVisibleText(registrationCode, " 1920_EVEN_SEMESTER ");
+
+		webActions.Click(subjectCodeDropdown, "Subject Code Dropdown");
+		List<WebElement> list_SubjectCodeDropdownContent = webActions.getListOfWebElements(subjectCodeDropdownContent);
+
+		for (int i = 0; i < list_SubjectCodeDropdownContent.size(); i++) {
+			String str_SubjectCodeDropdownContent = list_SubjectCodeDropdownContent.get(i).getText();
+			System.out.println(str_SubjectCodeDropdownContent);
+
+			if (str_SubjectCodeDropdownContent.equalsIgnoreCase("(EECE349J)MINI PROJECT")) {
+				list_SubjectCodeDropdownContent.get(i).click();
 				ReportManager.logInfo(
-						"<b style=\"color:green;\">********Tag coodinator details are not present*********</b>");
+						"Clicked on Subject - <b style=\"color:green;\">" + str_SubjectCodeDropdownContent + "</b>");
+			}
+		}
+		Thread.sleep(2000);
+
+		List<WebElement> list_ExamEventForSubjectTagging = webActions.getListOfWebElements(examEventForSubjectTagging);
+
+		for (int i = 0; i < list_ExamEventForSubjectTagging.size(); i++) {
+			String str_ExamEventForSubjectTagging = list_ExamEventForSubjectTagging.get(i).getText();
+			System.out.println(str_ExamEventForSubjectTagging);
+
+			List<WebElement> list_CheckBoxForSubjectTagging = webActions
+					.getListOfWebElements(checkBoxForSubjectTagging);
+
+			if (str_ExamEventForSubjectTagging.equalsIgnoreCase("Mid Term Examination")) {
+				list_CheckBoxForSubjectTagging.get(i).click();
+				ReportManager.logInfo("Clicked on - <b style=\"color:green;\">Check box</b>");
 
 			}
 
 		}
+
+		for (int i = 0; i < list_ExamEventForSubjectTagging.size(); i++) {
+			String str_ExamEventForSubjectTagging = list_ExamEventForSubjectTagging.get(i).getText();
+			System.out.println(str_ExamEventForSubjectTagging);
+
+			List<WebElement> list_TagCoordinatorButtonForSubjectTagging = webActions
+					.getListOfWebElements(tagCoordinatorButtonForSubjectTagging);
+
+			if (str_ExamEventForSubjectTagging.equalsIgnoreCase("Mid Term Examination")) {
+
+				list_TagCoordinatorButtonForSubjectTagging.get(i).click();
+				Thread.sleep(2000);
+
+				ReportManager.logInfo("Clicked on - <b style=\"color:green;\">Tag Coordinator</b>");
+
+				webActions.selectByVisibleText(selectFacultyDropdown, " ARVIND  KUMAR ");
+				Thread.sleep(3000);
+				webActions.Click(batchDropdown, "Batch Dropdown");
+
+				webActions.selectByVisibleText(batchDropdown, "1617-B.Tech.-ECE-ECE-BATCH-8");
+				Thread.sleep(2000);
+
+				ReportManager.logInfo(
+						"<b style=\"color:green;\">********Faculty,Batch Dropdowns are selectable********</b>");
+				break;
+
+			}
+			
+			/*else {
+				ReportManager.logInfo(
+						"<b style=\"color:red;\">********Faculty,Batch Dropdowns are not selectable******</b>");
+
+			}*/
+
+		}
+	}
+
+//TC_014
+	public static void STVerifyMarksOption() throws InterruptedException {
+
+		webActions.Click(examActivity, "Exam Activity");
+		webActions.Click(examEventSubjectTagging, "Exam Event Subject Tagging");
+		Thread.sleep(4000);
+		webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
+		webActions.selectByVisibleText(registrationCode, " 1920_EVEN_SEMESTER ");
+
+		webActions.Click(subjectCodeDropdown, "Subject Code Dropdown");
+		List<WebElement> list_SubjectCodeDropdownContent = webActions.getListOfWebElements(subjectCodeDropdownContent);
+
+		for (int i = 0; i < list_SubjectCodeDropdownContent.size(); i++) {
+			String str_SubjectCodeDropdownContent = list_SubjectCodeDropdownContent.get(i).getText();
+			System.out.println(str_SubjectCodeDropdownContent);
+
+			if (str_SubjectCodeDropdownContent.equalsIgnoreCase("(EECE349J)MINI PROJECT")) {
+				list_SubjectCodeDropdownContent.get(i).click();
+				ReportManager.logInfo(
+						"Clicked on Subject - <b style=\"color:green;\">" + str_SubjectCodeDropdownContent + "</b>");
+			}
+		}
+		Thread.sleep(2000);
+
+		List<WebElement> list_ExamEventForSubjectTagging = webActions.getListOfWebElements(examEventForSubjectTagging);
+
+		for (int i = 0; i < list_ExamEventForSubjectTagging.size(); i++) {
+			String str_ExamEventForSubjectTagging = list_ExamEventForSubjectTagging.get(i).getText();
+			System.out.println(str_ExamEventForSubjectTagging);
+
+			List<WebElement> list_CheckBoxForSubjectTagging = webActions
+					.getListOfWebElements(checkBoxForSubjectTagging);
+
+			if (str_ExamEventForSubjectTagging.equalsIgnoreCase("Supplementary Exam")) {
+				list_CheckBoxForSubjectTagging.get(i).click();
+				ReportManager.logInfo("Clicked on - <b style=\"color:green;\">Check box</b>");
+
+			}
+
+		}
+
+		for (int i = 0; i < list_ExamEventForSubjectTagging.size(); i++) {
+			String str_ExamEventForSubjectTagging = list_ExamEventForSubjectTagging.get(i).getText();
+			System.out.println(str_ExamEventForSubjectTagging);
+
+			List<WebElement> list_TagCoordinatorButtonForSubjectTagging = webActions
+					.getListOfWebElements(tagCoordinatorButtonForSubjectTagging);
+
+			if (str_ExamEventForSubjectTagging.equalsIgnoreCase("Supplementary Exam")) {
+
+				list_TagCoordinatorButtonForSubjectTagging.get(i).click();
+				Thread.sleep(2000);
+
+				ReportManager.logInfo("Clicked on - <b style=\"color:green;\">Tag Coordinator</b>");
+
+				webActions.Click(marksEntryCheckBox, "Marks Entry Checkbox");
+
+				ReportManager.logInfo("<b style=\"color:green;\">******MarksEntry checkbox checked******</b>");
+				break;
+
+			} 
+			
+			/*else {
+				ReportManager.logInfo("<b style=\"color:red;\">********MarksEntry checkbox not checked******</b>");
+
+			}*/
+
+		}
+	}
+
+//TC_015
+	public static void STVerifyGaradEntryOption() throws InterruptedException {
+		webActions.Click(examActivity, "Exam Activity");
+		webActions.Click(examEventSubjectTagging, "Exam Event Subject Tagging");
+		Thread.sleep(4000);
+		webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
+		webActions.selectByVisibleText(registrationCode, " 1920_EVEN_SEMESTER ");
+
+		webActions.Click(subjectCodeDropdown, "Subject Code Dropdown");
+		List<WebElement> list_SubjectCodeDropdownContent = webActions.getListOfWebElements(subjectCodeDropdownContent);
+
+		for (int i = 0; i < list_SubjectCodeDropdownContent.size(); i++) {
+			String str_SubjectCodeDropdownContent = list_SubjectCodeDropdownContent.get(i).getText();
+			System.out.println(str_SubjectCodeDropdownContent);
+
+			if (str_SubjectCodeDropdownContent.equalsIgnoreCase("(EECE349J)MINI PROJECT")) {
+				list_SubjectCodeDropdownContent.get(i).click();
+				ReportManager.logInfo(
+						"Clicked on Subject - <b style=\"color:green;\">" + str_SubjectCodeDropdownContent + "</b>");
+			}
+		}
+		Thread.sleep(2000);
+
+		List<WebElement> list_ExamEventForSubjectTagging = webActions.getListOfWebElements(examEventForSubjectTagging);
+
+		for (int i = 0; i < list_ExamEventForSubjectTagging.size(); i++) {
+			String str_ExamEventForSubjectTagging = list_ExamEventForSubjectTagging.get(i).getText();
+			System.out.println(str_ExamEventForSubjectTagging);
+
+			List<WebElement> list_CheckBoxForSubjectTagging = webActions
+					.getListOfWebElements(checkBoxForSubjectTagging);
+
+			if (str_ExamEventForSubjectTagging.equalsIgnoreCase("Supplementary Exam")) {
+				list_CheckBoxForSubjectTagging.get(i).click();
+				ReportManager.logInfo("Clicked on - <b style=\"color:green;\">Check box</b>");
+
+			}
+
+		}
+
+		for (int i = 0; i < list_ExamEventForSubjectTagging.size(); i++) {
+			String str_ExamEventForSubjectTagging = list_ExamEventForSubjectTagging.get(i).getText();
+			System.out.println(str_ExamEventForSubjectTagging);
+
+			List<WebElement> list_TagCoordinatorButtonForSubjectTagging = webActions
+					.getListOfWebElements(tagCoordinatorButtonForSubjectTagging);
+
+			if (str_ExamEventForSubjectTagging.equalsIgnoreCase("Supplementary Exam")) {
+
+				list_TagCoordinatorButtonForSubjectTagging.get(i).click();
+				Thread.sleep(2000);
+
+				ReportManager.logInfo("Clicked on - <b style=\"color:green;\">Tag Coordinator</b>");
+
+				webActions.Click(marksEntryCheckBox, "Marks Entry Checkbox");
+				webActions.selectByVisibleText(tagGradeEntrydd, " ARVIND  KUMAR ");
+
+				ReportManager.logInfo("<b style=\"color:green;\">******Grade Entry are selected*******</b>");
+				break;
+
+			} 
+			/*else {
+				ReportManager.logInfo("<b style=\"color:red;\">********Grade Entry are not selected******</b>");
+
+			}
+*/
+		}
+
+	}
+
+//TC_16
+	public static void STSaveWithoutMarksAndGrade() throws InterruptedException {
+		webActions.Click(examActivity, "Exam Activity");
+		webActions.Click(examEventSubjectTagging, "Exam Event Subject Tagging");
+		Thread.sleep(4000);
+		webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
+		webActions.selectByVisibleText(registrationCode, " 1920_EVEN_SEMESTER ");
+
+		webActions.Click(subjectCodeDropdown, "Subject Code Dropdown");
+		List<WebElement> list_SubjectCodeDropdownContent = webActions.getListOfWebElements(subjectCodeDropdownContent);
+
+		for (int i = 0; i < list_SubjectCodeDropdownContent.size(); i++) {
+			String str_SubjectCodeDropdownContent = list_SubjectCodeDropdownContent.get(i).getText();
+			System.out.println(str_SubjectCodeDropdownContent);
+
+			if (str_SubjectCodeDropdownContent.equalsIgnoreCase("(EECE349J)MINI PROJECT")) {
+				list_SubjectCodeDropdownContent.get(i).click();
+				ReportManager.logInfo(
+						"Clicked on Subject - <b style=\"color:green;\">" + str_SubjectCodeDropdownContent + "</b>");
+			}
+		}
+		Thread.sleep(2000);
+
+		List<WebElement> list_ExamEventForSubjectTagging = webActions.getListOfWebElements(examEventForSubjectTagging);
+
+		for (int i = 0; i < list_ExamEventForSubjectTagging.size(); i++) {
+			String str_ExamEventForSubjectTagging = list_ExamEventForSubjectTagging.get(i).getText();
+			System.out.println(str_ExamEventForSubjectTagging);
+
+			List<WebElement> list_CheckBoxForSubjectTagging = webActions
+					.getListOfWebElements(checkBoxForSubjectTagging);
+
+			if (str_ExamEventForSubjectTagging.equalsIgnoreCase("Supplementary Exam")) {
+				list_CheckBoxForSubjectTagging.get(i).click();
+				ReportManager.logInfo("Clicked on - <b style=\"color:green;\">Check box</b>");
+
+			}
+
+		}
+
+		for (int i = 0; i < list_ExamEventForSubjectTagging.size(); i++) {
+			String str_ExamEventForSubjectTagging = list_ExamEventForSubjectTagging.get(i).getText();
+			System.out.println(str_ExamEventForSubjectTagging);
+
+			List<WebElement> list_TagCoordinatorButtonForSubjectTagging = webActions
+					.getListOfWebElements(tagCoordinatorButtonForSubjectTagging);
+
+			if (str_ExamEventForSubjectTagging.equalsIgnoreCase("Supplementary Exam")) {
+
+				list_TagCoordinatorButtonForSubjectTagging.get(i).click();
+				Thread.sleep(2000);
+
+				webActions.selectByVisibleText(selectFacultyDropdown, " ARVIND  KUMAR ");
+				Thread.sleep(3000);
+				webActions.Click(addButton, "Add Button");
+				String ErrorAlert = webActions.getText(tagAddproblemAlert);
+				webActions.verifyText(ErrorAlert, "Please select any entry !!");
+				webActions.Click(tagAddProblemAlertOKbutn, "OK Button");
+
+				ReportManager.logInfo("<b style=\"color:green;\">******Grade Entry are selected*******</b>");
+				break;
+
+			}
+
+		}
+	}
+//TC_017
+
+	public static void STSaveWithAllDetails() throws InterruptedException {
+
+		webActions.Click(examActivity, "Exam Activity");
+		webActions.Click(examEventSubjectTagging, "Exam Event Subject Tagging");
+		Thread.sleep(4000);
+		webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
+		webActions.selectByVisibleText(registrationCode, " 1920_EVEN_SEMESTER ");
+		webActions.Click(subjectCodeDropdown, "Subject Code Dropdown");
+
+		List<WebElement> list_SubjectCodeDropdownContent = webActions.getListOfWebElements(subjectCodeDropdownContent);
+
+		for (int i = 0; i < list_SubjectCodeDropdownContent.size(); i++) {
+			String str_SubjectCodeDropdownContent = list_SubjectCodeDropdownContent.get(i).getText();
+			System.out.println(str_SubjectCodeDropdownContent);
+
+			if (str_SubjectCodeDropdownContent.equalsIgnoreCase("(EECE349J)MINI PROJECT")) {
+				list_SubjectCodeDropdownContent.get(i).click();
+				ReportManager.logInfo(
+						"Clicked on Subject - <b style=\"color:green;\">" + str_SubjectCodeDropdownContent + "</b>");
+			}
+		}
+		Thread.sleep(2000);
+		
+		
+		List<WebElement> list_ExamEventForSubjectTagging = webActions.getListOfWebElements(examEventForSubjectTagging);
+
+		webActions.getText(totalWeightage);
+
+		for (int i = 0; i < list_ExamEventForSubjectTagging.size(); i++) {
+			String str_ExamEventForSubjectTagging = list_ExamEventForSubjectTagging.get(i).getText();
+			System.out.println(str_ExamEventForSubjectTagging);
+			List<WebElement> list_CheckBoxForSubjectTagging = webActions.getListOfWebElements(checkBoxForSubjectTagging);
+
+
+			if (str_ExamEventForSubjectTagging.equalsIgnoreCase("Mid Term Examination"))
+			{
+				list_CheckBoxForSubjectTagging.get(i).click();
+				
+				ReportManager.logInfo("Clicked on - <b style=\"color:green;\">Check box</b>");
+
+				String totalWeightageText = webActions.getText(totalWeightage);
+
+				ReportManager.logInfo("Exam Event - <b style=\"color:green;\">" + str_ExamEventForSubjectTagging
+						+ "</b>" + ", <b style=\"color:green;\">" + totalWeightageText + "");
+			}
+		}
+		jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		Thread.sleep(2000);
+		jse.executeScript("window.scrollTo(document.body.scrollHeight, 0)");
+
+		for (int i = 0; i < list_ExamEventForSubjectTagging.size(); i++) {
+			String str_ExamEventForSubjectTagging = list_ExamEventForSubjectTagging.get(i).getText();
+			System.out.println(str_ExamEventForSubjectTagging);
+			List<WebElement> list_TagCoordinatorButtonForSubjectTagging = webActions.getListOfWebElements(tagCoordinatorButtonForSubjectTagging);
+
+			if (str_ExamEventForSubjectTagging.equalsIgnoreCase("Mid Term Examination")) {
+
+				list_TagCoordinatorButtonForSubjectTagging.get(i).click();
+				ReportManager.logInfo("Clicked on - <b style=\"color:green;\">Tag Coordinator</b>");
+
+				webActions.selectByVisibleText(selectFacultyDropdown, " ARVIND  KUMAR ");
+				webActions.selectByVisibleText(batchDropdown, " 1718-B.Tech.-ECE-BT_ECE-BATCH_1718-6 ");
+				webActions.Click(marksEntryCheckBox, "Marks Entry Checkbox");
+				webActions.Click(addButton, "Add button");
+
+				list_TagCoordinatorButtonForSubjectTagging.get(i).click();
+
+				// eventFiringWebdriver.executeScript("document.getElementById('examEventSubjectTaggingTable').scrollTop=10000");
+			}
+		}
+		webActions.Click(saveButtonForSubjectTagging, "Save Button");
+		String str_confirmationBox = webActions.getText(confirmationBox);
+		webActions.verifyText(str_confirmationBox, "Record updated successfully !!");
+		webActions.Click(okButton, "OK Button");
 	}
 
 }

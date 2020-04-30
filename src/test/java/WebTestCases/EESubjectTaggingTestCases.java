@@ -83,12 +83,49 @@ public class EESubjectTaggingTestCases {
 		Thread.sleep(2000);
 		homePage.Logout();
 		Thread.sleep(2000);
-		*/
+		
 //TC_11 - Scroll Problem issue
 		
-//TC_12- 
+//TC_12
 		ExamEventSubjectTagging.STVerifyTagCoordinatorDetails();
 		Thread.sleep(2000);
+		homePage.Logout();
+		Thread.sleep(2000);
+		
+		
+//TC_13		
+		ExamEventSubjectTagging.STFacultyAndBatchDD();
+		Thread.sleep(2000);
+		homePage.Logout();
+		Thread.sleep(2000);
+	
+//TC_14
+		ExamEventSubjectTagging.STVerifyMarksOption();
+		Thread.sleep(2000);
+		homePage.Logout();
+		Thread.sleep(2000);
+		
+		
+//TC_15
+		ExamEventSubjectTagging.STVerifyGaradEntryOption();
+		Thread.sleep(2000);
+		homePage.Logout();
+		Thread.sleep(2000);
+		
+//TC_16
+		ExamEventSubjectTagging.STSaveWithoutMarksAndGrade();
+		Thread.sleep(2000);
+		homePage.Logout();
+		Thread.sleep(2000);
+		
+//TC_17
+		ExamEventSubjectTagging.STSaveWithAllDetails();
+		Thread.sleep(2000);
+		homePage.Logout();
+		Thread.sleep(2000);
+		*/
+		
+		
 		
 		
 }
