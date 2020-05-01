@@ -1,6 +1,5 @@
 package WebUtil;
 
-import static org.testng.Assert.assertEquals;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -13,6 +12,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import static org.testng.Assert.assertEquals;
 
 import Utilities.DriverFactory;
 import Utilities.ReportManager;
@@ -56,6 +56,7 @@ public class WebActions {
 		wait.pollingEvery(5, TimeUnit.SECONDS);
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
+
 
 
 	/**

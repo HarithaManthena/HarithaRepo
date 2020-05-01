@@ -65,11 +65,20 @@ public class EESubjectTaggingTestCases {
 		
 //TC_07 and 08 are in progress
 		ExamEventSubjectTagging.STWeightageWithValidData();
-		Thread.sleep(20000);
+		Thread.sleep(2000);
 		homePage.Logout();
 		Thread.sleep(2000);
 		
+		
 //TC_08
+		
+		ExamEventSubjectTagging.STWeightageWithINVALIDDATA();
+		Thread.sleep(2000);
+		homePage.Logout();
+		Thread.sleep(2000);
+		
+		
+		
 		
 		
 //TC_09
@@ -83,8 +92,14 @@ public class EESubjectTaggingTestCases {
 		Thread.sleep(2000);
 		homePage.Logout();
 		Thread.sleep(2000);
+		*/
 		
-//TC_11 - Scroll Problem issue
+//TC_11 
+		ExamEventSubjectTagging.STVerifyPassingMarksWithZero();
+		Thread.sleep(2000);
+		
+		
+		/*
 		
 //TC_12
 		ExamEventSubjectTagging.STVerifyTagCoordinatorDetails();
@@ -123,8 +138,14 @@ public class EESubjectTaggingTestCases {
 		Thread.sleep(2000);
 		homePage.Logout();
 		Thread.sleep(2000);
-		*/
 		
+
+//TC_18
+		ExamEventSubjectTagging.STAddWithoutFaculty();
+		Thread.sleep(2000);
+		homePage.Logout();
+		Thread.sleep(2000);
+		*/
 		
 		
 		

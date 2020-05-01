@@ -2,7 +2,7 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-05-01T03:35:59 IST" name="Default suite" finished-at="2020-05-01T03:37:17 IST" duration-ms="77158">
+  <suite started-at="2020-05-01T18:00:48 IST" name="Default suite" finished-at="2020-05-01T18:02:04 IST" duration-ms="75663">
     <groups>
       <group name="regression">
         <method signature="EESubjectTaggingTestCases.EESubjectTagging()[pri:0, instance:WebTestCases.EESubjectTaggingTestCases@1a04f701]" name="EESubjectTagging" class="WebTestCases.EESubjectTaggingTestCases"/>
@@ -14,9 +14,9 @@
         <method signature="EESubjectTaggingTestCases.EESubjectTagging()[pri:0, instance:WebTestCases.EESubjectTaggingTestCases@1a04f701]" name="EESubjectTagging" class="WebTestCases.EESubjectTaggingTestCases"/>
       </group> <!-- smoke -->
     </groups>
-    <test started-at="2020-05-01T03:35:59 IST" name="Default test" finished-at="2020-05-01T03:37:17 IST" duration-ms="77158">
+    <test started-at="2020-05-01T18:00:48 IST" name="Default test" finished-at="2020-05-01T18:02:04 IST" duration-ms="75663">
       <class name="WebTestCases.EESubjectTaggingTestCases">
-        <test-method signature="EESubjectTagging()[pri:0, instance:WebTestCases.EESubjectTaggingTestCases@1a04f701]" started-at="2020-05-01T03:35:59 IST" name="EESubjectTagging" description="Exam Event Subject Tagging Functional TestCases" finished-at="2020-05-01T03:37:14 IST" duration-ms="74571" status="PASS">
+        <test-method signature="EESubjectTagging()[pri:0, instance:WebTestCases.EESubjectTaggingTestCases@1a04f701]" started-at="2020-05-01T18:00:48 IST" name="EESubjectTagging" description="Exam Event Subject Tagging Functional TestCases" finished-at="2020-05-01T18:02:01 IST" duration-ms="72857" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- EESubjectTagging -->
