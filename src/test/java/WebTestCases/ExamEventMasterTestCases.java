@@ -21,22 +21,23 @@ public void EEMTestCaseExecution() throws InterruptedException {
 		
 	homePage.Login(ConfigReader.getValue("examDeanUserName"), ConfigReader.getValue("examDeanPassword"));
 //TC_01	
-	/*ExamEventMaster.VerifyExamEventMasterAccess();
-	Thread.sleep(2000);	
-	homePage.Logout();
-	Thread.sleep(3000);
+//	/*ExamEventMaster.VerifyExamEventMasterAccess();
+//	Thread.sleep(2000);	
+//	homePage.Logout();
+//	Thread.sleep(3000);
+	
 //TC_02	
-	ExamEventMaster.VerifyInstituteDD();
-	Thread.sleep(20000);
-	homePage.Logout();
-	Thread.sleep(3000);
+//	ExamEventMaster.VerifyInstituteDD();
+//	Thread.sleep(20000);
+//	homePage.Logout();
+	
 
 //TC_03
-	ExamEventMaster.VerifyExamEventTypeDD();
-	Thread.sleep(2000);
-	homePage.Logout();
-	Thread.sleep(3000);
-	
+//	ExamEventMaster.VerifyExamEventTypeDD();
+//	Thread.sleep(2000);
+//	homePage.Logout();
+//	
+	/*
 //TC_04	
 	ExamEventMaster.VerifyActiveCheckbox();
 	Thread.sleep(2000);
@@ -131,12 +132,11 @@ public void EEMTestCaseExecution() throws InterruptedException {
 	Thread.sleep(3000);
 	*/
 //TC_19
-	ExamEventMaster.VerifyCancelButton();
-	Thread.sleep(2000);
-	homePage.Logout();
-	Thread.sleep(3000);
-		
-	
+	/*
+	 * ExamEventMaster.VerifyCancelButton(); Thread.sleep(2000); homePage.Logout();
+	 * Thread.sleep(3000);
+	 * 
+	 */
 	
 	
 }

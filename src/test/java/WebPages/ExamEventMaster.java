@@ -46,7 +46,7 @@ public class ExamEventMaster {
 
 	public static By cancelbutn = By.xpath("//button[@title='Exit']");
 	public static By dashboard = By.xpath("//h1[contains(text(),'Dashboard')]");
-	
+
 	static WebActions webActions = new WebActions();
 	static JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getInstance().getWebDriver();
 
@@ -76,18 +76,18 @@ public class ExamEventMaster {
 		webActions.Click(examEventMaster, "Exam Event Master");
 		Thread.sleep(4000);
 
-		webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
-		Thread.sleep(4000);
+		if (webActions.isDisplayed(Institute, "Institute")) {
 
-		String str_InstituteDD = webActions.getText(Institute);
-		if (str_InstituteDD.contains("School of Engineering and Applied Sciences")) {
+			webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
+			Thread.sleep(4000);
+
 			ReportManager.logInfo("<b style=\"color:green;\"> *****Institute Name is Selected *****</b>");
 
+		} else {
+			ReportManager.logInfo("<b style=\"color:green;\"> *****Institute Name is not Selected *****</b>");
+
 		}
 
-		else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *****Institute Name is not Selected*****</b>");
-		}
 	}
 
 //TC_003
@@ -100,17 +100,19 @@ public class ExamEventMaster {
 
 		webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
 		Thread.sleep(2000);
-		webActions.selectByVisibleText(examEventType, "INTERN");
 
-		String String_ExamEventDD = webActions.getText(examEventType);
-		if (String_ExamEventDD.contains("INTERN")) {
+		if (webActions.isDisplayed(examEventType, "Exam Event Type Dropdown")) {
+
+			webActions.selectByVisibleText(examEventType, "INTERN");
+			Thread.sleep(2000);
+
 			ReportManager.logInfo("<b style=\"color:green;\"> *****Exam Event Type is Selected*****</b>");
 
+		} else {
+			ReportManager.logInfo("<b style=\"color:green;\"> *****Exam Event Type is not Selected *****</b>");
+
 		}
 
-		else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *****Exam Event Type is not Selected*****</b>");
-		}
 	}
 
 //TC_004
@@ -543,8 +545,8 @@ public class ExamEventMaster {
 		}
 
 	}
-//TC_20
-	
+//TC_19
+
 	public static void VerifyCancelButton() throws InterruptedException {
 
 		webActions.Click(examActivity, "Exam Activity");
@@ -561,18 +563,19 @@ public class ExamEventMaster {
 		webActions.sendKeys(totalSubEventConductedTextBox, "2");
 		webActions.sendKeys(bestSubEventConsideredTextBox, "1");
 		Thread.sleep(2000);
-		
+
 		webActions.Click(cancelbutn, "Cancel");
-		
+
 		String Dashboard = webActions.getText(dashboard);
 		if (Dashboard.equalsIgnoreCase("Dashboard")) {
 
-			ReportManager.logInfo("<b style=\"color:green;\"> *********Exam Event Master Page cancelled and returned to Dashboard page********</b>");
+			ReportManager.logInfo(
+					"<b style=\"color:green;\"> *********Exam Event Master Page cancelled and returned to Dashboard page********</b>");
 
 		} else {
 			ReportManager.logInfo("<b style=\"color:red;\"> *********Cancel Button not working********</b>");
 
 		}
-		
-}
+
+	}
 }

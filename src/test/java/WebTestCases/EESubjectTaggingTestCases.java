@@ -97,7 +97,8 @@ public class EESubjectTaggingTestCases {
 //TC_11 
 		ExamEventSubjectTagging.STVerifyPassingMarksWithZero();
 		Thread.sleep(2000);
-		
+		homePage.Logout();
+		Thread.sleep(2000);
 		
 		/*
 		
