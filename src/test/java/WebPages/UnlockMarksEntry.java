@@ -22,6 +22,10 @@ public class UnlockMarksEntry {
 	public static By subjects = By.xpath("//span[contains(text(),'--Select Subjects--')]");
 	public static By listOfSubjects = By.xpath("//ul[@class='item2']//li//descendant::div['_ngcontent-c15']");
 
+	public static By getDetailsButton = By.xpath("//button[@class = 'btn btn-success' and @title = 'get details']");
+	public static By getDetailsTableHeader = By.xpath("//table[@class='table table-bordered']/thead/tr/td");
+	public static By getDetailsTableRows = By.xpath("//table[@class='table table-bordered']/tbody/tr");
+
 	static WebActions webActions = new WebActions();
 	static JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getInstance().getWebDriver();
 
@@ -124,7 +128,8 @@ public class UnlockMarksEntry {
 
 		webActions.selectByVisibleText(examEventCode, " Presentation - Presentation ");
 		Thread.sleep(3000);
-		ReportManager.logInfo("<b style=\"color:green;\"> *****Exam Event code is Selected *****</b>");
+		// ReportManager.logInfo("<b style=\"color:green;\"> *****Exam Event code is
+		// Selected *****</b>");
 
 		webActions.Click(subjects, "Subjects");
 		List<WebElement> List_subjects = webActions.getListOfWebElements(listOfSubjects);
@@ -135,8 +140,9 @@ public class UnlockMarksEntry {
 			if (List_subjects.get(i).getText().contains("(EECE804L) ANTENNA THEORY AND DESIGN")) {
 				List_subjects.get(i).click();
 				System.out.println("Selected Subject from DD");
-				
-				ReportManager.logInfo("<b style=\"color:green;\"> ******(EECE804L) ANTENNA THEORY AND DESIGN Subject is Selected from dropdown *****</b>");
+
+				ReportManager.logInfo(
+						"<b style=\"color:green;\"> ******(EECE804L) ANTENNA THEORY AND DESIGN Subject is Selected from dropdown *****</b>");
 
 				break;
 			} else {
@@ -146,5 +152,59 @@ public class UnlockMarksEntry {
 
 			}
 		}
+	}
+
+//TC_06
+	public static void UM_VerifyGetDetailsOptn() throws InterruptedException {
+
+		webActions.Click(examActivity, "Exam Activity");
+		webActions.Click(unlockMarksEntry, "Unlock Marks Entry");
+		Thread.sleep(6000);
+
+		webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
+		Thread.sleep(4000);
+
+		webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
+		ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
+		Thread.sleep(3000);
+
+		webActions.selectByVisibleText(examEventCode, " Presentation - Presentation ");
+		Thread.sleep(3000);
+
+		webActions.Click(subjects, "Subjects");
+		List<WebElement> List_subjects = webActions.getListOfWebElements(listOfSubjects);
+		System.out.println("Total number of search in list" + List_subjects.size());
+
+		for (int i = 0; i < List_subjects.size(); i++) {
+			System.out.println(List_subjects.get(i).getText());
+			if (List_subjects.get(i).getText().contains("(EECE804L) ANTENNA THEORY AND DESIGN")) {
+				List_subjects.get(i).click();
+				System.out.println("Selected Subject from DD");
+				ReportManager.logInfo("Subject Code - <b style=\"color:green;\">\"(EECE804L) ANTENNA THEORY AND DESIGN\"</b> ");
+				Thread.sleep(3000);
+
+			}
+			if (webActions.isDisplayed(getDetailsButton, "Get Details")) {
+				webActions.Click(getDetailsButton, "get Deatils option");
+				Thread.sleep(2000);
+				System.out.println("Get Details options selected");
+				ReportManager.logInfo("<b style=\"color:green;\"> ******Get Details option selected *****</b>");
+			}
+
+			if (webActions.isDisplayed(getDetailsTableHeader, "Table Header")) {
+				List<WebElement> TotalTableRows = webActions.getListOfWebElements(getDetailsTableRows);
+				int count = TotalTableRows.size();
+				System.out.println("No. of rows in table " + count + " ");
+
+				ReportManager.logInfo(
+						"<b style=\"color:green;\"> ****** Details table is displayed*****</b>");
+				break;
+			} else {
+				ReportManager.logInfo("<b style=\"color:red;\"> ******Get Details Option not Clicked*****</b>");
+				
+
+			}
+		}
+
 	}
 }

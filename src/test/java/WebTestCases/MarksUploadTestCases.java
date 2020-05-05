@@ -71,7 +71,14 @@ public class MarksUploadTestCases {
 //			homePage.Logout();
 			
 //TC_11
-			MarksUpload.MU_UploadMarksSheetWithInvalidData();
+//			MarksUpload.MU_UploadMarksSheetWithInvalidData();
+//			Thread.sleep(2000);
+//			homePage.Logout();
+//TC_12
+			//On hold
+			
+//TC_13
+			MarksUpload.MU_UploadSheet_MarksCol_With_INVALID_Data();
 			Thread.sleep(2000);
 			
 		}

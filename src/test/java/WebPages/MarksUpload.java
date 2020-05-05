@@ -7,9 +7,12 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.Color;
+import org.testng.Assert;
 
 import Utilities.DriverFactory;
 import Utilities.ReportManager;
@@ -37,8 +40,14 @@ public class MarksUpload {
 	public static By dashboardText = By.xpath("//h1[text()=' Dashboard ']");
 
 	public static By downlaodTemplate = By.xpath("//button[@title='Click to Download Template']");
-	public static By chooseFile = By.xpath("//input[@name='browse']");
-	
+	public static By chooseFile = By.xpath("//input[@type='file']");
+
+	// change position as required
+	public static By errorCol = By.xpath(" //td[contains(text(),'Invalid Marks Entry')][1]");
+	public static By enrollmentNoList = By.xpath("//table/tbody/tr/td[2]");
+	public static By errorColList = By.xpath("//table/tbody/tr/td[9]");
+
+	// //*[@id="marksEntryGrid"]/div[2]/table/tbody/tr[1]/td[9]
 
 	static WebActions webActions = new WebActions();
 	static JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getInstance().getWebDriver();
@@ -349,9 +358,9 @@ public class MarksUpload {
 	}
 
 //TC_11
-	
+
 	public static void MU_UploadMarksSheetWithInvalidData() throws InterruptedException, AWTException {
-		
+
 		webActions.Click(examActivity, "Exam Activity");
 		Thread.sleep(2000);
 		webActions.Click(marksUpload, "Marks Upload");
@@ -369,21 +378,145 @@ public class MarksUpload {
 		webActions.selectByVisibleText(examEventCode, " Presentation ( Presentation) ");
 		Thread.sleep(5000);
 
-        
-		String file = "c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls";
-		StringSelection selection = new StringSelection(file);
-		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null); 
-		
-		Robot robot = new Robot();
-		
-	    robot.keyPress(KeyEvent.VK_CONTROL);
-		robot.keyPress(KeyEvent.VK_V);
-		robot.keyRelease(KeyEvent.VK_V);
-	    robot.keyPress(KeyEvent.VK_CONTROL);
-		robot.keyPress(KeyEvent.VK_ENTER);
-		robot.keyRelease(KeyEvent.VK_ENTER);
-		System.out.println("File Got Uploaded");
-		ReportManager
-		.logInfo("Subject Code - <b style=\"color:green;\">\"File Got Uploaded\"</b> ");
+		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
+		upload.sendKeys("c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls");
+
+		Thread.sleep(8000);
+
+		String Str_err = webActions.getText(errorCol);
+		if (Str_err.contains("Invalid Marks Entry")) {
+
+			ReportManager.logInfo("<b style=\"color:red;\">****Invalid Marks Entry-Error ****</b>");
+
+		} else {
+			ReportManager.logInfo("<b style=\"color:red;\"> *********No error message********</b>");
+
+		}
+
+//Using Robot class
+//		String file = "c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls";
+//		StringSelection selection = new StringSelection(file);
+//		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null); 
+//		
+//		Robot robot = new Robot();
+//		
+//	    robot.keyPress(KeyEvent.VK_CONTROL);
+//		robot.keyPress(KeyEvent.VK_V);
+//		robot.keyRelease(KeyEvent.VK_V);
+//	    robot.keyPress(KeyEvent.VK_CONTROL);
+//		robot.keyPress(KeyEvent.VK_ENTER);
+//		robot.keyRelease(KeyEvent.VK_ENTER);
+//		System.out.println("File Got Uploaded");
+//		ReportManager
+//		.logInfo("Subject Code - <b style=\"color:green;\">\"File Got Uploaded\"</b> ");
+
 	}
+
+//TC_12: Inprogress what type of error message should be shown exactly
+
+	public static void MU_UploadSheet_BranchAndPrgrm_With_INVALID_Data() throws InterruptedException {
+		webActions.Click(examActivity, "Exam Activity");
+		Thread.sleep(2000);
+		webActions.Click(marksUpload, "Marks Upload");
+		Thread.sleep(2000);
+
+		webActions.selectByVisibleText(institute, " School of Engineering and Applied Sciences ");
+
+		webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
+		ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
+
+		webActions.selectByVisibleText(subjectCode, "EBTY801L ( ADVANCED MOLECULAR BIOLOGY)");
+		ReportManager
+				.logInfo("Subject Code - <b style=\"color:green;\">\"EBTY801L ( ADVANCED MOLECULAR BIOLOGY)\"</b> ");
+
+		webActions.selectByVisibleText(examEventCode, " Presentation ( Presentation) ");
+		Thread.sleep(5000);
+
+		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
+		upload.sendKeys("c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls");
+
+		Thread.sleep(8000);
+
+		String Str_err = webActions.getText(errorCol);
+		if (Str_err.contains("Invalid Marks Entry")) {
+
+			ReportManager.logInfo("<b style=\"color:red;\">****Error: Invalid Marks Entry****</b>");
+
+		} else {
+			ReportManager.logInfo("<b style=\"color:red;\"> *********No error message********</b>");
+
+		}
+
+	}
+
+//TC_13
+	public static void MU_UploadSheet_MarksCol_With_INVALID_Data() throws InterruptedException {
+		webActions.Click(examActivity, "Exam Activity");
+		Thread.sleep(2000);
+		webActions.Click(marksUpload, "Marks Upload");
+		Thread.sleep(2000);
+
+		webActions.selectByVisibleText(institute, " School of Engineering and Applied Sciences ");
+
+		webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
+		ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
+
+		webActions.selectByVisibleText(subjectCode, "EBTY801L ( ADVANCED MOLECULAR BIOLOGY)");
+		ReportManager
+				.logInfo("Subject Code - <b style=\"color:green;\">\"EBTY801L ( ADVANCED MOLECULAR BIOLOGY)\"</b> ");
+
+		webActions.selectByVisibleText(examEventCode, " Presentation ( Presentation) ");
+		Thread.sleep(5000);
+
+		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
+		upload.sendKeys("c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls");
+		Thread.sleep(8000);
+
+
+		String expected = "#dd4b39";
+		WebElement field =	DriverFactory.getInstance().getWebDriver().findElement(By.xpath("//table/tbody/tr[1]/td[9]"));
+		String Bcolor = field.getCssValue("background-color");
+		System.out.println("color "+Bcolor);
+		
+		String hexcolor	= Color.fromString(Bcolor).asHex();
+		System.out.println("hexcolor "+hexcolor);
+		String actual = hexcolor;
+		Assert.assertEquals(actual, expected);
+		System.out.println("Background color is red");
+		
+//		String color = DriverFactory.getInstance().getWebDriver().findElement(By.xpath("//table/tbody/tr[1]/td[9]")).getCssValue("color");
+//		System.out.println("Color: "+color);
+		
+//		
+//		String Bcolor = DriverFactory.getInstance().getWebDriver().findElement(By.xpath("//table/tbody/tr[1]/td[9]")).getCssValue("Background-color");
+//		System.out.println("BColor: "+Bcolor);
+		
+//		String[] hexValue = color.replace("rgba(", "").replace(")", "").split(",");
+//
+//		int hexValue1 = Integer.parseInt(hexValue[0]);
+//		System.out.println(hexValue1);
+//		hexValue[1] = hexValue[1].trim();
+//		int hexValue2 = Integer.parseInt(hexValue[1]);
+//		System.out.println(hexValue2);
+//		hexValue[2] = hexValue[2].trim();
+//		int hexValue3 = Integer.parseInt(hexValue[2]);
+//		System.out.println(hexValue3);
+//
+//
+//		String actualColor = String.format("#%02x%02x%02x", hexValue1, hexValue2, hexValue3);
+//		System.out.println(actualColor);
+//
+//		Assert.assertEquals("#255dc1", actualColor);
+//
+//	
+		//Color: rgba(255, 255, 255, 1)
+
+	
+	
+	
+	
+	
+		
+	}
+
 }

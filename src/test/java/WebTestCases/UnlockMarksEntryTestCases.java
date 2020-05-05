@@ -42,7 +42,11 @@ public class UnlockMarksEntryTestCases {
 //		Thread.sleep(2000);
 //		homePage.Logout();
 //TC_05
-		UnlockMarksEntry.UMSubjectsDD();
+//		UnlockMarksEntry.UMSubjectsDD();
+//		Thread.sleep(2000);
+//		homePage.Logout();
+//TC_06
+		UnlockMarksEntry.UM_VerifyGetDetailsOptn();
 		Thread.sleep(2000);
 		
 		
