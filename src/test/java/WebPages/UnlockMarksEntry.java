@@ -33,6 +33,8 @@ public class UnlockMarksEntry {
 	public static By cancelButton = By.xpath("//button[@title='Exit']");
 	public static By dashboardText = By.xpath("//h1[text()=' Dashboard ']");
 
+	public static By getDetailsTableCol = By.xpath("//table[@class='table table-bordered']/tbody/tr[1]/td");
+
 	static WebActions webActions = new WebActions();
 	static JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getInstance().getWebDriver();
 
@@ -161,7 +163,7 @@ public class UnlockMarksEntry {
 		}
 	}
 
-//TC_06
+	// TC_06
 	public static void UM_VerifyGetDetailsOptn() throws InterruptedException {
 
 		webActions.Click(examActivity, "Exam Activity");
@@ -212,6 +214,7 @@ public class UnlockMarksEntry {
 			}
 		}
 	}
+
 //TC_07
 
 	public static void UM_GetDetails_Without_ReqFieldSelection() throws InterruptedException {
@@ -291,7 +294,7 @@ public class UnlockMarksEntry {
 
 		webActions.selectByVisibleText(examEventCode, " Presentation - Presentation ");
 		Thread.sleep(3000);
-		
+
 		webActions.Click(subjects, "Subjects");
 		List<WebElement> List_subjects = webActions.getListOfWebElements(listOfSubjects);
 		System.out.println("Total number of search in list" + List_subjects.size());
@@ -304,24 +307,95 @@ public class UnlockMarksEntry {
 				ReportManager.logInfo(
 						"Subject Code - <b style=\"color:green;\">\"(EECE804L) ANTENNA THEORY AND DESIGN\"</b> ");
 				Thread.sleep(3000);
+
+			}
+			if (webActions.isDisplayed(getDetailsButton, "Get Details")) {
+				webActions.Click(getDetailsButton, "get Deatils option");
+				Thread.sleep(2000);
+				System.out.println("Get Details options selected");
+				ReportManager.logInfo("<b style=\"color:green;\"> ******Get Details option selected *****</b>");
+			}
+
+			webActions.Click(cancelButton, "Cancel Button");
+			Thread.sleep(2000);
+
+			String Dashboard = webActions.getText(dashboardText);
+			if (Dashboard.equalsIgnoreCase("Dashboard")) {
+
+				ReportManager.logInfo(
+						"<b style=\"color:green;\"> *********Marks Upload page cancelled and returned to Dashboard page********</b>");
 				break;
+
+			} else {
+				ReportManager.logInfo("<b style=\"color:red;\"> *********Cancel Button not working********</b>");
 
 			}
 		}
-		
+	}
+//TC_10
+
+	public static void UM_Verify_GetDetails_TableHeader() throws InterruptedException {
+
+		webActions.Click(examActivity, "Exam Activity");
+		webActions.Click(unlockMarksEntry, "Unlock Marks Entry");
+		Thread.sleep(6000);
+
+		webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
+		Thread.sleep(4000);
+
+		webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
+		ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
+		Thread.sleep(3000);
+
+		webActions.selectByVisibleText(examEventCode, " Presentation - Presentation ");
+		Thread.sleep(3000);
+
 		webActions.Click(subjects, "Subjects");
-		Thread.sleep(2000);
-		webActions.Click(cancelButton, "Cancel Button");
-		Thread.sleep(2000);
+		List<WebElement> List_subjects = webActions.getListOfWebElements(listOfSubjects);
 
-		String Dashboard = webActions.getText(dashboardText);
-		if (Dashboard.equalsIgnoreCase("Dashboard")) {
+		for (int i = 0; i < List_subjects.size(); i++) {
+			String str_subj = List_subjects.get(i).getText();
 
-			ReportManager.logInfo(
-					"<b style=\"color:green;\"> *********Marks Upload page cancelled and returned to Dashboard page********</b>");
+			if (str_subj.equalsIgnoreCase("(EECE804L) ANTENNA THEORY AND DESIGN")) {
+				List_subjects.get(i).click();
+				System.out.println("Selected Subject from DD");
+				ReportManager.logInfo(
+						"Subject Code - <b style=\"color:green;\">\"(EECE804L) ANTENNA THEORY AND DESIGN\"</b> ");
+			}
+		}
+
+		if (webActions.isDisplayed(getDetailsButton, "Get Details")) {
+			webActions.Click(getDetailsButton, "get Deatils option");
+			Thread.sleep(2000);
+			System.out.println("Get Details options selected");
+		}
+
+		List<WebElement> list_TableHeaders = webActions.getListOfWebElements(getDetailsTableHeader);
+		for (int j = 0; j < list_TableHeaders.size(); j++) {
+
+			String str_TableHeaders = list_TableHeaders.get(j).getText();
+			ReportManager.logInfo("Table Headers - <b style=\"color:green;\">" + str_TableHeaders + "</b>");
+		}
+
+		if ((webActions.isDisplayed(getDetailsTableHeader, "Table Header"))) {
+
+			List<WebElement> TotalTableRows = webActions.getListOfWebElements(getDetailsTableRows);
+			int rowcount = TotalTableRows.size();
+			System.out.println("No. of rows in table " + rowcount + " ");
+
+			ReportManager.logInfo("No. of rows in table - <b style=\"color:green;\">" + rowcount + "</b>");
+		}
+
+		if ((webActions.isDisplayed(getDetailsTableHeader, "Table Header"))) {
+			List<WebElement> TotalTablecolumns = webActions.getListOfWebElements(getDetailsTableCol);
+			int Colcount = TotalTablecolumns.size();
+			System.out.println("No. of columns in table " + Colcount + " ");
+			ReportManager.logInfo("No. of columns in table - <b style=\"color:green;\">" + Colcount + "</b>");
+
+			ReportManager.logInfo("<b style=\"color:green;\"> ******Grid Table with Required Details are present*****</b>");
 
 		} else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *********Cancel Button not working********</b>");
+			ReportManager.logInfo("<b style=\"color:red;\"> ******Grid Table with Required Details not present*****</b>");
 
 		}
 	}

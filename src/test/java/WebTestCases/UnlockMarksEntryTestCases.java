@@ -58,9 +58,13 @@ public class UnlockMarksEntryTestCases {
 //		Thread.sleep(2000);
 //		homePage.Logout();
 //TC_09
-		UnlockMarksEntry.UM_VerifyCancelButn();
+//		UnlockMarksEntry.UM_VerifyCancelButn();
+//		Thread.sleep(2000);
+//		homePage.Logout();
+
+//TC_10
+		UnlockMarksEntry.UM_Verify_GetDetails_TableHeader();
 		Thread.sleep(2000);
-		
 		
 	}
 
