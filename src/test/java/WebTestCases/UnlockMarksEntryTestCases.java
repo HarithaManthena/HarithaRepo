@@ -46,9 +46,20 @@ public class UnlockMarksEntryTestCases {
 //		Thread.sleep(2000);
 //		homePage.Logout();
 //TC_06
-		UnlockMarksEntry.UM_VerifyGetDetailsOptn();
+//		UnlockMarksEntry.UM_VerifyGetDetailsOptn();
+//		Thread.sleep(2000);
+//		homePage.Logout();
+//TC_07
+//		UnlockMarksEntry.UM_GetDetails_Without_ReqFieldSelection();
+//		Thread.sleep(2000);
+//		homePage.Logout();
+//TC_08
+//		UnlockMarksEntry.UM_VerifyRestButn();
+//		Thread.sleep(2000);
+//		homePage.Logout();
+//TC_09
+		UnlockMarksEntry.UM_VerifyCancelButn();
 		Thread.sleep(2000);
-		
 		
 		
 	}

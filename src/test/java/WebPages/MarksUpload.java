@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -34,7 +35,7 @@ public class MarksUpload {
 	public static By subjectCode = By.xpath("//select[@id='subcode']");
 	public static By examEventCode = By.xpath("//select[@id='exameventcode']");
 	public static By resetButton = By.xpath("//button[@title='Reset']");
-	public static By istituteDDText = By.xpath("//option[text()='--Select Institute--']");
+	public static By instituteDDText = By.xpath("//option[text()='--Select Institute--']");
 
 	public static By cancelButton = By.xpath("//button[@title='Exit']");
 	public static By dashboardText = By.xpath("//h1[text()=' Dashboard ']");
@@ -46,8 +47,6 @@ public class MarksUpload {
 	public static By errorCol = By.xpath(" //td[contains(text(),'Invalid Marks Entry')][1]");
 	public static By enrollmentNoList = By.xpath("//table/tbody/tr/td[2]");
 	public static By errorColList = By.xpath("//table/tbody/tr/td[9]");
-
-	// //*[@id="marksEntryGrid"]/div[2]/table/tbody/tr[1]/td[9]
 
 	static WebActions webActions = new WebActions();
 	static JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getInstance().getWebDriver();
@@ -192,7 +191,7 @@ public class MarksUpload {
 		Thread.sleep(5000);
 		webActions.Click(resetButton, "Rest Button");
 
-		if (webActions.isDisplayed(istituteDDText, "Select Institute")) {
+		if (webActions.isDisplayed(instituteDDText, "Select Institute")) {
 
 			ReportManager.logInfo("<b style=\"color:green;\"> *****Fields got reset *****</b>");
 
@@ -454,6 +453,58 @@ public class MarksUpload {
 		webActions.Click(examActivity, "Exam Activity");
 		Thread.sleep(2000);
 		webActions.Click(marksUpload, "Marks Upload");
+		Thread.sleep(6000);
+
+		webActions.selectByVisibleText(institute, " School of Engineering and Applied Sciences ");
+
+		webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
+		ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
+
+		webActions.selectByVisibleText(subjectCode, "EBTY801L ( ADVANCED MOLECULAR BIOLOGY)");
+		ReportManager
+				.logInfo("Subject Code - <b style=\"color:green;\">\"EBTY801L ( ADVANCED MOLECULAR BIOLOGY)\"</b> ");
+
+		webActions.selectByVisibleText(examEventCode, " Project ( Project) ");
+		Thread.sleep(5000);
+
+		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
+		upload.sendKeys("c:/Users/LENOVO/downloads/Project_EBTY801L.xls");
+		Thread.sleep(8000);
+
+		String Redexpected = "#dd4b39";
+
+		List<WebElement> list_errorCol = webActions.getListOfWebElements(errorColList);
+		List<WebElement> list_enrollment = webActions.getListOfWebElements(enrollmentNoList);
+
+		for (int i = 0; i < list_errorCol.size(); i++) {
+			String str_Bcolor = list_errorCol.get(i).getCssValue("background-color");
+
+			String hexcolorRed = Color.fromString(str_Bcolor).asHex();
+			String actual = hexcolorRed;
+
+			if (actual.equalsIgnoreCase(Redexpected)) {
+				String Str_enrolcol = list_errorCol.get(i).getText();
+				System.out.println("Error Text:" + Str_enrolcol);
+
+				if (actual.equalsIgnoreCase(Redexpected)) {
+					String str_enrollment = list_enrollment.get(i).getText();
+					System.out.println("Enrollment Number:" + str_enrollment);
+					
+					
+					ReportManager.logInfo("ErrorList - <b style=\"color:Red;\">"+Str_enrolcol+"</b>"
+							+ ", Enrollment Number - <b style=\"color:green;\">"+str_enrollment+"</b>");
+
+				}
+			}
+		}
+
+		}
+	//TC_14
+	public static void MU_saveExcel_with_NOERRORS() throws InterruptedException {
+		
+		webActions.Click(examActivity, "Exam Activity");
+		Thread.sleep(2000);
+		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(2000);
 
 		webActions.selectByVisibleText(institute, " School of Engineering and Applied Sciences ");
@@ -470,53 +521,20 @@ public class MarksUpload {
 
 		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
 		upload.sendKeys("c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls");
+
 		Thread.sleep(8000);
 
+		String Str_err = webActions.getText(errorCol);
+		if (Str_err.contains("Invalid Marks Entry")) {
 
-		String expected = "#dd4b39";
-		WebElement field =	DriverFactory.getInstance().getWebDriver().findElement(By.xpath("//table/tbody/tr[1]/td[9]"));
-		String Bcolor = field.getCssValue("background-color");
-		System.out.println("color "+Bcolor);
-		
-		String hexcolor	= Color.fromString(Bcolor).asHex();
-		System.out.println("hexcolor "+hexcolor);
-		String actual = hexcolor;
-		Assert.assertEquals(actual, expected);
-		System.out.println("Background color is red");
-		
-//		String color = DriverFactory.getInstance().getWebDriver().findElement(By.xpath("//table/tbody/tr[1]/td[9]")).getCssValue("color");
-//		System.out.println("Color: "+color);
-		
-//		
-//		String Bcolor = DriverFactory.getInstance().getWebDriver().findElement(By.xpath("//table/tbody/tr[1]/td[9]")).getCssValue("Background-color");
-//		System.out.println("BColor: "+Bcolor);
-		
-//		String[] hexValue = color.replace("rgba(", "").replace(")", "").split(",");
-//
-//		int hexValue1 = Integer.parseInt(hexValue[0]);
-//		System.out.println(hexValue1);
-//		hexValue[1] = hexValue[1].trim();
-//		int hexValue2 = Integer.parseInt(hexValue[1]);
-//		System.out.println(hexValue2);
-//		hexValue[2] = hexValue[2].trim();
-//		int hexValue3 = Integer.parseInt(hexValue[2]);
-//		System.out.println(hexValue3);
-//
-//
-//		String actualColor = String.format("#%02x%02x%02x", hexValue1, hexValue2, hexValue3);
-//		System.out.println(actualColor);
-//
-//		Assert.assertEquals("#255dc1", actualColor);
-//
-//	
-		//Color: rgba(255, 255, 255, 1)
+			ReportManager.logInfo("<b style=\"color:red;\">****Invalid Marks Entry-Error ****</b>");
 
-	
-	
-	
-	
-	
+		} else {
+			ReportManager.logInfo("<b style=\"color:red;\"> *********No error message********</b>");
+
+		}
+
 		
 	}
-
+	
 }
