@@ -65,6 +65,24 @@ public class UnlockMarksEntryTestCases {
 //TC_10
 		UnlockMarksEntry.UM_Verify_GetDetails_TableHeader();
 		Thread.sleep(2000);
+		homePage.Logout();
+		
+//TC_11
+//		UnlockMarksEntry.UM_Verify_Checkbox_DetailsTable();
+//		Thread.sleep(2000);
+//		homePage.Logout();
+		
+//TC_12
+//		UnlockMarksEntry.UM_Save_Without_RowSelection();
+//		Thread.sleep(2000);
+//		homePage.Logout();
+//TC_13 - In Progress
+//		UnlockMarksEntry.UM_EditDates_AfterRwoSelection();
+//		Thread.sleep(2000);
+		
+		
+
+		
 		
 	}
 
