@@ -51,11 +51,13 @@ public class UnlockMarksEntry {
 	public static By SNoCheckboxInSearchOutput = By.xpath("//table[@class = 'table table-bordered']//td[1]");
 	public static By fromDateColumnList = By.xpath("//table[@class = 'table table-bordered']//td[8]");
 	public static By toDateColumnList = By.xpath("//table[@class = 'table table-bordered']//td[9]");
-	public static By lockExamMarksCheckbox = By.xpath("//table[@class = 'table table-bordered']//td[.='Lock Exam Marks']/input");
+	public static By lockExamMarksColumnList = By.xpath("//table[@class = 'table table-bordered']//td[10]//input");
+
+	public static By lockExamMarksCheckbox = By
+			.xpath("//table[@class = 'table table-bordered']//td[.='Lock Exam Marks']/input");
 	public static By acceptButton = By.xpath("//button[.='Accept ']");
 	public static By saveButtonForChanges = By.xpath("//button[@class = 'btn btn-success' and @title = 'save']");
 	public static By dataupdatedMsg = By.xpath("//div[text()='Data Updated Successfully. !!!']");
-
 
 	static WebActions webActions = new WebActions();
 	static JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getInstance().getWebDriver();
@@ -253,10 +255,9 @@ public class UnlockMarksEntry {
 
 		webActions.selectByVisibleText(examEventCode, " Presentation - Presentation ");
 		Thread.sleep(3000);
-		
+
 		webActions.Click(getDetailsButton, "get Deatils option");
 		Thread.sleep(2000);
-			
 
 		String Mandatory_Msg = webActions.getText(mandatoryField_missedSubject);
 		if (Mandatory_Msg.equalsIgnoreCase("First select Subject(s) !")) {
@@ -383,8 +384,7 @@ public class UnlockMarksEntry {
 			}
 		}
 
-			webActions.Click(getDetailsButton, "get Deatils option");
-			
+		webActions.Click(getDetailsButton, "get Deatils option");
 
 		List<WebElement> list_TableHeaders = webActions.getListOfWebElements(getDetailsTableHeader);
 		for (int j = 0; j < list_TableHeaders.size(); j++) {
@@ -449,11 +449,9 @@ public class UnlockMarksEntry {
 			}
 		}
 
-	
-			webActions.Click(getDetailsButton, "get Deatils option");
-			Thread.sleep(2000);
-			System.out.println("Get Details options selected");
-		
+		webActions.Click(getDetailsButton, "get Deatils option");
+		Thread.sleep(2000);
+		System.out.println("Get Details options selected");
 
 		if (webActions.isSelected(checkBox, "Check Box")) {
 			webActions.Click(checkBox, "check Box");
@@ -582,23 +580,21 @@ public class UnlockMarksEntry {
 
 		List<WebElement> list_facultyName = webActions.getListOfWebElements(facultyNameColumnInSearchOutput);
 		List<WebElement> list_checkbox = webActions.getListOfWebElements(SNoCheckboxInSearchOutput);
-		
-		for(int j=0; j<list_facultyName.size(); j++)
-		{
+
+		for (int j = 0; j < list_facultyName.size(); j++) {
 			String str_facultyName = list_facultyName.get(j).getText();
-			
-			System.out.println(str_facultyName);			
-			if(str_facultyName.equalsIgnoreCase("(15120047) ARVIND KUMAR"))
-			{
+
+			System.out.println(str_facultyName);
+			if (str_facultyName.equalsIgnoreCase("(15120047) ARVIND KUMAR")) {
 				System.out.println("mentioned faculty is present");
 				list_checkbox.get(j).click();
 				ReportManager.logInfo("Row got selected");
 			}
-		
-			}
+
+		}
 
 		Thread.sleep(1000);
-		
+
 		webActions.Click(fromDate, "1-05-2020");
 		Thread.sleep(2000);
 		List<WebElement> allFromDates = webActions.getListOfWebElements(fromDateList);
@@ -616,7 +612,7 @@ public class UnlockMarksEntry {
 		webActions.Click(toDate, "7-05-2020");
 		Thread.sleep(2000);
 		List<WebElement> alltoDates = webActions.getListOfWebElements(toDateList);
-		
+
 		for (WebElement ele : alltoDates) {
 
 			String date = ele.getText();
@@ -632,121 +628,110 @@ public class UnlockMarksEntry {
 		webActions.Click(accept, "Accept");
 		ReportManager.logInfo("<b style=\"color:green;\">\"Dates updated Successfully\"</b> ");
 
-		
 		List<WebElement> FacultyNameCol = webActions.getListOfWebElements(facultyNameColumnInSearchOutput);
 		List<WebElement> CheckBoxCol = webActions.getListOfWebElements(SNoCheckboxInSearchOutput);
 		List<WebElement> fromDateCol = webActions.getListOfWebElements(fromDateColumnList);
 		List<WebElement> toDateCol = webActions.getListOfWebElements(toDateColumnList);
 
-
-		
-		
-		for(int i=0;i<FacultyNameCol.size();i++)
-		{
-			String str_FacultyName =FacultyNameCol.get(i).getText();
-			if(str_FacultyName.equalsIgnoreCase("(15120047) ARVIND KUMAR"))
+		for (int i = 0; i < FacultyNameCol.size(); i++) {
+			String str_FacultyName = FacultyNameCol.get(i).getText();
+			if (str_FacultyName.equalsIgnoreCase("(15120047) ARVIND KUMAR"))
 				System.out.println("Faculty is present");
-				CheckBoxCol.get(i).click();
-				
-				String fromdateVrftn = fromDateCol.get(i).getText();
-				if(fromdateVrftn.equalsIgnoreCase("01/05/2020")) {
-					ReportManager.logInfo("From Date after updating:- <b style=\"color:green;\">" +fromdateVrftn+"</b> ");
-					
-					
-				String todateVrftn =  toDateCol.get(i).getText();
-				if(todateVrftn.equalsIgnoreCase("07/05/2020")) {
-					ReportManager.logInfo("To Date after updating:- <b style=\"color:green;\">" +todateVrftn+"</b> ");
+			CheckBoxCol.get(i).click();
 
-					ReportManager.logInfo("FromDate and ToDate- <b style=\"color:green;\">\"Dates are Displayed Correctly\"</b> ");
+			String fromdateVrftn = fromDateCol.get(i).getText();
+			if (fromdateVrftn.equalsIgnoreCase("01/05/2020")) {
+				ReportManager
+						.logInfo("From Date after updating:- <b style=\"color:green;\">" + fromdateVrftn + "</b> ");
 
-				}
-			}
-		}
-		
-			
-			}
-//TC-14 - Doubt in test case on hold
-		
-//TC-15
-		public static void UM_verify_LockExams_ifUnlocked() throws InterruptedException {
-			
-			webActions.Click(examActivity, "Exam Activity");
-			webActions.Click(unlockMarksEntry, "Unlock Marks Entry");
-			Thread.sleep(3000);
+				String todateVrftn = toDateCol.get(i).getText();
+				if (todateVrftn.equalsIgnoreCase("07/05/2020")) {
+					ReportManager
+							.logInfo("To Date after updating:- <b style=\"color:green;\">" + todateVrftn + "</b> ");
 
-			webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
-			Thread.sleep(3000);
-
-			webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
-			ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
-			Thread.sleep(3000);
-
-			webActions.selectByVisibleText(examEventCode, " Presentation - Presentation ");
-			Thread.sleep(3000);
-
-			webActions.Click(subjects, "Subjects");
-			List<WebElement> List_subjects = webActions.getListOfWebElements(listOfSubjects);
-
-			for (int i = 0; i < List_subjects.size(); i++) {
-				String str_subj = List_subjects.get(i).getText();
-
-				if (str_subj.equalsIgnoreCase("(EECE804L) ANTENNA THEORY AND DESIGN")) {
-					List_subjects.get(i).click();
-					System.out.println("Selected Subject from DD");
 					ReportManager.logInfo(
-							"Subject Code - <b style=\"color:green;\">\"(EECE804L) ANTENNA THEORY AND DESIGN\"</b> ");
+							"FromDate and ToDate- <b style=\"color:green;\">\"Dates are Displayed Correctly\"</b> ");
 
 				}
 			}
-
-			webActions.Click(getDetailsButton, "get Deatils option");
-			System.out.println("Clicked Get Details Option");
-			Thread.sleep(5000);
-			
-			webActions.Click(getDetailsButton, "get Deatils option");
-			System.out.println("Clicked Get Details Option");
-			Thread.sleep(5000);
-
-			List<WebElement> list_facultyName = webActions.getListOfWebElements(facultyNameColumnInSearchOutput);
-			List<WebElement> list_checkbox = webActions.getListOfWebElements(SNoCheckboxInSearchOutput);
-			
-			for(int j=0; j<list_facultyName.size(); j++)
-			{
-				String str_facultyName = list_facultyName.get(j).getText();
-				
-				System.out.println(str_facultyName);			
-				if(str_facultyName.equalsIgnoreCase("(15120047) ARVIND KUMAR"))
-				{
-					System.out.println("mentioned faculty is present");
-					list_checkbox.get(j).click();
-					ReportManager.logInfo("Row got selected");
-				}
-			
-				}
-
-			Thread.sleep(1000);
-			
-			
-	
-			jse.executeScript ("document.getElementById('fromdate').removeAttribute('readonly',0);"); 
-			webActions.clearAndSendKeys(fromDate, "01/05/2020");
-			Thread.sleep(2000);
-			jse.executeScript ("document.getElementById('todate').removeAttribute('readonly',0);"); 
-			webActions.clearAndSendKeys(toDate, "30/08/2020");
-			Thread.sleep(1000);
-			
-			webActions.Click(acceptButton, "Accept Button");
-			webActions.Click(saveButtonForChanges, "Save Button");
-			
-			String updatedMsg = webActions.getText(dataupdatedMsg);
-			webActions.verifyText(updatedMsg, "Data Updated Successfully. !!!");
-			webActions.Click(OK, "OK Button");
-			Thread.sleep(2000);
-			
 		}
-		
-		
+
+	}
+//TC-14 - Doubt in test case on hold
+
+//TC-15
+	public static void UM_verify_LockExams_ifUnlocked() throws InterruptedException {
+
+		webActions.Click(examActivity, "Exam Activity");
+		webActions.Click(unlockMarksEntry, "Unlock Marks Entry");
+		Thread.sleep(3000);
+
+		webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
+		Thread.sleep(3000);
+
+		webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
+		ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
+		Thread.sleep(3000);
+
+		webActions.selectByVisibleText(examEventCode, " Presentation - Presentation ");
+		Thread.sleep(3000);
+
+		webActions.Click(subjects, "Subjects");
+		List<WebElement> List_subjects = webActions.getListOfWebElements(listOfSubjects);
+
+		for (int i = 0; i < List_subjects.size(); i++) {
+			String str_subj = List_subjects.get(i).getText();
+
+			if (str_subj.equalsIgnoreCase("(EECE804L) ANTENNA THEORY AND DESIGN")) {
+				List_subjects.get(i).click();
+				System.out.println("Selected Subject from DD");
+				ReportManager.logInfo(
+						"Subject Code - <b style=\"color:green;\">\"(EECE804L) ANTENNA THEORY AND DESIGN\"</b> ");
+
+			}
+		}
+
+		webActions.Click(getDetailsButton, "get Deatils option");
+		System.out.println("Clicked Get Details Option");
+		Thread.sleep(5000);
+
+		jse.executeScript("document.getElementById('fromdate').removeAttribute('readonly',0);");
+		webActions.clearAndSendKeys(fromDate, "01/06/2020");
+		Thread.sleep(2000);
+		jse.executeScript("document.getElementById('todate').removeAttribute('readonly',0);");
+		webActions.clearAndSendKeys(toDate, "30/09/2020");
+		Thread.sleep(1000);
+
+		List<WebElement> list_facultyName = webActions.getListOfWebElements(facultyNameColumnInSearchOutput);
+		List<WebElement> list_checkbox = webActions.getListOfWebElements(SNoCheckboxInSearchOutput);
+		List<WebElement> LockExam_checkbox = webActions.getListOfWebElements(lockExamMarksColumnList);
+
+		for (int j = 0; j < list_facultyName.size(); j++) {
+			String str_facultyName = list_facultyName.get(j).getText();
+
+			System.out.println(str_facultyName);
+			if (str_facultyName.contains("(15120126) Arjun Kumar")) {
+
+				list_checkbox.get(j).click();
+				Thread.sleep(3000);
+
+				LockExam_checkbox.get(j).click();
+				System.out.println("Lock exam got selected");
+				ReportManager.logInfo("SNo and Lock Marks Exam checkboxes are selected");
+
+			}
+
+		}
+
+		webActions.Click(acceptButton, "Accept Button");
+		webActions.Click(saveButtonForChanges, "Save Button");
+
+		String updatedMsg = webActions.getText(dataupdatedMsg);
+		webActions.verifyText(updatedMsg, "Data Updated Successfully. !!!");
+		webActions.Click(OK, "OK Button");
+		Thread.sleep(2000);
+		ReportManager.logInfo("Locked Exam Marks for select faculty");
+
+	}
 
 }
-
-	
