@@ -84,10 +84,14 @@ public class UnlockMarksEntryTestCases {
 //TC_14 - Doubt - On hold
 		
 //TC_15
-		UnlockMarksEntry.UM_verify_LockExams_ifUnlocked();
-		Thread.sleep(2000);
+//		UnlockMarksEntry.UM_Lock_LockExamMark();
+//		Thread.sleep(2000);
+// 		homePage.Logout();
+//TC_16 - In progress
 		
-
+		UnlockMarksEntry.UM_UnLock_LockExamMark();
+		Thread.sleep(2000);
+	
 	}
 
 }

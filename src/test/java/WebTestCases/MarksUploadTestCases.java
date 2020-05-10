@@ -66,20 +66,20 @@ public class MarksUploadTestCases {
 //			Thread.sleep(2000);
 //			homePage.Logout();
 //TC_10
-//			MarksUpload.MU_VerifyIsExcelFileDownloaded();
+//		MarksUpload.MU_VerifyIsExcelFileDownloaded();
 //			Thread.sleep(2000);
-//			homePage.Logout();
+//		homePage.Logout();
 			
 //TC_11
-//			MarksUpload.MU_UploadMarksSheetWithInvalidData();
-//			Thread.sleep(2000);
+			MarksUpload.MU_UploadMarksSheetWithInvalidData();
+			Thread.sleep(2000);
 //			homePage.Logout();
 //TC_12
 			//On hold
 			
-//TC_13
-			MarksUpload.MU_UploadSheet_MarksCol_With_INVALID_Data();
-			Thread.sleep(2000);
+//TC_13 - In progress
+//			MarksUpload.MU_UploadSheet_MarksCol_With_INVALID_Data();
+//			Thread.sleep(2000);
 			
 		}
 

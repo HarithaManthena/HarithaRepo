@@ -6,8 +6,18 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.List;
 
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -50,6 +60,13 @@ public class MarksUpload {
 
 	static WebActions webActions = new WebActions();
 	static JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getInstance().getWebDriver();
+
+	private static Workbook wb;
+	private static Sheet sh;
+	private static FileInputStream fis;
+	private static FileOutputStream fos;
+	private static Row row;
+	private static Cell cell;
 
 //TC-01
 	public static void MarksUploadPageVerftnc() {
@@ -377,8 +394,75 @@ public class MarksUpload {
 		webActions.selectByVisibleText(examEventCode, " Presentation ( Presentation) ");
 		Thread.sleep(5000);
 
+		webActions.Click(downlaodTemplate, "Download link");
+		Thread.sleep(6000);
+
+		File fileLocation = new File("C:/Users/LENOVO/Downloads");
+		File[] totalfiles = fileLocation.listFiles();
+
+		for (File file : totalfiles) {
+			if (file.getName().equals("Presentation_EBTY801L.xls")) {
+				System.out.println("File is downloaded");
+
+				// File f1 = file.getAbsoluteFile();
+				Boolean bool = file.exists();
+				String path = file.getAbsolutePath();
+				if (path.contains(".xls")) {
+					System.out.print(path + "Exists" + bool);
+					ReportManager
+							.logInfo("<b style=\"color:green;\"> *********Excel File exists- " + path + "********</b>");
+
+				}
+			}
+		}
+
+		try {
+
+			File excel = new File("c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls");
+			fis = new FileInputStream(excel);
+			wb = new HSSFWorkbook(fis);
+			sh = wb.getSheet("Marks Entry Template");
+
+			int NumOfRows = sh.getLastRowNum();
+			System.out.println(NumOfRows);
+			ReportManager.logInfo("Total Rows <b style=\"color:green;\"> " + NumOfRows + " </b>");
+
+			// To read data in cell
+			System.out.println(sh.getRow(2).getCell(8).getStringCellValue());
+			System.out.println(sh.getRow(3).getCell(8).getStringCellValue());
+
+			// To write into cell
+
+			sh.getRow(3).createCell(8).setCellValue("-100");
+			sh.getRow(4).createCell(8).setCellValue("-50");
+			sh.getRow(5).createCell(8).setCellValue("50");
+
+			String E19SOE820 = sh.getRow(3).getCell(8).getStringCellValue();
+			String E19SOE822 = sh.getRow(4).getCell(8).getStringCellValue();
+			String E19SOE824 = sh.getRow(5).getCell(8).getStringCellValue();
+
+			System.out.println(E19SOE820);
+			System.out.println(E19SOE822);
+			System.out.println(E19SOE824);
+
+			ReportManager.logInfo("E19SOE820 <b style=\"color:green;\"> " + E19SOE820 + " </b>");
+			ReportManager.logInfo("E19SOE822 <b style=\"color:green;\"> " + E19SOE822 + " </b>");
+			ReportManager.logInfo("E19SOE824 <b style=\"color:green;\"> " + E19SOE824 + " </b>");
+
+			FileOutputStream fos = new FileOutputStream(
+					new File("c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls"));
+			wb.write(fos);
+			wb.close();
+
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+
+		}
+
 		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
 		upload.sendKeys("c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls");
+		ReportManager.logInfo("Uploaded Excel File");
 
 		Thread.sleep(8000);
 
@@ -392,6 +476,8 @@ public class MarksUpload {
 
 		}
 
+	}
+	
 //Using Robot class
 //		String file = "c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls";
 //		StringSelection selection = new StringSelection(file);
@@ -409,8 +495,7 @@ public class MarksUpload {
 //		ReportManager
 //		.logInfo("Subject Code - <b style=\"color:green;\">\"File Got Uploaded\"</b> ");
 
-	}
-
+		
 //TC_12: Inprogress what type of error message should be shown exactly
 
 	public static void MU_UploadSheet_BranchAndPrgrm_With_INVALID_Data() throws InterruptedException {
@@ -489,19 +574,19 @@ public class MarksUpload {
 				if (actual.equalsIgnoreCase(Redexpected)) {
 					String str_enrollment = list_enrollment.get(i).getText();
 					System.out.println("Enrollment Number:" + str_enrollment);
-					
-					
-					ReportManager.logInfo("ErrorList - <b style=\"color:Red;\">"+Str_enrolcol+"</b>"
-							+ ", Enrollment Number - <b style=\"color:green;\">"+str_enrollment+"</b>");
+
+					ReportManager.logInfo("ErrorList - <b style=\"color:Red;\">" + Str_enrolcol + "</b>"
+							+ ", Enrollment Number - <b style=\"color:green;\">" + str_enrollment + "</b>");
 
 				}
 			}
 		}
 
-		}
-	//TC_14
+	}
+
+	// TC_14
 	public static void MU_saveExcel_with_NOERRORS() throws InterruptedException {
-		
+
 		webActions.Click(examActivity, "Exam Activity");
 		Thread.sleep(2000);
 		webActions.Click(marksUpload, "Marks Upload");
@@ -534,7 +619,6 @@ public class MarksUpload {
 
 		}
 
-		
 	}
-	
+
 }
