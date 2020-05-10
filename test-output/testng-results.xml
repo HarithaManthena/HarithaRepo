@@ -2,7 +2,7 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-05-10T17:47:23 IST" name="Default suite" finished-at="2020-05-10T17:48:34 IST" duration-ms="71651">
+  <suite started-at="2020-05-10T20:04:13 IST" name="Default suite" finished-at="2020-05-10T20:05:32 IST" duration-ms="79266">
     <groups>
       <group name="regression">
         <method signature="MarksUploadTestCases$MarksUploadTestcases.MarksUploadTCExecution()[pri:0, instance:WebTestCases.MarksUploadTestCases$MarksUploadTestcases@4e91d63f]" name="MarksUploadTCExecution" class="WebTestCases.MarksUploadTestCases$MarksUploadTestcases"/>
@@ -14,9 +14,9 @@
         <method signature="MarksUploadTestCases$MarksUploadTestcases.MarksUploadTCExecution()[pri:0, instance:WebTestCases.MarksUploadTestCases$MarksUploadTestcases@4e91d63f]" name="MarksUploadTCExecution" class="WebTestCases.MarksUploadTestCases$MarksUploadTestcases"/>
       </group> <!-- smoke -->
     </groups>
-    <test started-at="2020-05-10T17:47:23 IST" name="Default test" finished-at="2020-05-10T17:48:34 IST" duration-ms="71651">
+    <test started-at="2020-05-10T20:04:13 IST" name="Default test" finished-at="2020-05-10T20:05:32 IST" duration-ms="79266">
       <class name="WebTestCases.MarksUploadTestCases$MarksUploadTestcases">
-        <test-method signature="MarksUploadTCExecution()[pri:0, instance:WebTestCases.MarksUploadTestCases$MarksUploadTestcases@4e91d63f]" started-at="2020-05-10T17:47:23 IST" name="MarksUploadTCExecution" description="MarksUpload Functional Testcases" finished-at="2020-05-10T17:48:32 IST" duration-ms="69343" status="PASS">
+        <test-method signature="MarksUploadTCExecution()[pri:0, instance:WebTestCases.MarksUploadTestCases$MarksUploadTestcases@4e91d63f]" started-at="2020-05-10T20:04:13 IST" name="MarksUploadTCExecution" description="MarksUpload Functional Testcases" finished-at="2020-05-10T20:05:31 IST" duration-ms="77737" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MarksUploadTCExecution -->

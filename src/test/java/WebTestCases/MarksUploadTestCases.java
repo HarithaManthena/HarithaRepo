@@ -83,8 +83,21 @@ public class MarksUploadTestCases {
 //			homePage.Logout();
 //			
 //TC_14
-			MarksUpload.MU_saveExcel_with_NOERRORS();
+//			MarksUpload.MU_saveExcel_with_NOERRORS();
+//			Thread.sleep(2000);
+//			homePage.Logout();
+//TC_15
+//			MarksUpload.MU_Save_File_OtherThanEXcelFormat();
+//			Thread.sleep(2000);
+//			homePage.Logout();
+			
+//TC_16 : ON HOLD
+			
+//TC_17
+			MarksUpload.MU_Verify_DownloadErrorList_Optn();
 			Thread.sleep(2000);
+			
+			
 			
 		}
 

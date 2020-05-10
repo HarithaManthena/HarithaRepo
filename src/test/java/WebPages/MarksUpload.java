@@ -63,6 +63,7 @@ public class MarksUpload {
 	public static By OKButn = By.xpath("//button[text()='OK']");
 
 	public static By incorrectFileUpload_Msg = By.xpath("//div[text()='Please upload only excel file. !!!']");
+	public static By downloadErrorList = By.xpath("//button[@title='Click to Download Error List']");
 
 	static WebActions webActions = new WebActions();
 	static JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getInstance().getWebDriver();
@@ -775,4 +776,175 @@ public class MarksUpload {
 
 	}
 
+	// TC_15
+
+	public static void MU_Save_File_OtherThanEXcelFormat() throws InterruptedException {
+
+		webActions.Click(examActivity, "Exam Activity");
+		Thread.sleep(2000);
+		webActions.Click(marksUpload, "Marks Upload");
+		Thread.sleep(2000);
+
+		webActions.selectByVisibleText(institute, " School of Engineering and Applied Sciences ");
+
+		webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
+		ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
+
+		webActions.selectByVisibleText(subjectCode, "EBTY801L ( ADVANCED MOLECULAR BIOLOGY)");
+		ReportManager
+				.logInfo("Subject Code - <b style=\"color:green;\">\"EBTY801L ( ADVANCED MOLECULAR BIOLOGY)\"</b> ");
+
+		webActions.selectByVisibleText(examEventCode, " Project ( Project) ");
+		Thread.sleep(5000);
+
+		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
+		upload.sendKeys("c:/Users/LENOVO/downloads/TempFile.txt");
+		Thread.sleep(2000);
+		ReportManager.logInfo("<b style=\"color:green;\"> Uploaded Excel File</b>");
+
+		String Str_InCorrectFile = webActions.getText(incorrectFileUpload_Msg);
+
+		if (Str_InCorrectFile.contains("Please upload only excel file. !!!")) {
+			webActions.Click(OKButn, "OK");
+			ReportManager
+					.logInfo("Error Message - <b style=\"color:red;\">\"Please upload only excel file. !!!\"</b> ");
+
+		}
+
+		else {
+			ReportManager.logInfo("<b style=\"color:red;\">\"No Error Message is displayed\"</b> ");
+
+		}
+	}
+
+//TC_16 - On Hold
+
+//TC_17
+
+	public static void MU_Verify_DownloadErrorList_Optn() throws InterruptedException {
+		webActions.Click(examActivity, "Exam Activity");
+		Thread.sleep(2000);
+		webActions.Click(marksUpload, "Marks Upload");
+		Thread.sleep(2000);
+
+		webActions.selectByVisibleText(institute, " School of Engineering and Applied Sciences ");
+
+		webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
+		ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
+
+		webActions.selectByVisibleText(subjectCode, "EBTY801L ( ADVANCED MOLECULAR BIOLOGY)");
+		ReportManager
+				.logInfo("Subject Code - <b style=\"color:green;\">\"EBTY801L ( ADVANCED MOLECULAR BIOLOGY)\"</b> ");
+
+		webActions.selectByVisibleText(examEventCode, " Project ( Project) ");
+		Thread.sleep(5000);
+
+		webActions.Click(downlaodTemplate, "Download link");
+		Thread.sleep(6000);
+
+		File fileLocation = new File("C:/Users/LENOVO/Downloads");
+		File[] totalfiles = fileLocation.listFiles();
+
+		for (File file : totalfiles) {
+			if (file.getName().equals("Project_EBTY801L.xls")) {
+				System.out.println("File is downloaded");
+				ReportManager.logInfo(" Excel File Downloaded");
+
+				// File f1 = file.getAbsoluteFile();
+				Boolean bool = file.exists();
+				String path = file.getAbsolutePath();
+				if (path.contains(".xls")) {
+					System.out.print(path + "Exists" + bool);
+					ReportManager.logInfo("Excel File exists- " + path + " ");
+
+				}
+			}
+		}
+
+		try
+
+		{
+
+			File excel = new File("c:/Users/LENOVO/downloads/Project_EBTY801L.xls");
+			fis = new FileInputStream(excel);
+			wb = new HSSFWorkbook(fis);
+			sh = wb.getSheet("Marks Entry Template");
+
+			int NumOfRows = sh.getLastRowNum();
+			System.out.println(NumOfRows);
+			ReportManager.logInfo("Total Rows <b style=\"color:green;\"> " + NumOfRows + " </b>");
+
+			// To read data in cell
+			System.out.println(sh.getRow(2).getCell(8).getStringCellValue());
+			System.out.println(sh.getRow(3).getCell(8).getStringCellValue());
+
+			// To write into cell
+
+			sh.getRow(3).createCell(8).setCellValue("-90");
+			sh.getRow(4).createCell(8).setCellValue("90");
+			sh.getRow(5).createCell(8).setCellValue("-80");
+
+			String E19SOE820 = sh.getRow(3).getCell(8).getStringCellValue();
+			String E19SOE822 = sh.getRow(4).getCell(8).getStringCellValue();
+			String E19SOE824 = sh.getRow(5).getCell(8).getStringCellValue();
+
+			System.out.println(E19SOE820);
+			System.out.println(E19SOE822);
+			System.out.println(E19SOE824);
+
+			ReportManager.logInfo("E19SOE820 <b style=\"color:green;\"> " + E19SOE820 + " </b>");
+			ReportManager.logInfo("E19SOE822 <b style=\"color:green;\"> " + E19SOE822 + " </b>");
+			ReportManager.logInfo("E19SOE824 <b style=\"color:green;\"> " + E19SOE824 + " </b>");
+
+			FileOutputStream fos = new FileOutputStream(new File("c:/Users/LENOVO/downloads/Project_EBTY801L.xls"));
+			wb.write(fos);
+			wb.close();
+
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+		}
+
+		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
+		upload.sendKeys("c:/Users/LENOVO/downloads/Project_EBTY801L.xls");
+		ReportManager.logInfo("Uploaded Excel File");
+
+		Thread.sleep(8000);
+
+		String Redexpected = "#dd4b39";
+
+		List<WebElement> list_errorCol = webActions.getListOfWebElements(errorColList);
+
+		for (int i = 0; i < list_errorCol.size(); i++) {
+			String str_Bcolor = list_errorCol.get(i).getCssValue("background-color");
+
+			String hexcolorRed = Color.fromString(str_Bcolor).asHex();
+			String actual = hexcolorRed;
+
+			if (actual.equalsIgnoreCase(Redexpected)) {
+
+				ReportManager.logInfo("<b style=\"color:red;\"> Error Exists in uploded sheet</b>");
+
+				webActions.Click(downloadErrorList, "Download Error List");
+				Thread.sleep(6000);
+			} 
+
+		}
+
+		File ErroListfileLocation = new File("C:/Users/LENOVO/Downloads");
+		File[] TotalFiles = ErroListfileLocation.listFiles();
+
+		for (File file : TotalFiles) {
+			if (file.getName().equals("Project_EBTY801L_Error.xls")) {
+				System.out.println("Erro List File is downloaded");
+				ReportManager.logInfo("<b style=\"color:green;\"> Error File is Downloaded</b>");
+
+			}
+		}
+	}
+//TC_18
+	public static void MU_Lock_UploadedMarks() {
+		
+	}
+	
 }
