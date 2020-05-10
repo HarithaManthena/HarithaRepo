@@ -64,6 +64,14 @@ public class MarksUpload {
 
 	public static By incorrectFileUpload_Msg = By.xpath("//div[text()='Please upload only excel file. !!!']");
 	public static By downloadErrorList = By.xpath("//button[@title='Click to Download Error List']");
+	public static By lockStatus = By.xpath("//div[@class='form-group']/label[.= 'Lock Status :']/following-sibling::label");
+	public static By lockCheckBox = By.xpath("//input[@name='deactive']");
+	public static By lockConfirmation_Msg = By.xpath("//div[text()='Please save your entry.Once you locked, you are no longer able to edit.']");
+	public static By lock_Cnfrm_YES = By.xpath("//button[text()='Yes!']");
+	public static By entry_Locked = By.xpath("Entry locked successfully !!!");
+	
+
+	
 
 	static WebActions webActions = new WebActions();
 	static JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getInstance().getWebDriver();
@@ -942,8 +950,128 @@ public class MarksUpload {
 			}
 		}
 	}
-//TC_18
-	public static void MU_Lock_UploadedMarks() {
+//TC_18 - 1063 line is not getting executed check
+	public static void MU_Lock_UploadedMarks() throws InterruptedException {
+		
+		webActions.Click(examActivity, "Exam Activity");
+		Thread.sleep(2000);
+		webActions.Click(marksUpload, "Marks Upload");
+		Thread.sleep(2000);
+
+		webActions.selectByVisibleText(institute, " School of Engineering and Applied Sciences ");
+
+		webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
+		ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
+
+		webActions.selectByVisibleText(subjectCode, "EBTY801L ( ADVANCED MOLECULAR BIOLOGY)");
+		ReportManager
+				.logInfo("Subject Code - <b style=\"color:green;\">\"EBTY801L ( ADVANCED MOLECULAR BIOLOGY)\"</b> ");
+
+		webActions.selectByVisibleText(examEventCode, " Class Participation ( Class Participation) ");
+		Thread.sleep(5000);
+
+		webActions.Click(downlaodTemplate, "Download link");
+		Thread.sleep(6000);
+
+		File fileLocation = new File("C:/Users/LENOVO/Downloads");
+		File[] totalfiles = fileLocation.listFiles();
+
+		for (File file : totalfiles) {
+			if (file.getName().equals("Class_Participation_EBTY801L.xls")) {
+				System.out.println("File is downloaded");
+				ReportManager.logInfo("<b style=\"color:green;\"> Excel File Downloaded</b>");
+
+				// File f1 = file.getAbsoluteFile();
+				Boolean bool = file.exists();
+				String path = file.getAbsolutePath();
+				if (path.contains(".xls")) {
+					System.out.print(path + "Exists" + bool);
+					ReportManager.logInfo("Excel File exists- " + path + " ");
+
+				}
+			}
+		}
+		
+		try {
+
+			File excel = new File("c:/Users/LENOVO/downloads/Class_Participation_EBTY801L.xls");
+			fis = new FileInputStream(excel);
+			wb = new HSSFWorkbook(fis);
+			sh = wb.getSheet("Marks Entry Template");
+
+			int NumOfRows = sh.getLastRowNum();
+			System.out.println(NumOfRows);
+			ReportManager.logInfo("Total Rows <b style=\"color:green;\"> " + NumOfRows + " </b>");
+
+			// To read data in cell
+			System.out.println(sh.getRow(2).getCell(8).getStringCellValue());
+			System.out.println(sh.getRow(3).getCell(8).getStringCellValue());
+
+			// To write into cell
+
+			sh.getRow(3).createCell(8).setCellValue("40");
+			sh.getRow(4).createCell(8).setCellValue("40");
+			sh.getRow(5).createCell(8).setCellValue("30");
+
+			String E19SOE820 = sh.getRow(3).getCell(8).getStringCellValue();
+			String E19SOE822 = sh.getRow(4).getCell(8).getStringCellValue();
+			String E19SOE824 = sh.getRow(5).getCell(8).getStringCellValue();
+
+			System.out.println(E19SOE820);
+			System.out.println(E19SOE822);
+			System.out.println(E19SOE824);
+
+			ReportManager.logInfo("E19SOE820 <b style=\"color:green;\"> " + E19SOE820 + " </b>");
+			ReportManager.logInfo("E19SOE822 <b style=\"color:green;\"> " + E19SOE822 + " </b>");
+			ReportManager.logInfo("E19SOE824 <b style=\"color:green;\"> " + E19SOE824 + " </b>");
+
+			FileOutputStream fos = new FileOutputStream(new File("c:/Users/LENOVO/downloads/Class_Participation_EBTY801L.xls"));
+			wb.write(fos);
+			wb.close();
+
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+
+		}
+
+		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
+		upload.sendKeys("c:/Users/LENOVO/downloads/Class_Participation_EBTY801L.xls");
+		ReportManager.logInfo("<b style=\"color:green;\"> Uploaded Excel File</b>");
+
+		Thread.sleep(8000);
+
+		webActions.Click(saveMarks, "Save Marks");
+		Thread.sleep(2000);
+
+		String Str_MarksSavedMsg = webActions.getText(marksSaved);
+		webActions.verifyText(Str_MarksSavedMsg, "Marks saved successfully !!!");
+		webActions.Click(OKButn, "OK button");
+		ReportManager.logInfo("Uploaded and Saved Successfully");
+		Thread.sleep(4000);
+		
+		webActions.Click(lockCheckBox, "Lock checkBox");
+		Thread.sleep(2000);
+		
+		String LockMsg = webActions.getText(lockConfirmation_Msg);
+		webActions.verifyText(LockMsg, "Please save your entry.Once you locked, you are no longer able to edit.");
+		webActions.Click(lock_Cnfrm_YES, "YES");
+		
+		String Locked_text = webActions.getText(entry_Locked);
+		webActions.verifyText(Locked_text,"Entry locked successfully !!!" );
+		
+		webActions.Click(OKButn,"OK");
+		
+	
+		String lockStatusText = webActions.getText(lockStatus);
+		if(lockStatusText.equalsIgnoreCase("Locked"))
+		{
+			ReportManager.logInfo("Lock Status is - <b style=\"color:green;\"> "+lockStatusText+"</b>");
+		}
+		else {
+			ReportManager.logInfo("Lock Status is - <b style=\"color:red;\"> "+lockStatusText+"</b>");
+		}
+		
 		
 	}
 	
