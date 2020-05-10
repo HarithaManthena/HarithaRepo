@@ -58,6 +58,12 @@ public class MarksUpload {
 	public static By enrollmentNoList = By.xpath("//table/tbody/tr/td[2]");
 	public static By errorColList = By.xpath("//table/tbody/tr/td[9]");
 
+	public static By saveMarks = By.xpath("//button[@title = 'Save Marks']");
+	public static By marksSaved = By.xpath("//div[text() = 'Marks saved successfully !!!']");
+	public static By OKButn = By.xpath("//button[text()='OK']");
+
+	public static By incorrectFileUpload_Msg = By.xpath("//div[text()='Please upload only excel file. !!!']");
+
 	static WebActions webActions = new WebActions();
 	static JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getInstance().getWebDriver();
 
@@ -375,12 +381,187 @@ public class MarksUpload {
 
 //TC_11
 
-	public static void MU_UploadMarksSheetWithInvalidData() throws InterruptedException, AWTException {
+	public static void MU_UploadSheet_MarksCol_InvalidData_CHARS() throws InterruptedException, AWTException {
 
 		webActions.Click(examActivity, "Exam Activity");
 		Thread.sleep(2000);
 		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(2000);
+
+		webActions.selectByVisibleText(institute, " School of Engineering and Applied Sciences ");
+
+		webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
+		ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
+
+		webActions.selectByVisibleText(subjectCode, "EBTY801L ( ADVANCED MOLECULAR BIOLOGY)");
+		ReportManager
+				.logInfo("Subject Code - <b style=\"color:green;\">\"EBTY801L ( ADVANCED MOLECULAR BIOLOGY)\"</b> ");
+
+		webActions.selectByVisibleText(examEventCode, " Presentation ( Presentation) ");
+		Thread.sleep(5000);
+
+		webActions.Click(downlaodTemplate, "Download link");
+		Thread.sleep(6000);
+
+		File fileLocation = new File("C:/Users/LENOVO/Downloads");
+		File[] totalfiles = fileLocation.listFiles();
+
+		for (File file : totalfiles) {
+			if (file.getName().equals("Presentation_EBTY801L.xls")) {
+				System.out.println("File is downloaded");
+
+				// File f1 = file.getAbsoluteFile();
+				Boolean bool = file.exists();
+				String path = file.getAbsolutePath();
+				if (path.contains(".xls")) {
+					System.out.print(path + "Exists" + bool);
+					ReportManager
+							.logInfo("<b style=\"color:green;\"> *********Excel File exists- " + path + "********</b>");
+
+				}
+			}
+		}
+
+		try {
+
+			File excel = new File("c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls");
+			fis = new FileInputStream(excel);
+			wb = new HSSFWorkbook(fis);
+			sh = wb.getSheet("Marks Entry Template");
+
+			int NumOfRows = sh.getLastRowNum();
+			System.out.println(NumOfRows);
+			ReportManager.logInfo("Total Rows <b style=\"color:green;\"> " + NumOfRows + " </b>");
+
+			// To read data in cell
+			System.out.println(sh.getRow(2).getCell(8).getStringCellValue());
+			System.out.println(sh.getRow(3).getCell(8).getStringCellValue());
+
+			// To write into cell
+
+			sh.getRow(3).createCell(8).setCellValue("abc");
+			sh.getRow(4).createCell(8).setCellValue("def");
+			sh.getRow(5).createCell(8).setCellValue("ghi");
+
+			String E19SOE820 = sh.getRow(3).getCell(8).getStringCellValue();
+			String E19SOE822 = sh.getRow(4).getCell(8).getStringCellValue();
+			String E19SOE824 = sh.getRow(5).getCell(8).getStringCellValue();
+
+			System.out.println(E19SOE820);
+			System.out.println(E19SOE822);
+			System.out.println(E19SOE824);
+
+			ReportManager.logInfo("Below Data Entered in Marks Column");
+			ReportManager.logInfo("E19SOE820 <b style=\"color:green;\"> " + E19SOE820 + " </b>");
+			ReportManager.logInfo("E19SOE822 <b style=\"color:green;\"> " + E19SOE822 + " </b>");
+			ReportManager.logInfo("E19SOE824 <b style=\"color:green;\"> " + E19SOE824 + " </b>");
+
+			FileOutputStream fos = new FileOutputStream(
+					new File("c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls"));
+			wb.write(fos);
+			wb.close();
+
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+
+		}
+
+		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
+		upload.sendKeys("c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls");
+		ReportManager.logInfo("Uploaded Excel File");
+
+		Thread.sleep(8000);
+
+		String Redexpected = "#dd4b39";
+
+		List<WebElement> list_errorCol = webActions.getListOfWebElements(errorColList);
+		List<WebElement> list_enrollment = webActions.getListOfWebElements(enrollmentNoList);
+
+		for (int i = 0; i < list_errorCol.size(); i++) {
+			String str_Bcolor = list_errorCol.get(i).getCssValue("background-color");
+
+			String hexcolorRed = Color.fromString(str_Bcolor).asHex();
+			String actual = hexcolorRed;
+
+			if (actual.equalsIgnoreCase(Redexpected)) {
+				String Str_enrolcol = list_errorCol.get(i).getText();
+				System.out.println("Error Text:" + Str_enrolcol);
+
+				if (actual.equalsIgnoreCase(Redexpected)) {
+					String str_enrollment = list_enrollment.get(i).getText();
+					System.out.println("Enrollment Number:" + str_enrollment);
+
+					ReportManager.logInfo("ErrorList - <b style=\"color:Red;\">" + Str_enrolcol + "</b>"
+							+ ", Enrollment Number - <b style=\"color:green;\">" + str_enrollment + "</b>");
+
+				}
+			}
+		}
+
+	}
+
+//Using Robot class
+//		String file = "c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls";
+//		StringSelection selection = new StringSelection(file);
+//		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null); 
+//		
+//		Robot robot = new Robot();
+//		
+//	    robot.keyPress(KeyEvent.VK_CONTROL);
+//		robot.keyPress(KeyEvent.VK_V);
+//		robot.keyRelease(KeyEvent.VK_V);
+//	    robot.keyPress(KeyEvent.VK_CONTROL);
+//		robot.keyPress(KeyEvent.VK_ENTER);
+//		robot.keyRelease(KeyEvent.VK_ENTER);
+//		System.out.println("File Got Uploaded");
+//		ReportManager
+//		.logInfo("Subject Code - <b style=\"color:green;\">\"File Got Uploaded\"</b> ");
+
+//TC_12: Inprogress what type of error message should be shown exactly
+
+	public static void MU_UploadSheet_BranchAndPrgrm_With_INVALID_Data() throws InterruptedException {
+		webActions.Click(examActivity, "Exam Activity");
+		Thread.sleep(2000);
+		webActions.Click(marksUpload, "Marks Upload");
+		Thread.sleep(2000);
+
+		webActions.selectByVisibleText(institute, " School of Engineering and Applied Sciences ");
+
+		webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
+		ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
+
+		webActions.selectByVisibleText(subjectCode, "EBTY801L ( ADVANCED MOLECULAR BIOLOGY)");
+		ReportManager
+				.logInfo("Subject Code - <b style=\"color:green;\">\"EBTY801L ( ADVANCED MOLECULAR BIOLOGY)\"</b> ");
+
+		webActions.selectByVisibleText(examEventCode, " Presentation ( Presentation) ");
+		Thread.sleep(5000);
+
+		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
+		upload.sendKeys("c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls");
+
+		Thread.sleep(8000);
+
+		String Str_err = webActions.getText(errorCol);
+		if (Str_err.contains("Invalid Marks Entry")) {
+
+			ReportManager.logInfo("<b style=\"color:red;\">****Error: Invalid Marks Entry****</b>");
+
+		} else {
+			ReportManager.logInfo("<b style=\"color:red;\"> *********No error message********</b>");
+
+		}
+
+	}
+
+//TC_13
+	public static void MU_UploadSheet_MarksCol_INVALIDMarks() throws InterruptedException {
+
+		webActions.Click(examActivity, "Exam Activity");
+		Thread.sleep(2000);
+		webActions.Click(marksUpload, "Marks Upload");
+		Thread.sleep(6000);
 
 		webActions.selectByVisibleText(institute, " School of Engineering and Applied Sciences ");
 
@@ -463,99 +644,7 @@ public class MarksUpload {
 		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
 		upload.sendKeys("c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls");
 		ReportManager.logInfo("Uploaded Excel File");
-
 		Thread.sleep(8000);
-
-		String Str_err = webActions.getText(errorCol);
-		if (Str_err.contains("Invalid Marks Entry")) {
-
-			ReportManager.logInfo("<b style=\"color:red;\">****Invalid Marks Entry-Error ****</b>");
-
-		} else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *********No error message********</b>");
-
-		}
-
-	}
-	
-//Using Robot class
-//		String file = "c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls";
-//		StringSelection selection = new StringSelection(file);
-//		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null); 
-//		
-//		Robot robot = new Robot();
-//		
-//	    robot.keyPress(KeyEvent.VK_CONTROL);
-//		robot.keyPress(KeyEvent.VK_V);
-//		robot.keyRelease(KeyEvent.VK_V);
-//	    robot.keyPress(KeyEvent.VK_CONTROL);
-//		robot.keyPress(KeyEvent.VK_ENTER);
-//		robot.keyRelease(KeyEvent.VK_ENTER);
-//		System.out.println("File Got Uploaded");
-//		ReportManager
-//		.logInfo("Subject Code - <b style=\"color:green;\">\"File Got Uploaded\"</b> ");
-
-		
-//TC_12: Inprogress what type of error message should be shown exactly
-
-	public static void MU_UploadSheet_BranchAndPrgrm_With_INVALID_Data() throws InterruptedException {
-		webActions.Click(examActivity, "Exam Activity");
-		Thread.sleep(2000);
-		webActions.Click(marksUpload, "Marks Upload");
-		Thread.sleep(2000);
-
-		webActions.selectByVisibleText(institute, " School of Engineering and Applied Sciences ");
-
-		webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
-		ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
-
-		webActions.selectByVisibleText(subjectCode, "EBTY801L ( ADVANCED MOLECULAR BIOLOGY)");
-		ReportManager
-				.logInfo("Subject Code - <b style=\"color:green;\">\"EBTY801L ( ADVANCED MOLECULAR BIOLOGY)\"</b> ");
-
-		webActions.selectByVisibleText(examEventCode, " Presentation ( Presentation) ");
-		Thread.sleep(5000);
-
-		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
-		upload.sendKeys("c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls");
-
-		Thread.sleep(8000);
-
-		String Str_err = webActions.getText(errorCol);
-		if (Str_err.contains("Invalid Marks Entry")) {
-
-			ReportManager.logInfo("<b style=\"color:red;\">****Error: Invalid Marks Entry****</b>");
-
-		} else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *********No error message********</b>");
-
-		}
-
-	}
-
-//TC_13
-	public static void MU_UploadSheet_MarksCol_With_INVALID_Data() throws InterruptedException {
-		webActions.Click(examActivity, "Exam Activity");
-		Thread.sleep(2000);
-		webActions.Click(marksUpload, "Marks Upload");
-		Thread.sleep(6000);
-
-		webActions.selectByVisibleText(institute, " School of Engineering and Applied Sciences ");
-
-		webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
-		ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
-
-		webActions.selectByVisibleText(subjectCode, "EBTY801L ( ADVANCED MOLECULAR BIOLOGY)");
-		ReportManager
-				.logInfo("Subject Code - <b style=\"color:green;\">\"EBTY801L ( ADVANCED MOLECULAR BIOLOGY)\"</b> ");
-
-		webActions.selectByVisibleText(examEventCode, " Project ( Project) ");
-		Thread.sleep(5000);
-
-		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
-		upload.sendKeys("c:/Users/LENOVO/downloads/Project_EBTY801L.xls");
-		Thread.sleep(8000);
-
 		String Redexpected = "#dd4b39";
 
 		List<WebElement> list_errorCol = webActions.getListOfWebElements(errorColList);
@@ -601,23 +690,88 @@ public class MarksUpload {
 		ReportManager
 				.logInfo("Subject Code - <b style=\"color:green;\">\"EBTY801L ( ADVANCED MOLECULAR BIOLOGY)\"</b> ");
 
-		webActions.selectByVisibleText(examEventCode, " Presentation ( Presentation) ");
+		webActions.selectByVisibleText(examEventCode, " Project ( Project) ");
 		Thread.sleep(5000);
 
+		webActions.Click(downlaodTemplate, "Download link");
+		Thread.sleep(6000);
+
+		File fileLocation = new File("C:/Users/LENOVO/Downloads");
+		File[] totalfiles = fileLocation.listFiles();
+
+		for (File file : totalfiles) {
+			if (file.getName().equals("Project_EBTY801L.xls")) {
+				System.out.println("File is downloaded");
+				ReportManager.logInfo("<b style=\"color:green;\"> Excel File Downloaded</b>");
+
+				// File f1 = file.getAbsoluteFile();
+				Boolean bool = file.exists();
+				String path = file.getAbsolutePath();
+				if (path.contains(".xls")) {
+					System.out.print(path + "Exists" + bool);
+					ReportManager
+							.logInfo("<b style=\"color:green;\"> *********Excel File exists- " + path + "********</b>");
+
+				}
+			}
+		}
+
+		try {
+
+			File excel = new File("c:/Users/LENOVO/downloads/Project_EBTY801L.xls");
+			fis = new FileInputStream(excel);
+			wb = new HSSFWorkbook(fis);
+			sh = wb.getSheet("Marks Entry Template");
+
+			int NumOfRows = sh.getLastRowNum();
+			System.out.println(NumOfRows);
+			ReportManager.logInfo("Total Rows <b style=\"color:green;\"> " + NumOfRows + " </b>");
+
+			// To read data in cell
+			System.out.println(sh.getRow(2).getCell(8).getStringCellValue());
+			System.out.println(sh.getRow(3).getCell(8).getStringCellValue());
+
+			// To write into cell
+
+			sh.getRow(3).createCell(8).setCellValue("90");
+			sh.getRow(4).createCell(8).setCellValue("90");
+			sh.getRow(5).createCell(8).setCellValue("90");
+
+			String E19SOE820 = sh.getRow(3).getCell(8).getStringCellValue();
+			String E19SOE822 = sh.getRow(4).getCell(8).getStringCellValue();
+			String E19SOE824 = sh.getRow(5).getCell(8).getStringCellValue();
+
+			System.out.println(E19SOE820);
+			System.out.println(E19SOE822);
+			System.out.println(E19SOE824);
+
+			ReportManager.logInfo("E19SOE820 <b style=\"color:green;\"> " + E19SOE820 + " </b>");
+			ReportManager.logInfo("E19SOE822 <b style=\"color:green;\"> " + E19SOE822 + " </b>");
+			ReportManager.logInfo("E19SOE824 <b style=\"color:green;\"> " + E19SOE824 + " </b>");
+
+			FileOutputStream fos = new FileOutputStream(new File("c:/Users/LENOVO/downloads/Project_EBTY801L.xls"));
+			wb.write(fos);
+			wb.close();
+
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+
+		}
+
 		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
-		upload.sendKeys("c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls");
+		upload.sendKeys("c:/Users/LENOVO/downloads/Project_EBTY801L.xls");
+		ReportManager.logInfo("<b style=\"color:green;\"> Uploaded Excel File</b>");
 
 		Thread.sleep(8000);
 
-		String Str_err = webActions.getText(errorCol);
-		if (Str_err.contains("Invalid Marks Entry")) {
+		webActions.Click(saveMarks, "Save Marks");
+		Thread.sleep(2000);
 
-			ReportManager.logInfo("<b style=\"color:red;\">****Invalid Marks Entry-Error ****</b>");
-
-		} else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *********No error message********</b>");
-
-		}
+		String Str_MarksSavedMsg = webActions.getText(marksSaved);
+		webActions.verifyText(Str_MarksSavedMsg, "Marks saved successfully !!!");
+		webActions.Click(OKButn, "OK button");
+		ReportManager.logInfo("<b style=\"color:green;\"> *********Uploaded and Saved Successfully********</b>");
 
 	}
 
