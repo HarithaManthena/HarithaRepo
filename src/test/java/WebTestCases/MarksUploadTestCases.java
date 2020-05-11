@@ -98,8 +98,18 @@ public class MarksUploadTestCases {
 //			Thread.sleep(2000);
 //			homePage.Logout();
 //TC_18
-			MarksUpload.MU_Lock_UploadedMarks();
+//			MarksUpload.MU_Lock_UploadedMarks();
+//			Thread.sleep(2000);
+//			homePage.Logout();
+//TC_19
+//			MarksUpload.MU_Lock_Without_MarksSheet();
+//			Thread.sleep(2000);
+//			homePage.Logout();
+//TC_20
+			MarksUpload.MU_Verify_ExcelReports_Optn();
 			Thread.sleep(2000);
+			
+			
 			
 			
 			

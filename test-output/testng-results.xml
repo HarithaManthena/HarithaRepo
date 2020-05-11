@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-05-10T21:05:51 IST" name="Default suite" finished-at="2020-05-10T21:08:48 IST" duration-ms="177509">
+  <suite started-at="2020-05-11T11:36:43 IST" name="Default suite" finished-at="2020-05-11T11:38:06 IST" duration-ms="82161">
     <groups>
       <group name="regression">
         <method signature="MarksUploadTestCases$MarksUploadTestcases.MarksUploadTCExecution()[pri:0, instance:WebTestCases.MarksUploadTestCases$MarksUploadTestcases@4e91d63f]" name="MarksUploadTCExecution" class="WebTestCases.MarksUploadTestCases$MarksUploadTestcases"/>
@@ -14,82 +14,9 @@
         <method signature="MarksUploadTestCases$MarksUploadTestcases.MarksUploadTCExecution()[pri:0, instance:WebTestCases.MarksUploadTestCases$MarksUploadTestcases@4e91d63f]" name="MarksUploadTCExecution" class="WebTestCases.MarksUploadTestCases$MarksUploadTestcases"/>
       </group> <!-- smoke -->
     </groups>
-    <test started-at="2020-05-10T21:05:51 IST" name="Default test" finished-at="2020-05-10T21:08:48 IST" duration-ms="177509">
+    <test started-at="2020-05-11T11:36:43 IST" name="Default test" finished-at="2020-05-11T11:38:06 IST" duration-ms="82161">
       <class name="WebTestCases.MarksUploadTestCases$MarksUploadTestcases">
-        <test-method signature="MarksUploadTCExecution()[pri:0, instance:WebTestCases.MarksUploadTestCases$MarksUploadTestcases@4e91d63f]" started-at="2020-05-10T21:05:51 IST" name="MarksUploadTCExecution" description="MarksUpload Functional Testcases" finished-at="2020-05-10T21:08:43 IST" duration-ms="172083" status="FAIL">
-          <exception class="org.openqa.selenium.TimeoutException">
-            <message>
-              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: Entry locked successfully !!! (tried for 100 second(s) with 5000 milliseconds interval)]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: Entry locked successfully !!! (tried for 100 second(s) with 5000 milliseconds interval)
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:113)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:283)
-at WebUtil.WebActions.waitForVisible(WebActions.java:57)
-at WebUtil.WebActions.getText(WebActions.java:115)
-at WebPages.MarksUpload.MU_Lock_UploadedMarks(MarksUpload.java:1060)
-at WebTestCases.MarksUploadTestCases$MarksUploadTestcases.MarksUploadTCExecution(MarksUploadTestCases.java:101)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:134)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:597)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:816)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1510)
-at org.testng.TestRunner.privateRun(TestRunner.java:766)
-at org.testng.TestRunner.run(TestRunner.java:587)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
-at org.testng.SuiteRunner.run(SuiteRunner.java:286)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1187)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1109)
-at org.testng.TestNG.runSuites(TestNG.java:1039)
-at org.testng.TestNG.run(TestNG.java:1007)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: org.openqa.selenium.InvalidSelectorException: invalid selector: Unable to locate an element with the xpath expression Entry locked successfully !!! because of the following error:
-SyntaxError: Failed to execute 'evaluate' on 'Document': The string 'Entry locked successfully !!!' is not a valid XPath expression.
-  (Session info: chrome=81.0.4044.138)
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/invalid_selector_exception.html
-Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
-System info: host: 'DESKTOP-6VOTVFS', ip: '192.168.1.100', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '14.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 81.0.4044.138, chrome: {chromedriverVersion: 81.0.4044.138 (8c6c7ba89cc9..., userDataDir: C:\Users\LENOVO\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:59289}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:virtualAuthenticators: true}
-Session ID: d9c140cfc831d7f9e3a28b3bbb5281b6
-*** Element info: {Using=xpath, value=Entry locked successfully !!!}
-at jdk.internal.reflect.GeneratedConstructorAccessor17.newInstance(Unknown Source)
-at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:548)
-at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:349)
-at org.openqa.selenium.remote.RemoteWebDriver.findElementsByXPath(RemoteWebDriver.java:428)
-at org.openqa.selenium.By$ByXPath.findElements(By.java:348)
-at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:310)
-at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:895)
-at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:44)
-at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:206)
-at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:202)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:260)
-... 32 more
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
+        <test-method signature="MarksUploadTCExecution()[pri:0, instance:WebTestCases.MarksUploadTestCases$MarksUploadTestcases@4e91d63f]" started-at="2020-05-11T11:36:43 IST" name="MarksUploadTCExecution" description="MarksUpload Functional Testcases" finished-at="2020-05-11T11:38:04 IST" duration-ms="80737" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MarksUploadTCExecution -->
