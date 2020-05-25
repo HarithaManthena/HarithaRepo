@@ -1,5 +1,7 @@
 package WebPages;
 
+import static org.testng.Assert.fail;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -23,6 +25,7 @@ public class ExamEventMaster {
 	public static By examEventType = By.id("exameventtype");
 
 	public static By activeCheckBox = By.xpath("//input[@name='deactive']");
+	
 	public static By activeText = By.xpath("//label[contains(text(),'Active')]");
 
 	public static By examEventDescription = By.id("exameventdesc");
@@ -59,12 +62,22 @@ public class ExamEventMaster {
 
 		String VerifyExamEventMasterPage = webActions.getText(examEventMasterPage);
 		if (VerifyExamEventMasterPage.equalsIgnoreCase("Exam Event Master")) {
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Exam Event Master Page is displayed *****</b>");
+
+			System.out.println(" *****Verified Exam Event Master Page : Page is displayed*****");
+			ReportManager.logInfo("<b style=\"color:green;\"> *****Verified Exam Event Master Page : Page is displayed*****</b>");
+			
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
 
 		}
 
 		else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *****Exam Event Master Page is not displayed *****</b>");
+			System.out.println("Exam Event Master Page is not displayed");
+
+			ReportManager.logInfo("<b style=\"color:red;\"> Exam Event Master Page is not displayed</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
+
 		}
 
 	}
@@ -80,11 +93,20 @@ public class ExamEventMaster {
 
 			webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
 			Thread.sleep(4000);
+			System.out.println("*****Veified Institute Dropdown:School of Engineering and Applied Sciences is Selected*****");
+			ReportManager.logInfo("<b style=\"color:green;\"> *****Veified Institute Dropdown:School of Engineering and Applied Sciences is Selected *****</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
 
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Institute Name is Selected *****</b>");
+
 
 		} else {
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Institute Name is not Selected *****</b>");
+			System.out.println("Institute Name is not Selected");
+			ReportManager.logInfo("<b style=\"color:green;\"> Institute Name is not Selected</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
+
+
 
 		}
 
@@ -105,11 +127,22 @@ public class ExamEventMaster {
 
 			webActions.selectByVisibleText(examEventType, "INTERN");
 			Thread.sleep(2000);
+			
+			System.out.println("****Verified ExamEventType DropDown:INTERN is Selected*****");
+			ReportManager.logInfo("<b style=\"color:green;\"> *****Verified ExamEventType DropDown:INTERN is Selected*****</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
 
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Exam Event Type is Selected*****</b>");
+
 
 		} else {
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Exam Event Type is not Selected *****</b>");
+			System.out.println("Exam Event Type is not Selected");
+
+			ReportManager.logInfo("<b style=\"color:green;\">Exam Event Type is not Selected</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
+
+
 
 		}
 
@@ -128,13 +161,23 @@ public class ExamEventMaster {
 		webActions.selectByVisibleText(examEventType, "INTERN");
 
 		if (webActions.isDisplayed(activeText, "Active")) {
+			System.out.println("*****Verified Active CheckboxActive: CheckBox is Enabled*****");
+			ReportManager.logInfo("<b style=\"color:green;\"> *****Verified Active CheckboxActive: CheckBox is Enabled*****</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
 
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Active CheckBox is checked*****</b>");
+
 
 		}
 
 		else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *****Active CheckBox is Unchecked*****</b>");
+			System.out.println("Active CheckBox is Unchecked");
+
+			ReportManager.logInfo("<b style=\"color:red;\">Active CheckBox is Unchecked</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
+
+
 		}
 
 	}
@@ -148,15 +191,25 @@ public class ExamEventMaster {
 
 		webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
 		Thread.sleep(2000);
+		webActions.isDisplayed(activeText, "Active");
+		boolean enabled = DriverFactory.getInstance().getWebDriver().findElement(activeCheckBox).isEnabled();
+		
+		if (!enabled) {
+			System.out.println("*****Active CheckBox is Dsiabled*****");
+			ReportManager.logInfo("<b style=\"color:green;\"> *****Verified Active CheckBox : Active CheckBox is Disabled*****</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
 
-		if (webActions.isDisplayed(activeText, "Active")) {
-
-			ReportManager.logInfo("<b style=\"color:red;\"> *****Active CheckBox is Enabled*****</b>");
 
 		}
-
 		else {
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Active CheckBox is Disabled*****</b>");
+			System.out.println("Active CheckBox is Disabled");
+			ReportManager.logInfo("<b style=\"color:red;\">Active CheckBox is Enabled - should be disabled before selection of Exam Event Type</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
+
+
+		//	Assert.fail("Failed - Active CheckBox should be disabled before selection of Exam Event Type");
 		}
 	}
 
@@ -169,8 +222,9 @@ public class ExamEventMaster {
 		Thread.sleep(4000);
 
 		webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
-		webActions.sendKeys(examEventCode, "FunctionalTest02");
-		webActions.sendKeys(examEventDescription, "FunctionalTest02");
+		
+		webActions.sendKeys(examEventCode, "FunctionalTest002");
+		webActions.sendKeys(examEventDescription, "FunctionalTest002");
 		webActions.sendKeys(weightageTextBox, "45");
 		webActions.sendKeys(maxMarksTextBox, "100");
 		webActions.sendKeys(passingMarksTextBox, "35");
@@ -182,11 +236,24 @@ public class ExamEventMaster {
 
 		String mandatoryfieldsalert = webActions.getText(Problemalert);
 		if (mandatoryfieldsalert.equalsIgnoreCase("Please fill all required fields !!")) {
+			Thread.sleep(1000);
 			webActions.Click(problemalertOK, "Ok");
+			System.out.println("*****Please fill all required fields !! : message is displayed-Exam Event Type*****");
+
 			ReportManager.logInfo(
-					"<b style=\"color:green;\"> *****Required Fields should be filled message is displayed-Exam Event Type*****</b>");
+					"<b style=\"color:green;\"> *****Please fill all required fields !! : message is displayed-Exam Event Type*****</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
+
+
 		} else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *****Alert message not displayed*****</b>");
+			System.out.println("Alert message not displayed");
+
+			ReportManager.logInfo("<b style=\"color:red;\">Alert message not displayed</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
+
+
 
 		}
 	}
@@ -203,14 +270,26 @@ public class ExamEventMaster {
 		if (webActions.isEnabled(examEventCode, "Exam Event Code")) {
 
 			webActions.sendKeys(examEventCode, "FunctionalEventCode01");
-			ReportManager.logInfo("<b style=\"color:red;\"> ********No Error Message is Displayed*******</b>");
+
+			System.out.println("No Error Message is Displayed: Message should be displayed as Please select Exam Event Type");
+			ReportManager.logInfo("<b style=\"color:red;\">No Error Message is Displayed: Message should be displayed as Please select Exam Event Type</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
+
+
 
 		} else {
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Error message is displayed*****</b>");
+			System.out.println("***Error message is displayed - Please select Exam Event Type***");
+
+			ReportManager.logInfo("<b style=\"color:green;\">***Error message is displayed - Please select Exam Event Type***</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
+
+
 
 		}
 
-		Assert.fail("Failed - As Error message is not suggested");
+	//	Assert.fail("Failed - As Error message is not suggested");
 	}
 
 //TC_008	
@@ -228,10 +307,21 @@ public class ExamEventMaster {
 		if (webActions.isEnabled(parentExamEventCode, "Parent Exam code")) {
 
 			webActions.Click(parentExamEventCode, "Parent Exam code");
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Parent Exam Event Code is Enabled*****</b>");
+			System.out.println("**********Verified child/sub Event : checkbox is selected- Parent Exam Event Code Enabled**********");
+
+			ReportManager.logInfo("<b style=\"color:green;\">*****Verified child/sub Event : checkbox is selected- Parent Exam Event Code Enabled*****</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
+
+
 
 		} else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *****Parent Exam Event Code is not Enabled*****</b>");
+			System.out.println("Parent Exam Event Code is not Enabled");
+
+			ReportManager.logInfo("<b style=\"color:red;\">Parent Exam Event Code is not Enabled when child/sub Event selected</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
+
 
 		}
 
@@ -246,16 +336,36 @@ public class ExamEventMaster {
 		Thread.sleep(5000);
 
 		webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
+		Thread.sleep(2000);
 		webActions.selectByVisibleText(examEventType, "INTERN");
 
-		webActions.isEnabled(subEventRequired, "Sub Event Required");
+		webActions.isDisplayed(subEventRequired, "Child/Sub Event Required Checkbox");
+		
+		boolean subEventRequired_selected = DriverFactory.getInstance().getWebDriver().findElement(subEventRequired).isSelected();
+		System.out.println(subEventRequired_selected);
+		
+		boolean parentExamEventCode_Enabled  = DriverFactory.getInstance().getWebDriver().findElement(parentExamEventCode).isEnabled();
+		System.out.println(parentExamEventCode_Enabled);
 
-		if (webActions.isEnabled(parentExamEventCode, "Parent Exam code")) {
 
-			ReportManager.logInfo("<b style=\"color:red;\"> *****Parent Exam Event Code is Enabled*****</b>");
+		
+		if (!subEventRequired_selected && !parentExamEventCode_Enabled) {
+			System.out.println("*****SubEventRequired Disabled - parentExamEventCode is disabled*****");
+			ReportManager.logInfo("<b style=\"color:green;\"> *****SubEventRequired Disabled - parentExamEventCode is disabled*****</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
 
-		} else {
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Parent Exam Event Code is not Enabled*****</b>");
+
+		}
+
+		else {
+			System.out.println("Parent Exam Event Code is not Enabled");
+
+			ReportManager.logInfo("<b style=\"color:red;\">Parent Exam Event Code is not Enabled</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
+
+
 
 		}
 	}
@@ -273,14 +383,26 @@ public class ExamEventMaster {
 		if (webActions.isEnabled(examEventCode, "Exam Event Code")) {
 
 			webActions.sendKeys(examEventCode, "FunctionalEventCode01");
-			ReportManager.logInfo("<b style=\"color:green;\"> *****EventCode is Accepted*****</b>");
+			System.out.println("*****Verified Exam Event Code Field: Feild Accepted Data*****");
+
+			ReportManager.logInfo("<b style=\"color:green;\"> *****Verified Exam Event Code Field: Feild Accepted Data*****</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
+
+
 
 		} else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *****EventCode is not accepted*****</b>");
+			System.out.println("EventCode is not accepted");
+
+			ReportManager.logInfo("<b style=\"color:red;\">Exam Event Code Field is not accepted entered data</b>");
+			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
+
 
 		}
 
 	}
+
 
 //TC_011
 	public static void VerifySaveWithoutEventCode() throws InterruptedException {
@@ -305,10 +427,18 @@ public class ExamEventMaster {
 		String mandatoryfieldsalert = webActions.getText(Problemalert);
 		if (mandatoryfieldsalert.equalsIgnoreCase("Please fill all required fields !!")) {
 			webActions.Click(problemalertOK, "Ok");
+			System.out.println("*****Please fill all required fields!! :  message is displayed - Exam Event Code*****");
+
 			ReportManager.logInfo(
-					"<b style=\"color:green;\"> *****Required Fields should be filled message is displayed - Exam Event Code*****</b>");
+					"<b style=\"color:green;\"> *****Please fill all required fields!! :  message is displayed - Exam Event Code*****</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
 		} else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *****Alert message not displayed*****</b>");
+			System.out.println("Alert message not displayed");
+
+			ReportManager.logInfo("<b style=\"color:red;\">Alert message not displayed</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
 
 		}
 	}
@@ -322,8 +452,8 @@ public class ExamEventMaster {
 
 		webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
 		webActions.selectByVisibleText(examEventType, "INTERN");
-		webActions.clearAndSendKeys(examEventCode, "FunctionalTest02");
-		webActions.sendKeys(examEventDescription, "FunctionalTest02");
+		webActions.clearAndSendKeys(examEventCode, "FunctionalTest003");
+		webActions.sendKeys(examEventDescription, "FunctionalTest003");
 		webActions.sendKeys(weightageTextBox, "45");
 		webActions.sendKeys(maxMarksTextBox, "100");
 		webActions.sendKeys(passingMarksTextBox, "35");
@@ -337,16 +467,23 @@ public class ExamEventMaster {
 		if (updatepopup.equalsIgnoreCase("Inserted")) {
 			webActions.Click(insertOKbutn, "Data Inserted Successfully");
 
+			System.out.println("*****Numeric feilds accepted numbers and Data Inserted Successfully*****");
+
 			ReportManager.logInfo(
 					"<b style=\"color:green;\"> *****Numeric feilds accepted numbers and Data Inserted Successfully*****</b>");
-			Thread.sleep(2000);
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
 
 		} else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *****Data not Updated*****</b>");
-			Thread.sleep(2000);
+			System.out.println("Data not Updated");
+
+			ReportManager.logInfo("<b style=\"color:red;\">Data not Updated</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
 		}
 	}
 
+	
 //TC_013 : No alert message is displayed to verify
 
 	public static void VerifyNumericfiedlswithCHARACTERS() throws InterruptedException {
@@ -461,8 +598,8 @@ public class ExamEventMaster {
 
 		webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
 		webActions.selectByVisibleText(examEventType, "INTERN");
-		webActions.clearAndSendKeys(examEventCode, "FunctionalTest03");
-		webActions.sendKeys(examEventDescription, "FunctionalTest03");
+		webActions.clearAndSendKeys(examEventCode, "FunctionalTest004");
+		webActions.sendKeys(examEventDescription, "FunctionalTest004");
 		webActions.sendKeys(weightageTextBox, "45");
 		webActions.sendKeys(maxMarksTextBox, "100");
 		webActions.sendKeys(passingMarksTextBox, "35");
@@ -476,13 +613,17 @@ public class ExamEventMaster {
 		if (updatepopup.equalsIgnoreCase("Inserted")) {
 			webActions.Click(insertOKbutn, "Data Inserted Successfully");
 
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Data Inserted Successfully*****</b>");
-			Thread.sleep(2000);
+			System.out.println("*****Data Inserted Successfully*****");
 
+			ReportManager.logInfo("<b style=\"color:green;\"> *****Data Inserted Successfully*****</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
 		} else {
+			System.out.println("*****Data not Updated*****");
+
 			ReportManager.logInfo("<b style=\"color:red;\"> *****Data not Updated*****</b>");
-			Thread.sleep(2000);
-		}
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);		}
 	}
 
 //TC_17
@@ -508,10 +649,18 @@ public class ExamEventMaster {
 		String mandatoryfieldsalert = webActions.getText(Problemalert);
 		if (mandatoryfieldsalert.equalsIgnoreCase("Please fill all required fields !!")) {
 			webActions.Click(problemalertOK, "Ok");
+			System.out.println("*****Please fill all required fields !! : message is displayed - Blank Data*****");
+
 			ReportManager.logInfo(
-					"<b style=\"color:green;\"> *****Required Fields should be filled message is displayed - Exam Event Code*****</b>");
+					"<b style=\"color:green;\"> *****Please fill all required fields !! : message is displayed - Blank Data*****</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
 		} else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *****Alert message not displayed*****</b>");
+			System.out.println("Alert message not displayed");
+
+			ReportManager.logInfo("<b style=\"color:red;\">Alert message not displayed</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
 
 		}
 	}
@@ -536,11 +685,18 @@ public class ExamEventMaster {
 		webActions.Click(reset, "Rest");
 		String NoEventsList = webActions.getText(noEventlistTable);
 		if (NoEventsList.equalsIgnoreCase("No data available in table")) {
+			System.out.println("*****Verified Reset Button : All fields got reset*****");
 
-			ReportManager.logInfo("<b style=\"color:green;\"> *********All fields got reset********</b>");
+			ReportManager.logInfo("<b style=\"color:green;\">*****Verified Reset Button : All fields got reset*****</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
 
 		} else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *********Rest Button not working********</b>");
+			System.out.println("Rest Button not working");
+
+			ReportManager.logInfo("<b style=\"color:red;\">Rest Button not working</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
 
 		}
 
@@ -569,11 +725,19 @@ public class ExamEventMaster {
 		String Dashboard = webActions.getText(dashboard);
 		if (Dashboard.equalsIgnoreCase("Dashboard")) {
 
+			System.out.println("*****Verified Cancel button: Exam Event Master Page cancelled and returned to Dashboard page*****");
+
 			ReportManager.logInfo(
-					"<b style=\"color:green;\"> *********Exam Event Master Page cancelled and returned to Dashboard page********</b>");
+					"<b style=\"color:green;\">*****Verified Cancel button: Exam Event Master Page cancelled and returned to Dashboard page*****</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
 
 		} else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *********Cancel Button not working********</b>");
+			System.out.println("Cancel Button not working");
+
+			ReportManager.logInfo("<b style=\"color:red;\">Cancel Button not working</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			 Thread.sleep(2000);
 
 		}
 

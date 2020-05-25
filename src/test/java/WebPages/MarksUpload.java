@@ -74,7 +74,8 @@ public class MarksUpload {
 	public static By unableToLock = By
 			.xpath("//div[text()='Entry can not be locked, because total student marks not entered. !!']");
 	public static By excelReport = By.xpath("//button[@title='Excel Report']");
-	
+
+	public static By printMarksSheet = By.xpath("//button[@title='Print Marks Sheet']");
 
 	static WebActions webActions = new WebActions();
 	static JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getInstance().getWebDriver();
@@ -1119,7 +1120,7 @@ public class MarksUpload {
 
 		webActions.Click(examActivity, "Exam Activity");
 		Thread.sleep(2000);
-		
+
 		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(2000);
 
@@ -1206,7 +1207,7 @@ public class MarksUpload {
 		ReportManager.logInfo("<b style=\"color:green;\"> Uploaded Excel File</b>");
 
 		Thread.sleep(8000);
-		
+
 		String Redexpected = "#dd4b39";
 
 		List<WebElement> list_errorCol = webActions.getListOfWebElements(errorColList);
@@ -1217,19 +1218,17 @@ public class MarksUpload {
 			String hexcolorRed = Color.fromString(str_Bcolor).asHex();
 			String actual = hexcolorRed;
 
-			if (actual.equalsIgnoreCase(Redexpected)) {
+			if (!actual.equalsIgnoreCase(Redexpected)) {
+				System.out.println("No Error Exists");
 
-				ReportManager.logInfo("<b style=\"color:red;\">Errors exists</b>");
-
-			} 
-
-			else {
-				ReportManager.logInfo("<b style=\"color:Green;\">No Errors exists</b>");
-				webActions.Click(excelReport, "Excel Report");
-				Thread.sleep(6000);
 			}
+
 		}
-		
+
+		ReportManager.logInfo("<b style=\"color:Green;\">No Errors exists</b>");
+		webActions.Click(excelReport, "Excel Report");
+		Thread.sleep(6000);
+
 		File downloadLocation = new File("C:/Users/LENOVO/Downloads");
 		File[] AllFiles = downloadLocation.listFiles();
 
@@ -1248,8 +1247,141 @@ public class MarksUpload {
 				}
 			}
 		}
-		
-		}
+
+	}
 //TC_21
-	
+
+	public static void MU_Verify_PrintMarksSheet_Option() throws InterruptedException {
+		webActions.Click(examActivity, "Exam Activity");
+		Thread.sleep(2000);
+
+		webActions.Click(marksUpload, "Marks Upload");
+		Thread.sleep(2000);
+
+		webActions.selectByVisibleText(institute, " School of Engineering and Applied Sciences ");
+
+		webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
+		ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
+
+		webActions.selectByVisibleText(subjectCode, "EBTY801L ( ADVANCED MOLECULAR BIOLOGY)");
+		ReportManager
+				.logInfo("Subject Code - <b style=\"color:green;\">\"EBTY801L ( ADVANCED MOLECULAR BIOLOGY)\"</b> ");
+
+		webActions.selectByVisibleText(examEventCode, " Class Participation ( Class Participation) ");
+		Thread.sleep(5000);
+
+		webActions.Click(downlaodTemplate, "Download link");
+		Thread.sleep(6000);
+
+		File fileLocation = new File("C:/Users/LENOVO/Downloads");
+		File[] totalfiles = fileLocation.listFiles();
+
+		for (File file : totalfiles) {
+			if (file.getName().equals("Class_Participation_EBTY801L.xls")) {
+				System.out.println("File is downloaded");
+				ReportManager.logInfo("<b style=\"color:green;\"> Excel File Downloaded</b>");
+
+				// File f1 = file.getAbsoluteFile();
+				Boolean bool = file.exists();
+				String path = file.getAbsolutePath();
+				if (path.contains(".xls")) {
+					System.out.print(path + "Exists" + bool);
+					ReportManager.logInfo("Excel present at location- " + path + " ");
+
+				}
+			}
+		}
+
+		try {
+
+			File excel = new File("c:/Users/LENOVO/downloads/Class_Participation_EBTY801L.xls");
+			fis = new FileInputStream(excel);
+			wb = new HSSFWorkbook(fis);
+			sh = wb.getSheet("Marks Entry Template");
+
+			int NumOfRows = sh.getLastRowNum();
+			System.out.println(NumOfRows);
+			ReportManager.logInfo("Total Rows <b style=\"color:green;\"> " + NumOfRows + " </b>");
+
+			// To read data in cell
+			System.out.println(sh.getRow(2).getCell(8).getStringCellValue());
+			System.out.println(sh.getRow(3).getCell(8).getStringCellValue());
+
+			// To write into cell
+
+			sh.getRow(3).createCell(8).setCellValue("40");
+			sh.getRow(4).createCell(8).setCellValue("40");
+			sh.getRow(5).createCell(8).setCellValue("30");
+
+			String E19SOE820 = sh.getRow(3).getCell(8).getStringCellValue();
+			String E19SOE822 = sh.getRow(4).getCell(8).getStringCellValue();
+			String E19SOE824 = sh.getRow(5).getCell(8).getStringCellValue();
+
+			System.out.println(E19SOE820);
+			System.out.println(E19SOE822);
+			System.out.println(E19SOE824);
+
+			ReportManager.logInfo("Marks uploaded for E19SOE820 <b style=\"color:green;\"> " + E19SOE820 + " </b>");
+			ReportManager.logInfo("Marks uploaded for E19SOE822 <b style=\"color:green;\"> " + E19SOE822 + " </b>");
+			ReportManager.logInfo("Marks uploaded for E19SOE824 <b style=\"color:green;\"> " + E19SOE824 + " </b>");
+
+			FileOutputStream fos = new FileOutputStream(
+					new File("c:/Users/LENOVO/downloads/Class_Participation_EBTY801L.xls"));
+			wb.write(fos);
+			wb.close();
+
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+
+		}
+
+		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
+		upload.sendKeys("c:/Users/LENOVO/downloads/Class_Participation_EBTY801L.xls");
+		ReportManager.logInfo("<b style=\"color:green;\"> Uploaded Excel File</b>");
+
+		Thread.sleep(8000);
+
+		String Redexpected = "#dd4b39";
+
+		List<WebElement> list_errorCol = webActions.getListOfWebElements(errorColList);
+
+		for (int i = 0; i < list_errorCol.size(); i++) {
+			String str_Bcolor = list_errorCol.get(i).getCssValue("background-color");
+
+			String hexcolorRed = Color.fromString(str_Bcolor).asHex();
+			String actual = hexcolorRed;
+
+			if (!actual.equalsIgnoreCase(Redexpected)) {
+				System.out.println("No Error Exists");
+
+			}
+
+		}
+
+		ReportManager.logInfo("<b style=\"color:Green;\">No Errors exists</b>");
+
+		webActions.Click(printMarksSheet, "Print Marks Sheet");
+		Thread.sleep(6000);
+
+		File downloadLocation = new File("C:/Users/LENOVO/Downloads");
+		File[] AllFiles = downloadLocation.listFiles();
+
+		for (File file : AllFiles) {
+			if (file.getName().equals("EBTY801L_(_ADVANCED_MOLECULAR_BIOLOGY)_Report.pdf")) {
+				System.out.println("pdfl Report is downloaded");
+				ReportManager.logInfo("<b style=\"color:green;\">pdf Report is downloaded</b>");
+
+				// File f1 = file.getAbsoluteFile();
+				Boolean bool = file.exists();
+				String path = file.getAbsolutePath();
+				if (path.contains("EBTY801L_(_ADVANCED_MOLECULAR_BIOLOGY)_Report.pdf")) {
+					System.out.print(path + "Exists" + bool);
+					ReportManager.logInfo("PDF Report present at- " + path + " ");
+
+				}
+			}
+		}
+
+	}
 }

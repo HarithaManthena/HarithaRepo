@@ -94,9 +94,9 @@ public class MarksUploadTestCases {
 //TC_16 : ON HOLD
 			
 //TC_17
-//			MarksUpload.MU_Verify_DownloadErrorList_Optn();
-//			Thread.sleep(2000);
-//			homePage.Logout();
+			MarksUpload.MU_Verify_DownloadErrorList_Optn();
+			Thread.sleep(2000);
+			homePage.Logout();
 //TC_18
 //			MarksUpload.MU_Lock_UploadedMarks();
 //			Thread.sleep(2000);
@@ -106,9 +106,15 @@ public class MarksUploadTestCases {
 //			Thread.sleep(2000);
 //			homePage.Logout();
 //TC_20
-			MarksUpload.MU_Verify_ExcelReports_Optn();
-			Thread.sleep(2000);
-			
+//			MarksUpload.MU_Verify_ExcelReports_Optn();
+//			Thread.sleep(2000);
+//			homePage.Logout();
+//TC_21
+//			MarksUpload.MU_Verify_PrintMarksSheet_Option();
+//			Thread.sleep(2000);
+//			homePage.Logout();
+//			
+//			
 			
 			
 			
