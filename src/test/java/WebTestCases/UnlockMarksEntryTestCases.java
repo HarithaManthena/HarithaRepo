@@ -23,9 +23,24 @@ public class UnlockMarksEntryTestCases {
 		homePage.Login(ConfigReader.getValue("examDeanUserName"), ConfigReader.getValue("examDeanPassword"));
 
 //TC_01
-//		UnlockMarksEntry.UnlockMarksEntryPageVrftn();
-//		Thread.sleep(2000);
-//		homePage.Logout();
+//		UnlockMarksEntry.UnlockMarksEntryPageVrftn();Thread.sleep(2000);
+//		UnlockMarksEntry.UMInsitituteDD();Thread.sleep(2000);
+//		UnlockMarksEntry.UMRegistrationDD();Thread.sleep(2000);
+//		UnlockMarksEntry.UMExamEventCodeDD();Thread.sleep(2000);
+//		UnlockMarksEntry.UMSubjectsDD();Thread.sleep(2000);
+//		UnlockMarksEntry.UM_VerifyGetDetailsOptn();Thread.sleep(2000);
+//		
+//		UnlockMarksEntry.UM_GetDetails_Without_ReqFieldSelection();Thread.sleep(2000);
+		
+		UnlockMarksEntry.UM_VerifyRestButn();Thread.sleep(2000);
+		UnlockMarksEntry.UM_VerifyCancelButn();Thread.sleep(2000);
+		UnlockMarksEntry.UM_Verify_GetDetails_TableHeader();Thread.sleep(2000);
+		UnlockMarksEntry.UM_Verify_Checkbox_DetailsTable();Thread.sleep(2000);
+		UnlockMarksEntry.UM_Save_Without_RowSelection();Thread.sleep(2000);
+		UnlockMarksEntry.UM_EditDates_AfterRwoSelection();Thread.sleep(2000);
+		UnlockMarksEntry.UM_Lock_LockExamMark();Thread.sleep(2000);
+		UnlockMarksEntry.UM_UnLock_LockExamMark();Thread.sleep(2000);
+		homePage.Logout();
 
 //TC_02
 //		UnlockMarksEntry.UMInsitituteDD();
@@ -89,8 +104,8 @@ public class UnlockMarksEntryTestCases {
 // 		homePage.Logout();
 //TC_16 - In progress
 		
-		UnlockMarksEntry.UM_UnLock_LockExamMark();
-		Thread.sleep(2000);
+//		UnlockMarksEntry.UM_UnLock_LockExamMark();
+//		Thread.sleep(2000);
 	
 	}
 

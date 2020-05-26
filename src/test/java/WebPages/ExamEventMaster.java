@@ -102,7 +102,7 @@ public class ExamEventMaster {
 
 		} else {
 			System.out.println("Institute Name is not Selected");
-			ReportManager.logInfo("<b style=\"color:green;\"> Institute Name is not Selected</b>");
+			ReportManager.logInfo("<b style=\"color:green;\"> Institute Name is not selectable</b>");
 			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
 			 Thread.sleep(2000);
 
@@ -138,7 +138,7 @@ public class ExamEventMaster {
 		} else {
 			System.out.println("Exam Event Type is not Selected");
 
-			ReportManager.logInfo("<b style=\"color:green;\">Exam Event Type is not Selected</b>");
+			ReportManager.logInfo("<b style=\"color:green;\">Exam Event Type is not selectable</b>");
 			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
 			 Thread.sleep(2000);
 
