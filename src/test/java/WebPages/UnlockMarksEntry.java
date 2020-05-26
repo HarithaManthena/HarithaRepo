@@ -60,6 +60,8 @@ public class UnlockMarksEntry {
 	public static By saveButtonForChanges = By.xpath("//button[@class = 'btn btn-success' and @title = 'save']");
 	public static By dataupdatedMsg = By.xpath("//div[text()='Data Updated Successfully. !!!']");
 
+	public static By datesAlertMessage = By.xpath("//div[text()='Please Select From Date or To Date.']");
+
 	static WebActions webActions = new WebActions();
 	static JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getInstance().getWebDriver();
 
@@ -73,21 +75,21 @@ public class UnlockMarksEntry {
 
 		String VerifyUnlockMarksEntryPage = webActions.getText(unlockMarksEntryPage);
 		if (VerifyUnlockMarksEntryPage.equalsIgnoreCase("Marks Entry Lock Unlock")) {
-			
-			System.out.println("*****Verified Unlock Marks Entry Page:is displayed*****");
-			ReportManager.logInfo("<b style=\"color:blue;\">*****Verified Unlock Marks Entry Page:is displayed*****</b>");
-			DriverFactory.getInstance().getWebDriver().navigate().refresh();
-			 Thread.sleep(3000);
 
+			System.out.println("*****Verified Unlock Marks Entry Page:is displayed*****");
+			ReportManager
+					.logInfo("<b style=\"color:blue;\">*****Verified Unlock Marks Entry Page:is displayed*****</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(3000);
 
 		}
 
 		else {
-			
+
 			System.out.println("Unlock Marks Entry Page is not displayed");
 			ReportManager.logInfo("<b style=\"color:red;\">Unlock Marks Entry Page is not displayed</b>");
 			DriverFactory.getInstance().getWebDriver().navigate().refresh();
-			 Thread.sleep(2000);
+			Thread.sleep(2000);
 
 		}
 	}
@@ -95,7 +97,7 @@ public class UnlockMarksEntry {
 //TC_02
 	public static void UMInsitituteDD() throws InterruptedException {
 
-	//	webActions.Click(examActivity, "Exam Activity");
+		// webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(unlockMarksEntry, "Unlock Marks Entry");
 		Thread.sleep(4000);
 
@@ -104,16 +106,18 @@ public class UnlockMarksEntry {
 			webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
 			Thread.sleep(4000);
 
-			System.out.println("*****Veified Institute Dropdown:School of Engineering and Applied Sciences is Selected*****");
-			ReportManager.logInfo("<b style=\"color:blue;\">*****Veified Institute Dropdown:School of Engineering and Applied Sciences is Selected*****</b>");
-			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
-			 Thread.sleep(3000);
+			System.out.println(
+					"*****Veified Institute Dropdown:School of Engineering and Applied Sciences is Selected*****");
+			ReportManager.logInfo(
+					"<b style=\"color:blue;\">*****Veified Institute Dropdown:School of Engineering and Applied Sciences is Selected*****</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(3000);
 
 		} else {
 			System.out.println("Institute Name is not selectable");
 			ReportManager.logInfo("<b style=\"color:red;\">Institute Name is not selectable</b>");
-			 DriverFactory.getInstance().getWebDriver().navigate().refresh();
-			 Thread.sleep(2000);
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
 
 		}
 
@@ -133,16 +137,16 @@ public class UnlockMarksEntry {
 			Thread.sleep(2000);
 
 			System.out.println("*****Verified Registration Code Dropdown:is selectable*****");
-			ReportManager.logInfo("<b style=\"color:blue;\">*****Verified Registration Code Dropdown:is selectable*****</b>");
+			ReportManager.logInfo(
+					"<b style=\"color:blue;\">*****Verified Registration Code Dropdown:is selectable*****</b>");
 			DriverFactory.getInstance().getWebDriver().navigate().refresh();
-			 Thread.sleep(3000);
-
+			Thread.sleep(3000);
 
 		} else {
 			System.out.println("Registration Code is not selectable");
 			ReportManager.logInfo("<b style=\"color:red;\">Registration Code is not selectable</b>");
 			DriverFactory.getInstance().getWebDriver().navigate().refresh();
-			 Thread.sleep(2000);
+			Thread.sleep(2000);
 
 		}
 
@@ -150,7 +154,7 @@ public class UnlockMarksEntry {
 
 //TC_004
 	public static void UMExamEventCodeDD() throws InterruptedException {
-	//	webActions.Click(examActivity, "Exam Activity");
+		// webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(unlockMarksEntry, "Unlock Marks Entry");
 		Thread.sleep(4000);
 
@@ -165,14 +169,15 @@ public class UnlockMarksEntry {
 			Thread.sleep(3000);
 
 			System.out.println("*****Verified Exam Event code Dropdown :  is selectable*****");
-			ReportManager.logInfo("<b style=\"color:blue;\">*****Verified Exam Event code Dropdown : is selectable*****</b>");
+			ReportManager.logInfo(
+					"<b style=\"color:blue;\">*****Verified Exam Event code Dropdown : is selectable*****</b>");
 			DriverFactory.getInstance().getWebDriver().navigate().refresh();
-			 Thread.sleep(3000);
+			Thread.sleep(3000);
 
 		} else {
 			ReportManager.logInfo("<b style=\"color:red;\">Exam Event code is not selectable</b>");
 			DriverFactory.getInstance().getWebDriver().navigate().refresh();
-			 Thread.sleep(2000);
+			Thread.sleep(2000);
 		}
 
 	}
@@ -180,7 +185,7 @@ public class UnlockMarksEntry {
 	// TC_05
 	public static void UMSubjectsDD() throws InterruptedException {
 
-		//webActions.Click(examActivity, "Exam Activity");
+		// webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(unlockMarksEntry, "Unlock Marks Entry");
 		Thread.sleep(4000);
 
@@ -204,9 +209,10 @@ public class UnlockMarksEntry {
 				List_subjects.get(i).click();
 				System.out.println("*****Verified Subject Code Dropdown: is Selectable*****");
 
-				ReportManager.logInfo("<b style=\"color:blue;\">*****Verified Subject Code Dropdown: is Selectable*****</b>");
+				ReportManager.logInfo(
+						"<b style=\"color:blue;\">*****Verified Subject Code Dropdown: is Selectable*****</b>");
 				DriverFactory.getInstance().getWebDriver().navigate().refresh();
-				 Thread.sleep(3000);
+				Thread.sleep(3000);
 
 				break;
 			} else {
@@ -223,7 +229,7 @@ public class UnlockMarksEntry {
 	// TC_06
 	public static void UM_VerifyGetDetailsOptn() throws InterruptedException {
 
-	//	webActions.Click(examActivity, "Exam Activity");
+		// webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(unlockMarksEntry, "Unlock Marks Entry");
 		Thread.sleep(6000);
 
@@ -282,7 +288,7 @@ public class UnlockMarksEntry {
 //TC_07
 
 	public static void UM_GetDetails_Without_ReqFieldSelection() throws InterruptedException {
-		//webActions.Click(examActivity, "Exam Activity");
+		// webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(unlockMarksEntry, "Unlock Marks Entry");
 		Thread.sleep(6000);
 
@@ -302,7 +308,8 @@ public class UnlockMarksEntry {
 		String Mandatory_Msg = webActions.getText(mandatoryField_missedSubject);
 		if (Mandatory_Msg.equalsIgnoreCase("First select Subject(s) !")) {
 			System.out.println("****Alert message displayed:First select Subject(s) !****");
-			ReportManager.logInfo("<b style=\"color:blue;\">****Alert message displayed:First select Subject(s) !****</b>");
+			ReportManager
+					.logInfo("<b style=\"color:blue;\">****Alert message displayed:First select Subject(s) !****</b>");
 			DriverFactory.getInstance().getWebDriver().navigate().refresh();
 			Thread.sleep(3000);
 
@@ -317,7 +324,7 @@ public class UnlockMarksEntry {
 
 //TC_08
 	public static void UM_VerifyRestButn() throws InterruptedException {
-		//webActions.Click(examActivity, "Exam Activity");
+		// webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(unlockMarksEntry, "Unlock Marks Entry");
 		Thread.sleep(6000);
 
@@ -351,7 +358,7 @@ public class UnlockMarksEntry {
 
 //TC_09
 	public static void UM_VerifyCancelButn() throws InterruptedException {
-		//webActions.Click(examActivity, "Exam Activity");
+		// webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(unlockMarksEntry, "Unlock Marks Entry");
 		Thread.sleep(6000);
 
@@ -374,7 +381,8 @@ public class UnlockMarksEntry {
 			if (List_subjects.get(i).getText().contains("(EECE804L) ANTENNA THEORY AND DESIGN")) {
 				List_subjects.get(i).click();
 				System.out.println("Selected Subject from DD");
-				//ReportManager.logInfo("Subject Code - \"(EECE804L) ANTENNA THEORY AND DESIGN\"</b> ");
+				// ReportManager.logInfo("Subject Code - \"(EECE804L) ANTENNA THEORY AND
+				// DESIGN\"</b> ");
 				Thread.sleep(3000);
 
 			}
@@ -382,7 +390,8 @@ public class UnlockMarksEntry {
 				webActions.Click(getDetailsButton, "get Deatils option");
 				Thread.sleep(2000);
 				System.out.println("Get Details options selected");
-		//		ReportManager.logInfo("<b style=\"color:green;\"> ******Get Details option selected *****</b>");
+				// ReportManager.logInfo("<b style=\"color:green;\"> ******Get Details option
+				// selected *****</b>");
 			}
 
 			webActions.Click(cancelButton, "Cancel Button");
@@ -390,7 +399,8 @@ public class UnlockMarksEntry {
 
 			String Dashboard = webActions.getText(dashboardText);
 			if (Dashboard.equalsIgnoreCase("Dashboard")) {
-				System.out.println("*****Verified Cancel Button:Marks Upload page cancelled and returned to Dashboard page*****");
+				System.out.println(
+						"*****Verified Cancel Button:Marks Upload page cancelled and returned to Dashboard page*****");
 				ReportManager.logInfo(
 						"<b style=\"color:blue;\">*****Verified Cancel Button:Marks Upload page cancelled and returned to Dashboard page*****</b>");
 				DriverFactory.getInstance().getWebDriver().navigate().refresh();
@@ -399,7 +409,7 @@ public class UnlockMarksEntry {
 
 			} else {
 				System.out.println("Cancel Button funtionality not working");
-				
+
 				ReportManager.logInfo("<b style=\"color:red;\">Cancel Button funtionality not working</b>");
 				DriverFactory.getInstance().getWebDriver().navigate().refresh();
 				Thread.sleep(2000);
@@ -434,7 +444,8 @@ public class UnlockMarksEntry {
 			if (str_subj.equalsIgnoreCase("(EECE804L) ANTENNA THEORY AND DESIGN")) {
 				List_subjects.get(i).click();
 				System.out.println("Selected Subject from DD");
-	//			ReportManager.logInfo("Subject Code -\"(EECE804L) ANTENNA THEORY AND DESIGN\"</b> ");
+				// ReportManager.logInfo("Subject Code -\"(EECE804L) ANTENNA THEORY AND
+				// DESIGN\"</b> ");
 			}
 		}
 
@@ -463,10 +474,10 @@ public class UnlockMarksEntry {
 			ReportManager.logInfo("No. of columns in table-" + Colcount + "</b>");
 
 			System.out.println("*****Grid Table with Required Details are present*****");
-			ReportManager.logInfo("<b style=\"color:blue;\">*****Grid Table with Required Details are present*****</b>");
+			ReportManager
+					.logInfo("<b style=\"color:blue;\">*****Grid Table with Required Details are present*****</b>");
 			DriverFactory.getInstance().getWebDriver().navigate().refresh();
 			Thread.sleep(2000);
-
 
 		} else {
 			System.out.println("Grid Table with Required Details not present");
@@ -475,14 +486,13 @@ public class UnlockMarksEntry {
 			DriverFactory.getInstance().getWebDriver().navigate().refresh();
 			Thread.sleep(2000);
 
-
 		}
 	}
 
 //TC_11
 
 	public static void UM_Verify_Checkbox_DetailsTable() throws InterruptedException {
-	//	webActions.Click(examActivity, "Exam Activity");
+		// webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(unlockMarksEntry, "Unlock Marks Entry");
 		Thread.sleep(6000);
 
@@ -505,7 +515,8 @@ public class UnlockMarksEntry {
 			if (str_subj.equalsIgnoreCase("(EECE804L) ANTENNA THEORY AND DESIGN")) {
 				List_subjects.get(i).click();
 				System.out.println("Selected Subject from DD");
-	//			ReportManager.logInfo("Subject Code - \"(EECE804L) ANTENNA THEORY AND DESIGN\"</b> ");
+				// ReportManager.logInfo("Subject Code - \"(EECE804L) ANTENNA THEORY AND
+				// DESIGN\"</b> ");
 			}
 		}
 
@@ -531,7 +542,7 @@ public class UnlockMarksEntry {
 //TC_12 
 	public static void UM_Save_Without_RowSelection() throws InterruptedException {
 
-	//	webActions.Click(examActivity, "Exam Activity");
+		// webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(unlockMarksEntry, "Unlock Marks Entry");
 		Thread.sleep(6000);
 
@@ -554,7 +565,8 @@ public class UnlockMarksEntry {
 			if (str_subj.equalsIgnoreCase("(EECE804L) ANTENNA THEORY AND DESIGN")) {
 				List_subjects.get(i).click();
 				System.out.println("Selected Subject from DD");
-				//ReportManager.logInfo("Subject Code - \"(EECE804L) ANTENNA THEORY AND DESIGN\"</b> ");
+				// ReportManager.logInfo("Subject Code - \"(EECE804L) ANTENNA THEORY AND
+				// DESIGN\"</b> ");
 			}
 		}
 
@@ -596,9 +608,10 @@ public class UnlockMarksEntry {
 		String InfoAlert = webActions.getText(Info_ErrorAlert);
 		if (InfoAlert.equalsIgnoreCase("Please Select Row(s) From the Table.")) {
 			webActions.Click(OK, "OK");
-			
+
 			System.out.println("*****Error Alert:Please Select Row(s) From the Table.*****");
-			ReportManager.logInfo("<b style=\"color:blue;\">*****Error Alert:Please Select Row(s) From the Table.*****</b>");
+			ReportManager
+					.logInfo("<b style=\"color:blue;\">*****Error Alert:Please Select Row(s) From the Table.*****</b>");
 			DriverFactory.getInstance().getWebDriver().navigate().refresh();
 			Thread.sleep(2000);
 		}
@@ -608,13 +621,13 @@ public class UnlockMarksEntry {
 			ReportManager.logInfo("<b style=\"color:red;\">No Error message displayed to select rows first</b>");
 			DriverFactory.getInstance().getWebDriver().navigate().refresh();
 			Thread.sleep(2000);
-			}
+		}
 	}
 
 //TC_13
 	public static void UM_EditDates_AfterRwoSelection() throws InterruptedException {
 
-		//webActions.Click(examActivity, "Exam Activity");
+		// webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(unlockMarksEntry, "Unlock Marks Entry");
 		Thread.sleep(3000);
 
@@ -637,7 +650,8 @@ public class UnlockMarksEntry {
 			if (str_subj.equalsIgnoreCase("(EECE804L) ANTENNA THEORY AND DESIGN")) {
 				List_subjects.get(i).click();
 				System.out.println("Selected Subject from DD");
-			//	ReportManager.logInfo("Subject Code -\"(EECE804L) ANTENNA THEORY AND DESIGN\"</b> ");
+				// ReportManager.logInfo("Subject Code -\"(EECE804L) ANTENNA THEORY AND
+				// DESIGN\"</b> ");
 
 			}
 		}
@@ -720,12 +734,12 @@ public class UnlockMarksEntry {
 							.logInfo("To Date after updating:- <b style=\"color:green;\">" + todateVrftn + "</b> ");
 
 					System.out.println("*****Dates are Displayed Correctly*****");
-					ReportManager.logInfo("FromDate and ToDate- <b style=\"color:blue;\">\"*****Dates are Displayed Correctly*****\"</b> ");
+					ReportManager.logInfo(
+							"FromDate and ToDate- <b style=\"color:blue;\">\"*****Dates are Displayed Correctly*****\"</b> ");
 					DriverFactory.getInstance().getWebDriver().navigate().refresh();
 					Thread.sleep(2000);
 					break;
-				}
-				else {
+				} else {
 					System.out.println("Dates are not Displayed Correctly");
 					ReportManager.logInfo("<b style=\"color:red;\">Dates are not Displayed Correctly</b>");
 					DriverFactory.getInstance().getWebDriver().navigate().refresh();
@@ -736,12 +750,10 @@ public class UnlockMarksEntry {
 		}
 
 	}
-//TC-14 - Doubt in test case on hold
+//TC-14
 
-//TC-15 : Make sure Row is unlocked 
-	public static void UM_Lock_LockExamMark() throws InterruptedException {
-
-	//	webActions.Click(examActivity, "Exam Activity");
+	public static void UM_click_accept_without_Dates() throws InterruptedException {
+		// webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(unlockMarksEntry, "Unlock Marks Entry");
 		Thread.sleep(3000);
 
@@ -764,7 +776,89 @@ public class UnlockMarksEntry {
 			if (str_subj.equalsIgnoreCase("(EECE804L) ANTENNA THEORY AND DESIGN")) {
 				List_subjects.get(i).click();
 				System.out.println("Selected Subject from DD");
-		//		ReportManager.logInfo("Subject Code -\"(EECE804L) ANTENNA THEORY AND DESIGN\"</b> ");
+				// ReportManager.logInfo("Subject Code -\"(EECE804L) ANTENNA THEORY AND
+				// DESIGN\"</b> ");
+
+			}
+		}
+
+		webActions.Click(getDetailsButton, "get Deatils option");
+		System.out.println("Clicked Get Details Option");
+		Thread.sleep(5000);
+
+		List<WebElement> list_facultyName = webActions.getListOfWebElements(facultyNameColumnInSearchOutput);
+		List<WebElement> list_checkbox = webActions.getListOfWebElements(SNoCheckboxInSearchOutput);
+
+		for (int j = 0; j < list_facultyName.size(); j++) {
+			String str_facultyName = list_facultyName.get(j).getText();
+
+			System.out.println(str_facultyName);
+			if (str_facultyName.equalsIgnoreCase("(15120047) ARVIND KUMAR")) {
+				System.out.println("mentioned faculty is present");
+				list_checkbox.get(j).click();
+				System.out.println("Row got selected");
+				ReportManager.logInfo("Row got selected");
+			}
+
+		}
+
+		Thread.sleep(1000);
+
+		if (webActions.isDisplayed(accept, "Accept")) {
+
+			webActions.Click(accept, "Accept");
+
+			String str_datesAlert = webActions.getText(datesAlertMessage);
+
+			webActions.verifyText(str_datesAlert, "Please Select From Date or To Date.");
+
+			webActions.Click(OK, "OK");
+
+			System.out.println("*****Error Message displayed: Please Select From Date or To Date. *****");
+			ReportManager.logInfo(
+					"<b style=\"color:blue;\">*****Error Message displayed: Please Select From Date or To Date.*****</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
+
+		} else {
+
+			System.out.println("No Error message is displayed");
+			ReportManager.logInfo("<b style=\"color:red;\">No Error message is displayed</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
+
+		}
+
+	}
+
+//TC-15 : Make sure Row is unlocked 
+	public static void UM_Lock_LockExamMark() throws InterruptedException {
+
+		// webActions.Click(examActivity, "Exam Activity");
+		webActions.Click(unlockMarksEntry, "Unlock Marks Entry");
+		Thread.sleep(3000);
+
+		webActions.selectByVisibleText(Institute, " School of Engineering and Applied Sciences ");
+		Thread.sleep(3000);
+
+		webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
+		ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
+		Thread.sleep(3000);
+
+		webActions.selectByVisibleText(examEventCode, " Presentation - Presentation ");
+		Thread.sleep(3000);
+
+		webActions.Click(subjects, "Subjects");
+		List<WebElement> List_subjects = webActions.getListOfWebElements(listOfSubjects);
+
+		for (int i = 0; i < List_subjects.size(); i++) {
+			String str_subj = List_subjects.get(i).getText();
+
+			if (str_subj.equalsIgnoreCase("(EECE804L) ANTENNA THEORY AND DESIGN")) {
+				List_subjects.get(i).click();
+				System.out.println("Selected Subject from DD");
+				// ReportManager.logInfo("Subject Code -\"(EECE804L) ANTENNA THEORY AND
+				// DESIGN\"</b> ");
 
 			}
 		}
@@ -821,18 +915,17 @@ public class UnlockMarksEntry {
 		webActions.verifyText(updatedMsg, "Data Updated Successfully. !!!");
 		webActions.Click(OK, "OK Button");
 		Thread.sleep(2000);
-		
+
 		System.out.println("*****Locked Exam Marks for select faculty*****");
 		ReportManager.logInfo("<b style=\"color:blue;\">*****Locked Exam Marks for select faculty*****</b>");
 		DriverFactory.getInstance().getWebDriver().navigate().refresh();
 		Thread.sleep(2000);
 
-
 	}
 
 //TC_16
 	public static void UM_UnLock_LockExamMark() throws InterruptedException {
-	//	webActions.Click(examActivity, "Exam Activity");
+		webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(unlockMarksEntry, "Unlock Marks Entry");
 		Thread.sleep(3000);
 
@@ -853,7 +946,7 @@ public class UnlockMarksEntry {
 			String str_subj = List_subjects.get(i).getText();
 
 			if (str_subj.equalsIgnoreCase("(EECE804L) ANTENNA THEORY AND DESIGN")) {
-				
+
 				List_subjects.get(i).click();
 				System.out.println("Selected Subject from DD");
 				ReportManager.logInfo(
@@ -865,78 +958,74 @@ public class UnlockMarksEntry {
 		webActions.Click(getDetailsButton, "get Deatils option");
 		System.out.println("Clicked Get Details Option");
 		Thread.sleep(5000);
-//		
-//		List<WebElement> list_facultyName = webActions.getListOfWebElements(facultyNameColumnInSearchOutput);
-//		List<WebElement> list_checkbox = webActions.getListOfWebElements(SNoCheckboxInSearchOutput);
-//		
-//		for (int j = 0; j < list_facultyName.size(); j++) {
-//			String str_facultyName = list_facultyName.get(j).getText();
-//
-//			System.out.println(str_facultyName);
-//			if (str_facultyName.contains("(15120126) Arjun Kumar")) {
-//			
-//				
-//				List_subjects.get(j).isSelected();
-//				List_subjects.get(j).click();
-//				Thread.sleep(2000);
-//
-//				List_subjects.get(j).click();
-//
-//
-//			}
-//
-//		}
-		
+
+		List<WebElement> list_facultyName = webActions.getListOfWebElements(facultyNameColumnInSearchOutput);
+		List<WebElement> list_checkbox = webActions.getListOfWebElements(SNoCheckboxInSearchOutput);
+
+		for (int j = 0; j < list_facultyName.size(); j++) {
+			String str_facultyName = list_facultyName.get(j).getText();
+
+			System.out.println(str_facultyName);
+			if (str_facultyName.contains("(15120047) ARVIND KUMAR")) {
+
+				list_checkbox.get(j).click();
+				System.out.println("Lock exam got selected");
+				ReportManager.logInfo("Row selected");
+
+			}
+
+		}
+
 		jse.executeScript("document.getElementById('fromdate').removeAttribute('readonly',0);");
 		webActions.clearAndSendKeys(fromDate, "05/05/2020");
 		Thread.sleep(2000);
 		jse.executeScript("document.getElementById('todate').removeAttribute('readonly',0);");
 		webActions.clearAndSendKeys(toDate, "25/05/2020");
 		Thread.sleep(4000);
-		
-		List<WebElement> list_facultyName = webActions.getListOfWebElements(facultyNameColumnInSearchOutput);
-		List<WebElement> list_checkbox = webActions.getListOfWebElements(SNoCheckboxInSearchOutput);
+
 		List<WebElement> LockExam_checkbox = webActions.getListOfWebElements(lockExamMarksColumnList);
 
 		for (int j = 0; j < list_facultyName.size(); j++) {
 			String str_facultyName = list_facultyName.get(j).getText();
 
 			System.out.println(str_facultyName);
-			if (str_facultyName.contains("(15120126) Arjun Kumar")) {
-				
-				DriverFactory.getInstance().getWebDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 
+			if (str_facultyName.contains("(15120047) ARVIND KUMAR")) {
+				boolean statuOfCheckBox = LockExam_checkbox.get(j).isSelected();
 
-				list_checkbox.get(j).click();
-				Thread.sleep(2000);
-				ReportManager.logInfo("Row selected");
-				
-				DriverFactory.getInstance().getWebDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 
-				webActions.Click(acceptButton, "Accept");
-				
-				LockExam_checkbox.get(j).isSelected();
-				LockExam_checkbox.get(j).click();
-				Thread.sleep(3000);
+				if (statuOfCheckBox == true) {
+					LockExam_checkbox.get(j).click();
+					System.out.println("Lock exam got checkbox unchekced");
+					ReportManager.logInfo("Lock Marks Exam checkbox Unchecked");
+					break;
 
-				System.out.println("Lock exam unchecked");
-				ReportManager.logInfo("UnLock Marks Exam checkbox is unchecked");
-				
-				break;
+				}
+
 			}
+		}
+
+		if (webActions.isDisplayed(saveButtonForChanges, "Save button")) {
+
+			webActions.Click(saveButtonForChanges, "Save Button");
+
+			String updatedMsg = webActions.getText(dataupdatedMsg);
+			webActions.verifyText(updatedMsg, "Data Updated Successfully. !!!");
+			webActions.Click(OK, "OK Button");
+			Thread.sleep(2000);
+
+			System.out.println("*****Exam Marks Entry unlocked Successfully*****");
+			ReportManager
+					.logInfo(" <b style=\"color:blue;\">\"*****Exam Marks Entry unlocked Successfully*****\"</b> ");
+
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
+		} else {
+			System.out.println("Data not updated successfully");
+			ReportManager.logInfo(" <b style=\"color:red;\">\"Data not updated successfully\"</b> ");
+
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
 
 		}
-		
-		webActions.Click(saveButtonForChanges, "Save Button");
 
-		String updatedMsg = webActions.getText(dataupdatedMsg);
-		webActions.verifyText(updatedMsg, "Data Updated Successfully. !!!");
-		webActions.Click(OK, "OK Button");
-		Thread.sleep(2000);
-		
-		System.out.println("Exam Marks Entry unlocked Successfully");
-		ReportManager.logInfo(" <b style=\"color:blue;\">\"Exam Marks Entry unlocked Successfully\"</b> ");
-
-		
-		DriverFactory.getInstance().getWebDriver().navigate().refresh();
-		Thread.sleep(2000);
 	}
 }
