@@ -2,25 +2,25 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-05-26T21:28:00 IST" name="Default suite" finished-at="2020-05-26T21:29:50 IST" duration-ms="109484">
+  <suite started-at="2020-06-08T16:42:48 IST" name="Default suite" finished-at="2020-06-08T16:58:06 IST" duration-ms="917763">
     <groups>
       <group name="regression">
-        <method signature="UnlockMarksEntryTestCases.UnlockMarksEntryExe()[pri:0, instance:WebTestCases.UnlockMarksEntryTestCases@1a04f701]" name="UnlockMarksEntryExe" class="WebTestCases.UnlockMarksEntryTestCases"/>
+        <method signature="MarksUploadTestCases$MarksUploadTestcases.MarksUploadTCExecution()[pri:0, instance:WebTestCases.MarksUploadTestCases$MarksUploadTestcases@4e91d63f]" name="MarksUploadTCExecution" class="WebTestCases.MarksUploadTestCases$MarksUploadTestcases"/>
       </group> <!-- regression -->
       <group name="Web Application">
-        <method signature="UnlockMarksEntryTestCases.UnlockMarksEntryExe()[pri:0, instance:WebTestCases.UnlockMarksEntryTestCases@1a04f701]" name="UnlockMarksEntryExe" class="WebTestCases.UnlockMarksEntryTestCases"/>
+        <method signature="MarksUploadTestCases$MarksUploadTestcases.MarksUploadTCExecution()[pri:0, instance:WebTestCases.MarksUploadTestCases$MarksUploadTestcases@4e91d63f]" name="MarksUploadTCExecution" class="WebTestCases.MarksUploadTestCases$MarksUploadTestcases"/>
       </group> <!-- Web Application -->
       <group name="smoke">
-        <method signature="UnlockMarksEntryTestCases.UnlockMarksEntryExe()[pri:0, instance:WebTestCases.UnlockMarksEntryTestCases@1a04f701]" name="UnlockMarksEntryExe" class="WebTestCases.UnlockMarksEntryTestCases"/>
+        <method signature="MarksUploadTestCases$MarksUploadTestcases.MarksUploadTCExecution()[pri:0, instance:WebTestCases.MarksUploadTestCases$MarksUploadTestcases@4e91d63f]" name="MarksUploadTCExecution" class="WebTestCases.MarksUploadTestCases$MarksUploadTestcases"/>
       </group> <!-- smoke -->
     </groups>
-    <test started-at="2020-05-26T21:28:00 IST" name="Default test" finished-at="2020-05-26T21:29:50 IST" duration-ms="109484">
-      <class name="WebTestCases.UnlockMarksEntryTestCases">
-        <test-method signature="UnlockMarksEntryExe()[pri:0, instance:WebTestCases.UnlockMarksEntryTestCases@1a04f701]" started-at="2020-05-26T21:28:00 IST" name="UnlockMarksEntryExe" description="Unlock Marks Entry Page Functional TestCases" finished-at="2020-05-26T21:29:48 IST" duration-ms="107778" status="PASS">
+    <test started-at="2020-06-08T16:42:48 IST" name="Default test" finished-at="2020-06-08T16:58:06 IST" duration-ms="917763">
+      <class name="WebTestCases.MarksUploadTestCases$MarksUploadTestcases">
+        <test-method signature="MarksUploadTCExecution()[pri:0, instance:WebTestCases.MarksUploadTestCases$MarksUploadTestcases@4e91d63f]" started-at="2020-06-08T16:42:48 IST" name="MarksUploadTCExecution" description="MarksUpload Functional Testcases" finished-at="2020-06-08T16:58:04 IST" duration-ms="916383" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- UnlockMarksEntryExe -->
-      </class> <!-- WebTestCases.UnlockMarksEntryTestCases -->
+        </test-method> <!-- MarksUploadTCExecution -->
+      </class> <!-- WebTestCases.MarksUploadTestCases$MarksUploadTestcases -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

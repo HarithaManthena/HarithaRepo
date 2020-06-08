@@ -86,9 +86,10 @@ public class MarksUpload {
 	private static FileOutputStream fos;
 	private static Row row;
 	private static Cell cell;
+ public  static   String userName = System.getProperty("user.name");
 
 //TC-01
-	public static void MarksUploadPageVerftnc() {
+	public static void MarksUploadPageVerftnc() throws InterruptedException {
 
 		webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(marksUpload, "Marks Upload");
@@ -99,14 +100,18 @@ public class MarksUpload {
 			webActions.isDisplayed(subjectCode, "Subject Code Dropdown");
 			webActions.isDisplayed(examEventCode, "Exam Event Code Dropdown");
 			System.out.println("Required Dropdowns are present");
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Dropdown Fields Present*****</b>");
-
+			
+			System.out.println("Dropdown fields present on page");
+			
+			System.out.println("*****Verified Marks Entry Page:is displayed*****");
+			ReportManager.logInfo("<b style=\"color:blue;\">*****Verified Marks Entry Page:is displayed*****</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(3000);
 		}
 
 		else {
-			System.out.println("Required Dropdowns are  not present");
-
-			ReportManager.logInfo("<b style=\"color:red;\"> *****Dropdowns not Present*****</b>");
+			System.out.println("Marks Upload page not displayed with required fields");
+			ReportManager.logInfo("<b style=\"color:red;\">Marks Upload page not displayed with required fields</b>");
 
 		}
 	}
@@ -114,7 +119,7 @@ public class MarksUpload {
 	// TC_02
 
 	public static void MUVerifyInstituteDD() throws InterruptedException {
-		webActions.Click(examActivity, "Exam Activity");
+		//webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(2000);
 
@@ -123,11 +128,17 @@ public class MarksUpload {
 			webActions.selectByVisibleText(institute, " School of Engineering and Applied Sciences ");
 			Thread.sleep(4000);
 
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Institute Name is Selected *****</b>");
-
-		} else {
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Institute Name is not Selected *****</b>");
-
+			System.out.println("*****Veified Institute Dropdown:School of Engineering and Applied Sciences is Selected*****");
+			ReportManager.logInfo("<b style=\"color:blue;\">*****Veified Institute Dropdown:School of Engineering and Applied Sciences is Selected*****</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(3000);
+		} 
+		
+		else {
+			System.out.println("Institute Name is not selectable");
+			ReportManager.logInfo("<b style=\"color:red;\">Institute Name is not selectable</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
 		}
 
 	}
@@ -135,7 +146,7 @@ public class MarksUpload {
 	// TC_03
 
 	public static void MUVerifyRegistrationDD() throws InterruptedException {
-		webActions.Click(examActivity, "Exam Activity");
+		//webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(2000);
 
@@ -146,17 +157,24 @@ public class MarksUpload {
 			webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
 			Thread.sleep(2000);
 
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Registration Code is Selected *****</b>");
+			System.out.println("*****Verified Registration Code Dropdown:is selectable*****");
+			ReportManager.logInfo("<b style=\"color:blue;\">*****Verified Registration Code Dropdown:is selectable*****</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(3000);
 
-		} else {
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Registration Code is not Selected *****</b>");
+		}
+		else {
+			System.out.println("Registration Code is not selectable");
+			ReportManager.logInfo("<b style=\"color:red;\">Registration Code is not selectable</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
 		}
 
 	}
 //TC_04
 
 	public static void MUVerifySubjectCodeDD() throws InterruptedException {
-		webActions.Click(examActivity, "Exam Activity");
+	//	webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(2000);
 
@@ -170,19 +188,26 @@ public class MarksUpload {
 			webActions.selectByVisibleText(subjectCode, "EBTY801L ( ADVANCED MOLECULAR BIOLOGY)");
 			Thread.sleep(2000);
 
-			ReportManager.logInfo(
-					"Subject Code - <b style=\"color:green;\">\"EBTY801L ( ADVANCED MOLECULAR BIOLOGY)\"</b> ");
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Subject Code is Selected *****</b>");
+			System.out.println("*****Verified Subject Code Dropdown: is Selectable*****");
+			ReportManager.logInfo("<b style=\"color:blue;\">*****Verified Subject Code Dropdown: is Selectable*****</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(3000);
 
-		} else {
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Subject Code is not Selected *****</b>");
-		}
+
+		} else
+		
+		{
+			System.out.println("Subject is not Selected from dropdown");
+			ReportManager.logInfo("<b style=\"color:red;\">Subject is not Selected from dropdown</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);		
+			}
 
 	}
 //TC_05
 
 	public static void MUVerifyExamEventCodeDD() throws InterruptedException {
-		webActions.Click(examActivity, "Exam Activity");
+		//webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(2000);
 
@@ -200,17 +225,24 @@ public class MarksUpload {
 			webActions.selectByVisibleText(examEventCode, " Presentation ( Presentation) ");
 			Thread.sleep(4000);
 
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Exam Event code is Selected *****</b>");
+			System.out.println("*****Verified Exam Event code Dropdown :  is selectable*****");
+			ReportManager.logInfo("<b style=\"color:blue;\">*****Verified Exam Event code Dropdown : is selectable*****</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(3000);
 
 		} else {
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Exam Event code is not Selected *****</b>");
+
+			System.out.println("Exam Event code is not selectable");
+			ReportManager.logInfo("<b style=\"color:red;\">Exam Event code is not selectable</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
 		}
 
 	}
 
 //TC_06
 	public static void MUVerifyRestButton() throws InterruptedException {
-		webActions.Click(examActivity, "Exam Activity");
+	//	webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(2000);
 
@@ -229,10 +261,17 @@ public class MarksUpload {
 
 		if (webActions.isDisplayed(instituteDDText, "Select Institute")) {
 
-			ReportManager.logInfo("<b style=\"color:green;\"> *****Fields got reset *****</b>");
+			System.out.println("*****Verified Rest Button: Fields got reset*****");
+			ReportManager.logInfo("<b style=\"color:blue;\">*****Verified Rest Button: Fields got reset*****</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
 
 		} else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *****Fields didn't got reset *****</b>");
+			System.out.println("Fields didn't got reset");
+			ReportManager.logInfo("<b style=\"color:red;\">Fields didn't got reset</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
+
 
 		}
 
@@ -241,7 +280,7 @@ public class MarksUpload {
 
 	public static void MUVerifyCancelButton() throws InterruptedException {
 
-		webActions.Click(examActivity, "Exam Activity");
+		//webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(2000);
 
@@ -262,12 +301,22 @@ public class MarksUpload {
 		String Dashboard = webActions.getText(dashboardText);
 		if (Dashboard.equalsIgnoreCase("Dashboard")) {
 
+			System.out.println(
+					"*****Verified Cancel Button:Marks Upload page cancelled and returned to Dashboard page*****");
 			ReportManager.logInfo(
-					"<b style=\"color:green;\"> *********Marks Upload page cancelled and returned to Dashboard page********</b>");
+					"<b style=\"color:blue;\">*****Verified Cancel Button:Marks Upload page cancelled and returned to Dashboard page*****</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
 
 		} else {
-			ReportManager.logInfo("<b style=\"color:red;\"> *********Cancel Button not working********</b>");
 
+
+			System.out.println("Cancel Button funtionality not working");
+
+			ReportManager.logInfo("<b style=\"color:red;\">Cancel Button funtionality not working</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
+			
 		}
 	}
 
@@ -275,7 +324,7 @@ public class MarksUpload {
 
 	public static void MUDownloadTemplateOptn() throws InterruptedException {
 
-		webActions.Click(examActivity, "Exam Activity");
+	//	webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(2000);
 
@@ -294,56 +343,75 @@ public class MarksUpload {
 		String DownloadTemplate = webActions.getText(downlaodTemplate);
 		if (DownloadTemplate.contains("Download Template")) {
 
-			ReportManager
-					.logInfo("<b style=\"color:green;\"> *********Download Template option is present********</b>");
+			System.out.println("*****Download Template option is present*****");
+			ReportManager.logInfo("<b style=\"color:blue;\">*****Download Template option is present*****</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
 
 		} else {
-			ReportManager
-					.logInfo("<b style=\"color:red;\"> *********Download Template option is not present********</b>");
-
+			
+			System.out.println("Download Template option not displayed");
+			ReportManager.logInfo("<b style=\"color:red;\">Download Template option not displayed</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
+			
 		}
 	}
 
-//TC_09
+	//TC_09
 
-	public static void MU_isTemplateDownloaded() throws InterruptedException {
+			public static void MU_isTemplateDownloaded() throws InterruptedException {
 
-		webActions.Click(examActivity, "Exam Activity");
-		webActions.Click(marksUpload, "Marks Upload");
-		Thread.sleep(2000);
+	//			webActions.Click(examActivity, "Exam Activity");
+				webActions.Click(marksUpload, "Marks Upload");
+				Thread.sleep(2000);
 
-		webActions.selectByVisibleText(institute, " School of Engineering and Applied Sciences ");
+				webActions.selectByVisibleText(institute, " School of Engineering and Applied Sciences ");
 
-		webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
-		ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
+				webActions.selectByVisibleText(registrationCode, "1920_EVEN_SEMESTER");
+				ReportManager.logInfo("Registration Code - <b style=\"color:green;\">\"1920_EVEN_SEMESTER\"</b> ");
 
-		webActions.selectByVisibleText(subjectCode, "EBTY801L ( ADVANCED MOLECULAR BIOLOGY)");
-		ReportManager
-				.logInfo("Subject Code - <b style=\"color:green;\">\"EBTY801L ( ADVANCED MOLECULAR BIOLOGY)\"</b> ");
+				webActions.selectByVisibleText(subjectCode, "EBTY801L ( ADVANCED MOLECULAR BIOLOGY)");
+				ReportManager
+						.logInfo("Subject Code - <b style=\"color:green;\">\"EBTY801L ( ADVANCED MOLECULAR BIOLOGY)\"</b> ");
 
-		webActions.selectByVisibleText(examEventCode, " Presentation ( Presentation) ");
-		Thread.sleep(5000);
+				webActions.selectByVisibleText(examEventCode, " Presentation ( Presentation) ");
+				Thread.sleep(5000);
 
-		webActions.Click(downlaodTemplate, "Download link");
-		Thread.sleep(6000);
+				webActions.Click(downlaodTemplate, "Download link");
+				Thread.sleep(6000);
 
-//Need to know Xls file name: [ ExamEventCode_SubjectCode = FileName]
+		//Need to know Xls file name: [ ExamEventCode_SubjectCode = FileName]
 
-		File fileLocation = new File("C:/Users/LENOVO/Downloads");
-		File[] totalfiles = fileLocation.listFiles();
+				
+				File fileLocation = new File("C:/Users/"+userName+"/Downloads");
+				File[] totalfiles = fileLocation.listFiles();
 
-		for (File file : totalfiles) {
-			if (file.getName().equals("Presentation_EBTY801L.xls")) {
-				System.out.println("File is downloaded");
-				ReportManager.logInfo("<b style=\"color:green;\"> *********File is present in downloads********</b>");
-				break;
-			} else {
+				for (File file : totalfiles) {
+					Thread.sleep(3000);
 
-				ReportManager.logInfo("<b style=\"color:red;\"> *********File is not present in downloads********</b>");
+					if (file.getName().equals("Presentation_EBTY801L.xls")) {
+						System.out.println("File is downloaded");
+						
+						System.out.println("*****Download Template:File present in downloads*****");
+						ReportManager.logInfo("<b style=\"color:blue;\">*****Download Template:File present in downloads*****</b>");
+						DriverFactory.getInstance().getWebDriver().navigate().refresh();
+						Thread.sleep(2000);
+						}
+						else {
+							System.out.println("Download Template:File not present in downloads");
+							ReportManager.logInfo("<b style=\"color:red;\">Download Template:File not present in downloads</b>");
+							DriverFactory.getInstance().getWebDriver().navigate().refresh();
+							Thread.sleep(2000);
+							break;
+						}
+					}
+				
 			}
-		}
+			
+			
+			
 
-	}
 //TC_10
 
 	public static void MU_VerifyIsExcelFileDownloaded() throws InterruptedException {
@@ -351,7 +419,8 @@ public class MarksUpload {
 		String path = "";
 		boolean bool = false;
 
-		webActions.Click(examActivity, "Exam Activity");
+
+		//webActions.Click(examActivity, "Exam Activity");
 		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(2000);
 
@@ -372,7 +441,9 @@ public class MarksUpload {
 
 //Need to know Xls file name: [ ExamEventCode_SubjectCode = FileName]
 
-		File fileLocation = new File("C:/Users/LENOVO/Downloads");
+		
+        
+		File fileLocation = new File("C:/Users/"+userName+"/Downloads");
 		File[] totalfiles = fileLocation.listFiles();
 
 		for (File file : totalfiles) {
@@ -383,20 +454,31 @@ public class MarksUpload {
 				bool = file.exists();
 				path = file.getAbsolutePath();
 				if (path.contains(".xls")) {
-					System.out.print(path + "Exists" + bool);
-					ReportManager
-							.logInfo("<b style=\"color:green;\"> *********Excel File exists- " + path + "********</b>");
+				System.out.print(path + "Exists" + bool);
+					
+					ReportManager.logInfo("<b style=\"color:blue;\">*****Successfully verified, downloaded file is excel*****</b>");
+					DriverFactory.getInstance().getWebDriver().navigate().refresh();
+					Thread.sleep(2000);
+					
 					break;
+				}
+				else {
+					System.out.println("File Present not present in Excel format"); 
+					ReportManager.logInfo("<b style=\"color:red;\">File Present not present in Excel format</b>");
+					DriverFactory.getInstance().getWebDriver().navigate().refresh();
+					Thread.sleep(2000);
 				}
 			}
 		}
 	}
+	
+		
 
 //TC_11
 
 	public static void MU_UploadSheet_MarksCol_InvalidData_CHARS() throws InterruptedException, AWTException {
 
-		webActions.Click(examActivity, "Exam Activity");
+	//	webActions.Click(examActivity, "Exam Activity");
 		Thread.sleep(2000);
 		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(2000);
@@ -416,7 +498,7 @@ public class MarksUpload {
 		webActions.Click(downlaodTemplate, "Download link");
 		Thread.sleep(6000);
 
-		File fileLocation = new File("C:/Users/LENOVO/Downloads");
+		File fileLocation = new File("C:/Users/"+userName+"/Downloads");
 		File[] totalfiles = fileLocation.listFiles();
 
 		for (File file : totalfiles) {
@@ -428,8 +510,7 @@ public class MarksUpload {
 				String path = file.getAbsolutePath();
 				if (path.contains(".xls")) {
 					System.out.print(path + "Exists" + bool);
-					ReportManager
-							.logInfo("<b style=\"color:green;\"> *********Excel File exists- " + path + "********</b>");
+					ReportManager.logInfo("Excel File exists- " + path + "");
 
 				}
 			}
@@ -437,15 +518,14 @@ public class MarksUpload {
 
 		try {
 
-			File excel = new File("c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls");
+			File excel = new File("c:/Users/"+userName+"/downloads/Presentation_EBTY801L.xls");
 			fis = new FileInputStream(excel);
 			wb = new HSSFWorkbook(fis);
 			sh = wb.getSheet("Marks Entry Template");
 
 			int NumOfRows = sh.getLastRowNum();
 			System.out.println(NumOfRows);
-			ReportManager.logInfo("Total Rows <b style=\"color:green;\"> " + NumOfRows + " </b>");
-
+			
 			// To read data in cell
 			System.out.println(sh.getRow(2).getCell(8).getStringCellValue());
 			System.out.println(sh.getRow(3).getCell(8).getStringCellValue());
@@ -482,7 +562,7 @@ public class MarksUpload {
 
 		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
 		upload.sendKeys("c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls");
-		ReportManager.logInfo("Uploaded Excel File");
+		ReportManager.logInfo("Uploaded Excel File with data");
 
 		Thread.sleep(8000);
 
@@ -507,12 +587,16 @@ public class MarksUpload {
 
 					ReportManager.logInfo("ErrorList - <b style=\"color:Red;\">" + Str_enrolcol + "</b>"
 							+ ", Enrollment Number - <b style=\"color:green;\">" + str_enrollment + "</b>");
+					
+					System.out.println("****Verification completed Invalid Marks by Chars****");
 
 				}
 			}
 		}
+		ReportManager.logInfo("<b style=\"color:blue;\">****Verification completed by uploading marks as chars - Invalid data****</b>");	
 
 	}
+	
 
 //Using Robot class
 //		String file = "c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls";
@@ -534,6 +618,7 @@ public class MarksUpload {
 //TC_12: Inprogress what type of error message should be shown exactly
 
 	public static void MU_UploadSheet_BranchAndPrgrm_With_INVALID_Data() throws InterruptedException {
+		
 		webActions.Click(examActivity, "Exam Activity");
 		Thread.sleep(2000);
 		webActions.Click(marksUpload, "Marks Upload");
@@ -568,10 +653,14 @@ public class MarksUpload {
 
 	}
 
+	
 //TC_13
 	public static void MU_UploadSheet_MarksCol_INVALIDMarks() throws InterruptedException {
 
-		webActions.Click(examActivity, "Exam Activity");
+		DriverFactory.getInstance().getWebDriver().navigate().refresh();
+		Thread.sleep(2000);
+		
+	//	webActions.Click(examActivity, "Exam Activity");
 		Thread.sleep(2000);
 		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(6000);
@@ -591,7 +680,7 @@ public class MarksUpload {
 		webActions.Click(downlaodTemplate, "Download link");
 		Thread.sleep(6000);
 
-		File fileLocation = new File("C:/Users/LENOVO/Downloads");
+		File fileLocation = new File("C:/Users/"+userName+"/Downloads");
 		File[] totalfiles = fileLocation.listFiles();
 
 		for (File file : totalfiles) {
@@ -603,24 +692,22 @@ public class MarksUpload {
 				String path = file.getAbsolutePath();
 				if (path.contains(".xls")) {
 					System.out.print(path + "Exists" + bool);
-					ReportManager
-							.logInfo("<b style=\"color:green;\"> *********Excel File exists- " + path + "********</b>");
-
+					ReportManager.logInfo("***Excel File exists- " + path + "*****");
+					
 				}
 			}
 		}
 
 		try {
 
-			File excel = new File("c:/Users/LENOVO/downloads/Presentation_EBTY801L.xls");
+			File excel = new File("c:/Users/"+userName+"/downloads/Presentation_EBTY801L.xls");
 			fis = new FileInputStream(excel);
 			wb = new HSSFWorkbook(fis);
 			sh = wb.getSheet("Marks Entry Template");
 
 			int NumOfRows = sh.getLastRowNum();
 			System.out.println(NumOfRows);
-			ReportManager.logInfo("Total Rows <b style=\"color:green;\"> " + NumOfRows + " </b>");
-
+			
 			// To read data in cell
 			System.out.println(sh.getRow(2).getCell(8).getStringCellValue());
 			System.out.println(sh.getRow(3).getCell(8).getStringCellValue());
@@ -680,17 +767,24 @@ public class MarksUpload {
 					ReportManager.logInfo("ErrorList - <b style=\"color:Red;\">" + Str_enrolcol + "</b>"
 							+ ", Enrollment Number - <b style=\"color:green;\">" + str_enrollment + "</b>");
 
+
+					System.out.println("****Verification completed by uploading invalid marks****");
+
 				}
 			}
 		}
-
+		ReportManager.logInfo("<b style=\"color:blue;\">****Verification completed by uploading invalid marks****</b>");	
 	}
 
 	// TC_14
 	public static void MU_saveExcel_with_NOERRORS() throws InterruptedException {
 
-		webActions.Click(examActivity, "Exam Activity");
+		DriverFactory.getInstance().getWebDriver().navigate().refresh();
 		Thread.sleep(2000);
+		
+		//webActions.Click(examActivity, "Exam Activity");
+		Thread.sleep(2000);
+		
 		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(2000);
 
@@ -709,21 +803,20 @@ public class MarksUpload {
 		webActions.Click(downlaodTemplate, "Download link");
 		Thread.sleep(6000);
 
-		File fileLocation = new File("C:/Users/LENOVO/Downloads");
+		File fileLocation = new File("C:/Users/"+userName+"/Downloads");
 		File[] totalfiles = fileLocation.listFiles();
 
 		for (File file : totalfiles) {
 			if (file.getName().equals("Project_EBTY801L.xls")) {
 				System.out.println("File is downloaded");
-				ReportManager.logInfo("<b style=\"color:green;\"> Excel File Downloaded</b>");
+				ReportManager.logInfo("Excel File Downloaded");
 
 				// File f1 = file.getAbsoluteFile();
 				Boolean bool = file.exists();
 				String path = file.getAbsolutePath();
 				if (path.contains(".xls")) {
 					System.out.print(path + "Exists" + bool);
-					ReportManager
-							.logInfo("<b style=\"color:green;\"> *********Excel File exists- " + path + "********</b>");
+					ReportManager.logInfo("Excel File exists- " + path + "");
 
 				}
 			}
@@ -731,14 +824,13 @@ public class MarksUpload {
 
 		try {
 
-			File excel = new File("c:/Users/LENOVO/downloads/Project_EBTY801L.xls");
+			File excel = new File("c:/Users/"+userName+"/downloads/Project_EBTY801L.xls");
 			fis = new FileInputStream(excel);
 			wb = new HSSFWorkbook(fis);
 			sh = wb.getSheet("Marks Entry Template");
 
 			int NumOfRows = sh.getLastRowNum();
 			System.out.println(NumOfRows);
-			ReportManager.logInfo("Total Rows <b style=\"color:green;\"> " + NumOfRows + " </b>");
 
 			// To read data in cell
 			System.out.println(sh.getRow(2).getCell(8).getStringCellValue());
@@ -774,7 +866,7 @@ public class MarksUpload {
 
 		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
 		upload.sendKeys("c:/Users/LENOVO/downloads/Project_EBTY801L.xls");
-		ReportManager.logInfo("<b style=\"color:green;\"> Uploaded Excel File</b>");
+		ReportManager.logInfo("Uploaded Excel File with data");
 
 		Thread.sleep(8000);
 
@@ -784,15 +876,19 @@ public class MarksUpload {
 		String Str_MarksSavedMsg = webActions.getText(marksSaved);
 		webActions.verifyText(Str_MarksSavedMsg, "Marks saved successfully !!!");
 		webActions.Click(OKButn, "OK button");
-		ReportManager.logInfo("<b style=\"color:green;\"> *********Uploaded and Saved Successfully********</b>");
+		
+		System.out.println("*****Uploaded and Saved Successfully*****");
+		ReportManager.logInfo("<b style=\"color:blue;\">*****Uploaded and Saved Successfully*****</b>");
 
+		DriverFactory.getInstance().getWebDriver().navigate().refresh();
+		Thread.sleep(2000);
 	}
 
 	// TC_15
 
 	public static void MU_Save_File_OtherThanEXcelFormat() throws InterruptedException {
 
-		webActions.Click(examActivity, "Exam Activity");
+	//	webActions.Click(examActivity, "Exam Activity");
 		Thread.sleep(2000);
 		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(2000);
@@ -810,31 +906,35 @@ public class MarksUpload {
 		Thread.sleep(5000);
 
 		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
-		upload.sendKeys("c:/Users/LENOVO/downloads/TempFile.txt");
+		upload.sendKeys("c:/Users/"+userName+"/downloads/TempFile.txt");
 		Thread.sleep(2000);
-		ReportManager.logInfo("<b style=\"color:green;\"> Uploaded Excel File</b>");
+		ReportManager.logInfo("Uploaded Excel File with data");
 
 		String Str_InCorrectFile = webActions.getText(incorrectFileUpload_Msg);
 
 		if (Str_InCorrectFile.contains("Please upload only excel file. !!!")) {
 			webActions.Click(OKButn, "OK");
-			ReportManager
-					.logInfo("Error Message - <b style=\"color:red;\">\"Please upload only excel file. !!!\"</b> ");
+			ReportManager.logInfo("Error Message - <b style=\"color:green;\">\"Please upload only excel file. !!!\"</b>");
+			ReportManager.logInfo("<b style=\"color:blue;\">***verification completed successfully:Error Msg Displayd - Please upload excel File***</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
 
 		}
 
 		else {
 			ReportManager.logInfo("<b style=\"color:red;\">\"No Error Message is displayed\"</b> ");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
 
 		}
 	}
 
-//TC_16 - On Hold
-
+//TC_16 - Duplicate
+	
 //TC_17
 
 	public static void MU_Verify_DownloadErrorList_Optn() throws InterruptedException {
-		webActions.Click(examActivity, "Exam Activity");
+	//	webActions.Click(examActivity, "Exam Activity");
 		Thread.sleep(2000);
 		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(2000);
@@ -854,13 +954,13 @@ public class MarksUpload {
 		webActions.Click(downlaodTemplate, "Download link");
 		Thread.sleep(6000);
 
-		File fileLocation = new File("C:/Users/LENOVO/Downloads");
+		File fileLocation = new File("C:/Users/"+userName+"/Downloads");
 		File[] totalfiles = fileLocation.listFiles();
 
 		for (File file : totalfiles) {
 			if (file.getName().equals("Project_EBTY801L.xls")) {
-				System.out.println("File is downloaded");
-				ReportManager.logInfo(" Excel File Downloaded");
+				System.out.println("Excel File is downloaded");
+				ReportManager.logInfo("Excel File Downloaded");
 
 				// File f1 = file.getAbsoluteFile();
 				Boolean bool = file.exists();
@@ -877,14 +977,13 @@ public class MarksUpload {
 
 		{
 
-			File excel = new File("c:/Users/LENOVO/downloads/Project_EBTY801L.xls");
+			File excel = new File("c:/Users/"+userName+"/downloads/Project_EBTY801L.xls");
 			fis = new FileInputStream(excel);
 			wb = new HSSFWorkbook(fis);
 			sh = wb.getSheet("Marks Entry Template");
 
 			int NumOfRows = sh.getLastRowNum();
 			System.out.println(NumOfRows);
-			ReportManager.logInfo("Total Rows <b style=\"color:green;\"> " + NumOfRows + " </b>");
 
 			// To read data in cell
 			System.out.println(sh.getRow(2).getCell(8).getStringCellValue());
@@ -919,7 +1018,7 @@ public class MarksUpload {
 
 		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
 		upload.sendKeys("c:/Users/LENOVO/downloads/Project_EBTY801L.xls");
-		ReportManager.logInfo("Uploaded Excel File");
+		ReportManager.logInfo("Uploaded Excel File with data");
 
 		Thread.sleep(8000);
 
@@ -935,10 +1034,12 @@ public class MarksUpload {
 
 			if (actual.equalsIgnoreCase(Redexpected)) {
 
-				ReportManager.logInfo("<b style=\"color:red;\"> Error Exists in uploded sheet</b>");
+				System.out.println("Error Exists in uploded sheet");
+				ReportManager.logInfo("Error Exists in uploded sheet");
 
 				webActions.Click(downloadErrorList, "Download Error List");
 				Thread.sleep(6000);
+				break;
 			}
 
 		}
@@ -948,17 +1049,20 @@ public class MarksUpload {
 
 		for (File file : TotalFiles) {
 			if (file.getName().equals("Project_EBTY801L_Error.xls")) {
-				System.out.println("Erro List File is downloaded");
-				ReportManager.logInfo("<b style=\"color:green;\"> Error File is Downloaded</b>");
-
+				System.out.println("Error List File is downloaded");
+				System.out.println("***verification completed successfully: Dwonload Error List - Error File is Downloaded***");
+				ReportManager.logInfo("<b style=\"color:blue;\">***verification completed successfully: Download Error List - Error File is Downloaded***</b>");
+				break;
 			}
 		}
+		
+		DriverFactory.getInstance().getWebDriver().navigate().refresh();
+		Thread.sleep(2000);
 	}
 
 //TC_18
 	public static void MU_Lock_UploadedMarks() throws InterruptedException {
-
-		webActions.Click(examActivity, "Exam Activity");
+	//	webActions.Click(examActivity, "Exam Activity");
 		Thread.sleep(2000);
 		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(2000);
@@ -978,13 +1082,13 @@ public class MarksUpload {
 		webActions.Click(downlaodTemplate, "Download link");
 		Thread.sleep(6000);
 
-		File fileLocation = new File("C:/Users/LENOVO/Downloads");
+		File fileLocation = new File("C:/Users/"+userName+"/Downloads");
 		File[] totalfiles = fileLocation.listFiles();
 
 		for (File file : totalfiles) {
 			if (file.getName().equals("Class_Participation_EBTY801L.xls")) {
 				System.out.println("File is downloaded");
-				ReportManager.logInfo("<b style=\"color:green;\"> Excel File Downloaded</b>");
+				ReportManager.logInfo("Excel File Downloaded</b>");
 
 				// File f1 = file.getAbsoluteFile();
 				Boolean bool = file.exists();
@@ -999,7 +1103,7 @@ public class MarksUpload {
 
 		try {
 
-			File excel = new File("c:/Users/LENOVO/downloads/Class_Participation_EBTY801L.xls");
+			File excel = new File("c:/Users/"+userName+"/downloads/Class_Participation_EBTY801L.xls");
 			fis = new FileInputStream(excel);
 			wb = new HSSFWorkbook(fis);
 			sh = wb.getSheet("Marks Entry Template");
@@ -1042,8 +1146,8 @@ public class MarksUpload {
 		}
 
 		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
-		upload.sendKeys("c:/Users/LENOVO/downloads/Class_Participation_EBTY801L.xls");
-		ReportManager.logInfo("<b style=\"color:green;\"> Uploaded Excel File</b>");
+		upload.sendKeys("c:/Users/"+userName+"/downloads/Class_Participation_EBTY801L.xls");
+		ReportManager.logInfo("Uploaded Excel File</b>");
 
 		Thread.sleep(8000);
 
@@ -1074,8 +1178,15 @@ public class MarksUpload {
 		String lockStatusText = webActions.getText(lockStatus);
 		if (lockStatusText.equalsIgnoreCase("Locked")) {
 			ReportManager.logInfo("Lock Status is - <b style=\"color:green;\"> " + lockStatusText + "</b>");
+			System.out.println("*****Uploaded and Locked Exam Marks Successfully*****");
+			ReportManager.logInfo("Lock Status is - <b style=\"color:blue;\">*****Uploaded and Locked Exam Marks Successfully*****</b>");
+
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
 		} else {
 			ReportManager.logInfo("Lock Status is - <b style=\"color:red;\"> " + lockStatusText + "</b>");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
 		}
 
 	}
@@ -1083,7 +1194,7 @@ public class MarksUpload {
 //TC_19
 	public static void MU_Lock_Without_MarksSheet() throws InterruptedException {
 
-		webActions.Click(examActivity, "Exam Activity");
+		//webActions.Click(examActivity, "Exam Activity");
 		Thread.sleep(2000);
 		webActions.Click(marksUpload, "Marks Upload");
 		Thread.sleep(2000);
@@ -1106,11 +1217,15 @@ public class MarksUpload {
 		String Str_unabletolock = webActions.getText(unableToLock);
 		if (Str_unabletolock.equalsIgnoreCase("Entry can not be locked, because total student marks not entered. !!")) {
 			webActions.Click(OKButn, "OK");
-			ReportManager.logInfo(
-					"Error Message Displayed- <b style=\"color:red;\">\"Entry can not be locked, because total student marks not entered. !!\"</b> ");
+			System.out.println("***Error Msg Displayed : Entry can not be locked, because total student marks not entered. !!***");
+			ReportManager.logInfo("<b style=\"color:blue;\">\"***Error Msg Displayed : Entry can not be locked, because total student marks not entered. !!***\"</b> ");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
 
 		} else {
 			ReportManager.logInfo("<b style=\"color:red;\">\"No Error Message is displayed\"</b> ");
+			DriverFactory.getInstance().getWebDriver().navigate().refresh();
+			Thread.sleep(2000);
 		}
 
 	}
@@ -1118,7 +1233,7 @@ public class MarksUpload {
 	// TC_20
 	public static void MU_Verify_ExcelReports_Optn() throws InterruptedException {
 
-		webActions.Click(examActivity, "Exam Activity");
+		//webActions.Click(examActivity, "Exam Activity");
 		Thread.sleep(2000);
 
 		webActions.Click(marksUpload, "Marks Upload");
@@ -1139,13 +1254,13 @@ public class MarksUpload {
 		webActions.Click(downlaodTemplate, "Download link");
 		Thread.sleep(6000);
 
-		File fileLocation = new File("C:/Users/LENOVO/Downloads");
+		File fileLocation = new File("C:/Users/"+userName+"/Downloads");
 		File[] totalfiles = fileLocation.listFiles();
 
 		for (File file : totalfiles) {
 			if (file.getName().equals("Class_Participation_EBTY801L.xls")) {
 				System.out.println("File is downloaded");
-				ReportManager.logInfo("<b style=\"color:green;\"> Excel File Downloaded</b>");
+				ReportManager.logInfo("Excel File Downloaded");
 
 				// File f1 = file.getAbsoluteFile();
 				Boolean bool = file.exists();
@@ -1160,14 +1275,13 @@ public class MarksUpload {
 
 		try {
 
-			File excel = new File("c:/Users/LENOVO/downloads/Class_Participation_EBTY801L.xls");
+			File excel = new File("c:/Users/"+userName+"/downloads/Class_Participation_EBTY801L.xls");
 			fis = new FileInputStream(excel);
 			wb = new HSSFWorkbook(fis);
 			sh = wb.getSheet("Marks Entry Template");
 
 			int NumOfRows = sh.getLastRowNum();
 			System.out.println(NumOfRows);
-			ReportManager.logInfo("Total Rows <b style=\"color:green;\"> " + NumOfRows + " </b>");
 
 			// To read data in cell
 			System.out.println(sh.getRow(2).getCell(8).getStringCellValue());
@@ -1204,7 +1318,7 @@ public class MarksUpload {
 
 		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
 		upload.sendKeys("c:/Users/LENOVO/downloads/Class_Participation_EBTY801L.xls");
-		ReportManager.logInfo("<b style=\"color:green;\"> Uploaded Excel File</b>");
+		ReportManager.logInfo("Uploaded Excel File with valid data");
 
 		Thread.sleep(8000);
 
@@ -1219,13 +1333,13 @@ public class MarksUpload {
 			String actual = hexcolorRed;
 
 			if (!actual.equalsIgnoreCase(Redexpected)) {
-				System.out.println("No Error Exists");
+				System.out.println("Verified uploaded file - No Error Exists");
+				ReportManager.logInfo("Verified uploaded file - No Error Exists");
+				
 
 			}
-
+			
 		}
-
-		ReportManager.logInfo("<b style=\"color:Green;\">No Errors exists</b>");
 		webActions.Click(excelReport, "Excel Report");
 		Thread.sleep(6000);
 
@@ -1235,7 +1349,7 @@ public class MarksUpload {
 		for (File file : AllFiles) {
 			if (file.getName().equals("EBTY801L_(_ADVANCED_MOLECULAR_BIOLOGY)_Report.xls")) {
 				System.out.println("Excel Report is downloaded");
-				ReportManager.logInfo("<b style=\"color:green;\">Excel Report is downloaded</b>");
+				ReportManager.logInfo("Excel Report is downloaded");
 
 				// File f1 = file.getAbsoluteFile();
 				Boolean bool = file.exists();
@@ -1243,16 +1357,21 @@ public class MarksUpload {
 				if (path.contains("EBTY801L_(_ADVANCED_MOLECULAR_BIOLOGY)_Report.xls")) {
 					System.out.print(path + "Exists" + bool);
 					ReportManager.logInfo("Excel Report present at- " + path + " ");
+					System.out.println("*****Excel Report Present in Downloads*****");
+					ReportManager.logInfo("<b style=\"color:blue;\">*****Verification completed succssfully - Excel Report Present in Downloads*****</b>");
+					DriverFactory.getInstance().getWebDriver().navigate().refresh();
+					Thread.sleep(2000);
 
 				}
 			}
 		}
 
 	}
+	
 //TC_21
 
 	public static void MU_Verify_PrintMarksSheet_Option() throws InterruptedException {
-		webActions.Click(examActivity, "Exam Activity");
+	//	webActions.Click(examActivity, "Exam Activity");
 		Thread.sleep(2000);
 
 		webActions.Click(marksUpload, "Marks Upload");
@@ -1273,13 +1392,13 @@ public class MarksUpload {
 		webActions.Click(downlaodTemplate, "Download link");
 		Thread.sleep(6000);
 
-		File fileLocation = new File("C:/Users/LENOVO/Downloads");
+		File fileLocation = new File("C:/Users/"+userName+"/Downloads");
 		File[] totalfiles = fileLocation.listFiles();
 
 		for (File file : totalfiles) {
 			if (file.getName().equals("Class_Participation_EBTY801L.xls")) {
 				System.out.println("File is downloaded");
-				ReportManager.logInfo("<b style=\"color:green;\"> Excel File Downloaded</b>");
+				ReportManager.logInfo("Excel File Downloaded");
 
 				// File f1 = file.getAbsoluteFile();
 				Boolean bool = file.exists();
@@ -1294,7 +1413,7 @@ public class MarksUpload {
 
 		try {
 
-			File excel = new File("c:/Users/LENOVO/downloads/Class_Participation_EBTY801L.xls");
+			File excel = new File("c:/Users/"+userName+"/downloads/Class_Participation_EBTY801L.xls");
 			fis = new FileInputStream(excel);
 			wb = new HSSFWorkbook(fis);
 			sh = wb.getSheet("Marks Entry Template");
@@ -1338,7 +1457,7 @@ public class MarksUpload {
 
 		WebElement upload = DriverFactory.getInstance().getWebDriver().findElement(chooseFile);
 		upload.sendKeys("c:/Users/LENOVO/downloads/Class_Participation_EBTY801L.xls");
-		ReportManager.logInfo("<b style=\"color:green;\"> Uploaded Excel File</b>");
+		ReportManager.logInfo("Uploaded Excel File with data");
 
 		Thread.sleep(8000);
 
@@ -1353,13 +1472,12 @@ public class MarksUpload {
 			String actual = hexcolorRed;
 
 			if (!actual.equalsIgnoreCase(Redexpected)) {
-				System.out.println("No Error Exists");
+				System.out.println("Verified uploaded file - No Error Exists");
+				ReportManager.logInfo("Verified uploaded file - No Error Exists");				
 
 			}
 
 		}
-
-		ReportManager.logInfo("<b style=\"color:Green;\">No Errors exists</b>");
 
 		webActions.Click(printMarksSheet, "Print Marks Sheet");
 		Thread.sleep(6000);
@@ -1369,8 +1487,8 @@ public class MarksUpload {
 
 		for (File file : AllFiles) {
 			if (file.getName().equals("EBTY801L_(_ADVANCED_MOLECULAR_BIOLOGY)_Report.pdf")) {
-				System.out.println("pdfl Report is downloaded");
-				ReportManager.logInfo("<b style=\"color:green;\">pdf Report is downloaded</b>");
+				System.out.println("pdf Report is downloaded");
+				ReportManager.logInfo("pdf Report is downloaded");
 
 				// File f1 = file.getAbsoluteFile();
 				Boolean bool = file.exists();
@@ -1378,10 +1496,15 @@ public class MarksUpload {
 				if (path.contains("EBTY801L_(_ADVANCED_MOLECULAR_BIOLOGY)_Report.pdf")) {
 					System.out.print(path + "Exists" + bool);
 					ReportManager.logInfo("PDF Report present at- " + path + " ");
+					System.out.println("***Verification completed successfully - PrintMarksSheet - PDF Report is downloaded***");
+					ReportManager.logInfo("<b style=\"color:blue;\">***Verification completed successfully - PrintMarksSheet - PDF Report is downloaded***</b>");
+					DriverFactory.getInstance().getWebDriver().navigate().refresh();
+					Thread.sleep(2000);
 
 				}
 			}
 		}
 
 	}
+	
 }

@@ -175,6 +175,7 @@ public class UnlockMarksEntry {
 			Thread.sleep(3000);
 
 		} else {
+			System.out.println("Exam Event code is not selectable");
 			ReportManager.logInfo("<b style=\"color:red;\">Exam Event code is not selectable</b>");
 			DriverFactory.getInstance().getWebDriver().navigate().refresh();
 			Thread.sleep(2000);
